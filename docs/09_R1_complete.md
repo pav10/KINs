@@ -152,7 +152,11 @@ Long-period fields (D ≤ 1000, s = 36–44): §6.
 - **L7.4 CERTIFIED (REFUTES the R3 working hypothesis "≤ 2 classes per edge" and L6.3's "≤ 2
   values per edge when s□ ≥ 4").** D = 82 (s = 1, one edge orbit): a maximal lattice represents
   4 classes, all on the single edge orbit; S(Q(√82),2) = 4 > 2s.  D = 85 (s = 1): S = 3.  D = 58:
-  an s□ = 6 lattice with 4 values on one edge.  Over all maximal lattices (D ≤ 100) the classes on one edge reach 3 (D = 73, 74, 85, 89, 97) and
+  an s□ = 6 lattice with 4 values on one edge.
+  Explicit witness (Q(√82), h = 4): Gram [[10−√82, −4], [−4, 10+√82]] on O e1 ⊕ O e2, glued with
+  x = (7 + √82/2, 7 − √82/2) (Q(x) = 14): M has Z-basis (1,0), (√82/2, √82/2), (0,1), (0,√82); M is
+  NOT free.  Its values on the unique edge orbit: 10−√82, 154−17√82 (norm 18), 46−5√82,
+  118−13√82 (norm 66) — four distinct square classes.  Over all maximal lattices (D ≤ 100) the classes on one edge reach 3 (D = 73, 74, 85, 89, 97) and
   4 (D = 58, 82), never more.  Per-edge statistics over every maximal lattice:
   `data/edge_stats.jsonl`.
 - **L7.5 EMPIRICAL.** S(K,2) is not monotone in s, κ□ or ι: s = 2 fields reach 4 (D = 38, 51,

@@ -268,9 +268,11 @@ D = 43, 67, 86 (s = 10). Re-verifies the IMPORTED D = 26 → 2, 33 → 4, 19 →
 82 (2 < 4), 85 (2 < 3), 91 (4 < 6); h(K) = 2, 2, 2, 4, 2, 2. For h(K) = 1 they coincide.
 
 **L7.4 CERTIFIED (REFUTES "≤ 2 classes per edge", R3, and L6.3's "≤ 2 values per edge if s□ ≥ 4").**
-Q(√82) (s = 1): a maximal integral lattice (frame [[10−√82, −4], [−4, 10+√82]] + one glue vector)
-represents 4 classes, all on the single edge orbit; S = 4 > 2s. Q(√85) (s = 1): S = 3. Q(√58): an
-s□ = 6 lattice with 4 values on one edge. Hence s□ ≤ 2s is false; the per-face bound L1.4 (≤ 12 per
+Q(√82) (s = 1): a maximal integral, non-free lattice (frame [[10−√82, −4], [−4, 10+√82]] glued with
+x = (7+√82/2, 7−√82/2); values 10−√82, 154−17√82, 46−5√82, 118−13√82) represents 4 classes, all on
+the single edge orbit; S = 4 > 2s. Q(√85) (s = 1): S = 3. Q(√58): an
+s□ = 6 lattice with 4 values on one edge. Also for binary FORMS: 3 classes on one edge occur for D = 73, 89, 97 (h = 1, all lattices free).
+Hence s□ ≤ 2s is false; the per-face bound L1.4 (≤ 12 per
 edge) is the only per-edge bound known. Over every maximal lattice, D ≤ 100: classes on one edge reach 3 (D = 73, 74, 85, 89, 97)
 and 4 (D = 58, 82); never more. Per-edge maxima over every maximal lattice:
 data/edge_stats.jsonl (`scripts/edge_stats.py`).

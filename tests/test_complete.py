@@ -283,3 +283,32 @@ def test_sails_cross_check():
     check = importlib.import_module("check_sails").check
     for D in [2, 3, 5, 13, 19, 31, 43, 46, 57, 67, 94, 181, 331]:
         check(D)
+
+
+@pytest.mark.parametrize("D", [43, 691, 823, 862])
+def test_stored_certificates(D):
+    """data/certificates: re-verify the stored lower-bound certificates from the vectors alone:
+    integrality of the stored Z-basis (and that it spans the stated overlattice), Q(v) values,
+    indecomposability (CF orbit test) and pairwise distinct square classes."""
+    import json, os
+    from lattice import Bform, indecomposable_test
+    from rqf import same_square_class
+    c = json.load(open(os.path.join(os.path.dirname(__file__), "..", "data", "certificates",
+                                    f"D{D}_det2.json")))
+    q = lambda p: QF(D, F(p[0]), F(p[1]))
+    G = [[q(x) for x in row] for row in c["gram"]]
+    basis = [(q(v[0]), q(v[1])) for v in c["zbasis"]]
+    fd = FieldData(D)
+    assert [(u[0], u[1]) for u in overlattice_basis(fd, G, [tuple(g) for g in c["glue"]])] == basis
+    assert G[0][0].is_tot_pos() and (G[0][0] * G[1][1] - G[0][1] * G[1][0]).is_tot_pos()
+    assert all(Bform(G, u, v).is_integral() for u in basis for v in basis)
+    is_ind, _ = indecomposable_test(D)
+    vals = []
+    for vv, val in zip(c["vectors"], c["values"]):
+        x = sum((basis[i][0] * vv[i] for i in range(4)), QF(D, 0))
+        y = sum((basis[i][1] * vv[i] for i in range(4)), QF(D, 0))
+        Qv = Bform(G, (x, y), (x, y))
+        assert Qv == q(val) and is_ind(Qv)
+        assert not any(same_square_class(Qv, w) for w in vals)
+        vals.append(Qv)
+    assert len(vals) == c["s_sq_lower_bound"]
