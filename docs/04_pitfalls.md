@@ -41,3 +41,15 @@ entries in Gram matrices are B-values (not 2B).
 
 P11. **Container hygiene (if working in ephemeral sandboxes).** Save to the repo immediately;
 an earlier session lost fp.py/t2.py to a reset.
+
+P12. **O_K = Z + Zω, not Z + Z√D.** Any Z-basis of an O-lattice built from generators must use
+v and ωv (C17). For D ≡ 1 (mod 4) Z[√D] has index 2 in O.
+
+P13. **Huge fundamental units.** Balanced representatives can still be lopsided by a factor up to ε₁
+(ε ≈ 3.4·10^16 for D = 958). Never search boxes in embedding coordinates; use exact trace forms
+(complete.admissible_b: Tr(b²/αβ) < 2) and exact norm/CF tests (is_principal via Serret). Float
+embeddings a − b√D cancel catastrophically for lopsided elements (use N(x)/σ_large).
+
+P14. **Shell hygiene for background runs.** `cmd1 && VAR=... && nohup job &` backgrounds the whole
+chain, so VAR is unset afterwards; and `pkill -f pattern` kills the shell whose command line
+contains the pattern (use an anchored `^python3 ...`).

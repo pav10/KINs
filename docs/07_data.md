@@ -21,7 +21,15 @@ norm 17: 105−16√43, 282−43√43, 730938−111467√43, 1963743−299468√
 Q(√31) value traces: 12, 34, 56, 490, 902, 1314. Q(√57) classes: 8±√57, 68±9√57, (23−3√57)/2,
 (53−7√57)/2 (each class met on two edges).
 
+## E. COMPLETE values S(K,2), S_free(K,2), all squarefree D ≤ 100 (R1) — supersedes C
+See 09_R1_complete.md §4 (table) and §6 (long-period fields); data/complete_S.jsonl,
+data/complete_S_long.jsonl; per-edge maxima over all maximal lattices data/edge_stats.jsonl.
+Command: `python3 scripts/complete_S.py out.jsonl --range 2 100`.
+
 ## C. Exact scan, lower bounds for S(K,2), D ≤ 66 (`scripts/scan_exact.py 2 66 25 out.jsonl`)
+**Caveat (C17): rows with D ≡ 1 (mod 4) were computed on Z[√D]-sublattices (bug in
+realized_module, now fixed); they are valid lower bounds but not the values of the O-lattices.
+Superseded by E.**
 Lattice = winner of `find_winner` on balanced class reps / on orbit reps (25 s limit each), s□
 evaluated exactly. LOWER BOUNDS ONLY (fixed reps; e.g. D=57 gives 4 here but 6 by the frame in B).
 Raw data with Gram matrices and per-edge counts: data/scan_exact.jsonl.

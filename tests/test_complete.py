@@ -185,6 +185,7 @@ def test_galois_reduction_harmless():
         assert complete_S(D, galois=False)["S"] == complete_S(D)["S"]
 
 
+@pytest.mark.slow
 def test_exact_vs_capped_enumeration():
     """s_sq of a few maximal overlattices: exact (per-edge) == capped Fincke-Pohst classes."""
     for D, cap in [(19, 2000), (33, 1500)]:

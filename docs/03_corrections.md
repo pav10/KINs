@@ -62,3 +62,20 @@ True so far only for the extremal (s□ ≥ 4) lattices, and the right quantity 
 
 C16. **"Stall at 6" (other analysis, 40 fields, Δ ≤ 348).** Their search was restricted to
 unit-determinant frames and did not include D = 43, where S ≥ 8 (L6.2).
+
+C17. **`lattice.realized_module` spanned Z[√D]·v_i, not O·v_i** (generators v_i, √D·v_i). For
+D ≡ 1 (mod 4) that is an index-4 sublattice which is not an O-module. Fixed (generators v_i, ω v_i).
+Affected (all lower bounds, but wrong as values): 07_data table C rows D = 5, 13, 17, 21, 29, 33,
+37, 41, 53, 57, 61, 65 (e.g. D = 13, 21, 29, 53: 1 → 2; D = 57 orbit winner 4 → 6); C15's ⟨1, γ⟩
+edge counts (D = 65: 4 values, not 3); the D = 33 orbit-plateau entry. Not affected: L3.1 (D = 19,
+31; D = 57 used an explicit O-basis), L6.2, frame57, D ≢ 1 data. [test_realized_module_is_OK_module]
+
+C18. **`lattice.edge_deltas` used a fixed 254-term continued fraction** — failed for period s > 60
+(first at D > 300). Fixed (length from s). Found by the sails cross-check.
+
+C19. **"Per-edge class count ≤ 2" (R3 working hypothesis, "would give s□ ≤ 2s") and "≤ 2 values per
+edge in every lattice with s□ ≥ 4" (L6.3/C15).** Both REFUTED (L7.4): D = 82 has s = 1 and S = 4.
+
+C20. **Do not compute S_free from maximal lattices only.** A free lattice may lie only in non-free
+maximal lattices; R1 evaluates lattices maximal among FREE overlattices (L7.1). (Caught before
+any value was recorded.)

@@ -184,35 +184,60 @@ def _galois(fd, i, j, b):
     return _canon(fd, ia, ib, b2)
 
 
+def _ellipse_points(A, B, C, T):
+    """All (x, y) in Z^2 with A x^2 + B xy + C y^2 <= T, for a positive definite form with
+    integer A, B, C and integer T >= 0.  Exact: Lagrange-Gauss reduction (integer unimodular
+    transformation), then integer-sqrt bounds."""
+    U = [[1, 0], [0, 1]]                      # (x, y)^T = U (x', y')^T
+    while True:
+        # size-reduce: x -> x - q y with q = round(B / 2A)
+        q = (B + A) // (2 * A)                # floor(B/(2A) + 1/2)
+        if q:
+            B, C = B - 2 * q * A, C - q * B + q * q * A
+            U = [[U[0][0], U[0][1] - q * U[0][0]], [U[1][0], U[1][1] - q * U[1][0]]]
+        if A > C:
+            A, C = C, A
+            B = -B
+            U = [[U[0][1], -U[0][0]], [U[1][1], -U[1][0]]]
+            continue
+        break
+    disc = 4 * A * C - B * B                  # > 0
+    out = []
+    # A x^2 + B x y + C y^2 = A (x + B y/(2A))^2 + (disc/(4A)) y^2 <= T  =>  y^2 <= 4 A T / disc
+    ymax = isqrt(4 * A * T // disc) + 1
+    for y in range(-ymax, ymax + 1):
+        # x: A x^2 + B y x + (C y^2 - T) <= 0 ; roots (-B y +- sqrt(Dx)) / (2A)
+        Dx = B * B * y * y - 4 * A * (C * y * y - T)
+        if Dx < 0:
+            continue
+        r = isqrt(Dx)
+        lo = (-B * y - r) // (2 * A) - 1
+        hi = (-B * y + r) // (2 * A) + 1
+        for x in range(lo, hi + 1):
+            if A * x * x + B * x * y + C * y * y <= T:
+                out.append((U[0][0] * x + U[0][1] * y, U[1][0] * x + U[1][1] * y))
+    return out
+
+
 def admissible_b(fd, al, be):
-    """All b in O with al*be - b^2 totally positive (exact).  The box |sigma_k(b)| < B_k,
-    B_k = sqrt(sigma_k(al*be)), is first balanced by b = eps^-k * c (floats only choose k and
-    bound the search box, padded by 2; every candidate is re-checked exactly)."""
-    from math import log
+    """All b in O with al*be - b^2 totally positive.  Exact, float-free: such b satisfy
+    sigma_k(b^2/(al be)) < 1 (k = 1, 2), hence Tr(b^2/(al be)) < 2, a positive definite rational
+    binary quadratic form in the coordinates of b = x + y omega; enumerate that ellipse
+    exactly (_ellipse_points) and keep the b with al*be - b^2 >> 0.  (About pi sqrt(Delta)/2
+    points, independently of the size of the fundamental unit.)"""
     ar = fd.ar
     p = ar.from_qf(al * be)
-    e1 = max(abs(x) for x in fd.eps.emb())
-    P1, P2 = emb_stable(al * be)
-    B1, B2 = sqrt(P1), sqrt(P2)
-    k = round(-log(B1 / B2) / (2 * log(e1)))
-    ek = unit_power(fd.eps, fd.Neps, k)                # c = b * eps^k
-    ekc = ar.from_qf(unit_power(fd.eps, fd.Neps, -k))  # b = c * eps^-k
-    s1, s2 = (abs(x) for x in emb_stable(ek))
-    C1, C2 = B1 * s1, B2 * s2
-    w1, w2 = omega(fd.D).emb()
-    dw = abs(w1 - w2)
-    ymax = (C1 + C2) / dw
+    g = (al * be).inv()
+    w = omega(fd.D)
+    A, Bq, C = g.trace(), 2 * (g * w).trace(), (g * w * w).trace()
+    L = 1
+    for c in (A, Bq, C):
+        L = L * c.denominator // gcd(L, c.denominator)
     out = []
-    for y in range(-int(ymax) - 2, int(ymax) + 3):
-        lo = max(-C1 - y * w1, -C2 - y * w2)
-        hi = min(C1 - y * w1, C2 - y * w2)
-        if lo > hi + 4:
-            continue
-        for x in range(floor(lo) - 2, ceil(hi) + 3):
-            b = ar.mul((x, y), ekc)
-            d = ar.sub(p, ar.mul(b, b))
-            if 2 * d[0] + d[1] * ar.t > 0 and ar.norm(d) > 0:
-                out.append(ar.to_qf(b))
+    for x, y in _ellipse_points(int(A * L), int(Bq * L), int(C * L), 2 * L):
+        d = ar.sub(p, ar.mul((x, y), (x, y)))
+        if 2 * d[0] + d[1] * ar.t > 0 and ar.norm(d) > 0:
+            out.append(ar.to_qf((x, y)))
     return out
 
 
@@ -579,3 +604,69 @@ def complete_S(D, galois=True, free_too=True, verbose=False, record_all=False):
     if record_all:
         out["all"] = allrec
     return out
+
+
+# ----------------------------------------------------------------------------
+# Per-edge structure (for ledger L7.x statistics)
+# ----------------------------------------------------------------------------
+def edge_values(fd, G, basis):
+    """Per edge rep E (lattice.edge_deltas order): the list of values Q(v), T_{delta_E}(v) = 1
+    (= the represented indecomposables on E, L6.1)."""
+    from lattice import edge_deltas, enum_short_reduced, vec_value, Bform
+    D = fd.D
+    out = []
+    for dlt in edge_deltas(D):
+        Td = [[int((dlt * Bform(G, basis[a], basis[b])).trace()) for b in range(4)]
+              for a in range(4)]
+        vals = []
+        for _, vv in enum_short_reduced(Td, 1):
+            val = vec_value(D, G, basis, vv)
+            if val not in vals:
+                vals.append(val)
+        out.append(vals)
+    return out
+
+
+def class_count(vals):
+    reps = []
+    for v in vals:
+        if not any(same_square_class(v, r) for r in reps):
+            reps.append(v)
+    return len(reps)
+
+
+# ----------------------------------------------------------------------------
+# R2 probe: Galois-symmetric frames [[alpha, b], [b, alpha']], b in Z  (ledger L7.6)
+# ----------------------------------------------------------------------------
+def symmetric_S(D, verbose=False):
+    """max s_sq over the maximal integral overlattices of the frames [[alpha, b], [b, alpha']],
+    alpha in R (indecomposables mod (O^x)^2), b in Z, N(alpha) - b^2 > 0 (det is then a positive
+    rational integer, so the frame is totally positive definite).  A LOWER bound for S(K,2);
+    equality with S(K,2) is the question of roadmap R2."""
+    fd = FieldData(D)
+    ar = fd.ar
+    best, best_rec, nfr = 1, None, 0
+    done = set()
+    for al in fd.reps:
+        i, _ = fd.normalize(al.conj())
+        j = fd.reps.index(al)
+        if (min(i, j), max(i, j)) in done:
+            continue                                   # conjugate frame: conjugate lattices
+        done.add((min(i, j), max(i, j)))
+        be = al.conj()
+        n = int(al.norm())
+        bmax = isqrt(n - 1) if n > 1 else -1
+        for bb in range(0, bmax + 1):                  # b and -b: same lattice
+            if bb * bb >= n:
+                continue
+            b = QF(D, bb)
+            nfr += 1
+            A = DiscModule(ar, ar.from_qf(al), ar.from_qf(b), ar.from_qf(be))
+            G = [[al, b], [b, be]]
+            for gens in A.maximal_isotropic():
+                k, cl, pe, basis = evaluate(fd, G, gens)
+                if k > best:
+                    best = k
+                    best_rec = dict(frame=[str(al), str(be), str(b)], gens=[list(g) for g in gens],
+                                    s_sq=k, per_edge=pe, det=n - bb * bb)
+    return dict(D=D, S_sym=best, frames=nfr, best=best_rec)

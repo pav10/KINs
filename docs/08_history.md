@@ -17,3 +17,8 @@
 9. Hand-over session: exact cap-free s□ via per-edge minimal vectors (L6.1); S(Q(√43),2) ≥ 8
    (L6.2) refutes the stall; extremal lattices meet ~all edges (L6.3); my two retractions corrected
    (C9 units ARE indecomposable; C10 ray-class relocation overclaim); C15.
+10. R1 session: complete search (frames → maximal integral overlattices = maximal isotropic
+   submodules of O²/GO² → exact per-edge evaluation), proof in 09. Exact S(K,2) for D ≤ 100
+   (max 8 at D = 43, 67, 86) and long-period fields; S_free differs when h > 1; "≤ 2 classes per
+   edge" refuted (D = 82). Bugs fixed: realized_module used Z[√D] (C17), edge_deltas s > 60 (C18).
+   Independent cross-check of indecomposables/facets against github.com/pav10/sails (D ≤ 3000).
