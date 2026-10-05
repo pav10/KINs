@@ -547,9 +547,13 @@ def complete_S(D, galois=True, free_too=True, verbose=False, record_all=False):
     overlattices of its frame, so those are evaluated (a maximal overlattice need not be free).
     Returns a dict."""
     import time
+    from lattice import edge_deltas
+    from rqf import cf_quadratic
     t0 = time.time()
     fd = FieldData(D)
     ar = fd.ar
+    P, Q = (1, 2) if D % 4 == 1 else (0, 1)
+    assert len(edge_deltas(D)) == len(cf_quadratic(P, Q, D)[1]), "edge orbits mod (O^x)^2 != s"
     best, best_free = 1, 1                     # <1> + <1> represents the class of 1
     best_rec, best_free_rec = None, None
     nfr = nlat = nfree = 0

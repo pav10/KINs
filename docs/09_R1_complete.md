@@ -170,5 +170,31 @@ Long-period fields (D ≤ 1000, s = 36–44): §6.
 - Hand-over data for D ≡ 1 (mod 4) realized lattices were computed on Z[√D]-sublattices
   (03_corrections C17).
 
-## 6. Long-period fields
-(see the table appended below when the runs finish)
+## 6. Long-period fields and the det-2 family
+
+**Complete runs (CERTIFIED, R1; data/complete_S_long.jsonl).**
+
+| D | s | κ□ | S | S_free | frames | time |
+|---|---|---|---|---|---|---|
+| 478 | 36 | 48 | 8 | 8 | 2031 | 24 min |
+| 958 | 36 | 36 | 8 | 8 | 1181 | 15 min |
+| 718 | 40 | 64 | 8 | 8 | 4205 | 70 min |
+__LONG_ROWS__
+
+**Galois-symmetric frames (lower bounds S_sym; data/symmetric_S_long.jsonl).** D = 526: 12 (det 2),
+766: 12 (det 128), 862: 12 (det 2), 478/718/958: 8.
+
+**det-2 family (L7.8; data/family_det2.jsonl; certificates data/certificates/).** Frames
+G_{a,b} = [[a − √D, b], [b, a + √D]], D = a² − b² − 2, glued to their maximal integral
+overlattice — unimodular when 2 ramifies (checked: |M^#/M| = 1 for D = 19, 43, 82, 691, 823, 862,
+1303, 1579).  Certified lower bounds: S(Q(√3931),2) ≥ 24 (s = 130), S(Q(√691),2) ≥ 20 (s = 38), S(Q(√823),2) ≥ 20 (s = 44),
+S(Q(√1303),2) ≥ 20 (s = 52), S(Q(√1579),2) ≥ 20 (s = 70), S(Q(√739),2) ≥ 16, S(Q(√331),2) ≥ 14.
+The witnesses for 691 and 823 are free (binary forms).  Over all 1434 family lattices with D ≤ 5000 (1038
+fields) the record s□ grows slowly: 6 (D = 19), 8 (43), 10 (271), 14 (331), 20 (691), **24 (D = 3931,
+s = 130, free; certificate D3931_det2.json)**; max s□ per s-range [0,20): 8, [20,120): 20, [120,140): 24.
+
+**What this establishes.** The maximum 8 over D ≤ 100 is not a ceiling: S(K,2) ≥ 24 occurs
+(CERTIFIED, D = 3931).  Complete runs show the period alone does not drive S: s = 36, 36, 40 give
+S = 8 (D = 478, 958, 718), while family members with s = 38–70 reach 20.  Whether S(K,2) is bounded remains OPEN; within the det-2 family s□ grows irregularly
+with s (fields with s ≥ 40 giving ≤ 8 exist).  The family is the natural object for R2/R3(b):
+unimodular, Galois-symmetric binary lattices, E = K(√−u) unramified outside 2 (L2.4).

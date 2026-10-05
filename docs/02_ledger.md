@@ -290,3 +290,19 @@ maximal integral overlattices of frames [[α, b], [b, α′]], α ∈ I(K), b �
 data/symmetric_S.jsonl). D ≤ 100: S_sym = S in 21 of the 25 fields with S ≥ 4 (all of D = 43, 67,
 86, 82, 58, 91, 19, 57); S_sym < S for D = 31 (4 < 6), 89 (4 < 5), 94 (4 < 6), 97 (4 < 6). So the
 symmetric case (R2) is the typical extremal shape but not the only one.
+
+**L7.8 CERTIFIED (lower bounds well above 8).** The det-2 Galois-symmetric frames
+G_{a,b} = [[a − √D, b], [b, a + √D]], D = a² − b² − 2 (the extremal shape for D = 19, 22, 38, 43, 46, 58,
+73, 82, 862), glued to their maximal integral overlattices, give
+  S(Q(√3931),2) ≥ 24 (a = 63, b = 6, s = 130, free),
+  S(Q(√691),2) ≥ 20 (a = 27, b = 6, s = 38),  S(Q(√823),2) ≥ 20 (a = 35, b = 20, s = 44),
+  also 20 for D = 1303 (s = 52), 1579 (s = 70); 16 for D = 739; 14 for D = 331; 12 for D = 862.
+The D = 691, 823 witnesses are FREE (binary forms). Certificates: data/certificates/*.json
+(vectors, values; `scripts/certify_lattice.py D a b`; re-verified by test_stored_certificates and,
+independently, indecomposability by `sails` and square classes by PARI nfroots).
+Scan: `scripts/family_det2.py out.jsonl 5000` (data/family_det2.jsonl). For D ≡ 2, 3 (mod 4) 2 ramifies
+and the index-2 glue makes M unimodular (𝔳M = O) — the unit-determinant pattern L2.5.
+Family records (D ≤ 5000, 1434 lattices): 6, 8, 10, 14, 20, 24 at D = 19, 43, 271, 331, 691, 3931 —
+slow, irregular growth (EMPIRICAL). Complete runs (R1): S = 8 for D = 478, 958 (s = 36), 718 (s = 40).
+Consequence for L5.2: the D ≤ 100 maximum 8 is not a ceiling; the "lean toward boundedness" (C7)
+is not supported. Within the family the growth in s is irregular (several s ≥ 40 fields give ≤ 8).

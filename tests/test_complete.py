@@ -285,7 +285,7 @@ def test_sails_cross_check():
         check(D)
 
 
-@pytest.mark.parametrize("D", [43, 691, 823, 862])
+@pytest.mark.parametrize("D", [43, 691, 823, 862, 3931])
 def test_stored_certificates(D):
     """data/certificates: re-verify the stored lower-bound certificates from the vectors alone:
     integrality of the stored Z-basis (and that it spans the stated overlattice), Q(v) values,
