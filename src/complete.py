@@ -21,7 +21,7 @@ All decisions are exact (int / Fraction).  Floats only bound search boxes, with 
 """
 from fractions import Fraction as F
 from itertools import product
-from math import sqrt, gcd, floor, ceil
+from math import sqrt, gcd, floor, ceil, isqrt
 from rqf import QF, fundamental_unit, same_square_class
 from indec import indecomposables
 from gram import valid_off_diagonal, omega   # valid_off_diagonal: cross-check only
@@ -354,19 +354,18 @@ class DiscModule:
             parts[p] = Ap
         return parts
 
-    def _maximal_isotropic_part(self, elems):
-        """All maximal isotropic O-submodules inside the O-submodule `elems` (a set).
-        DFS over isotropic submodules; complete: if S < S' (both isotropic) then any
-        x in S' minus S is isotropic, orthogonal to S, and S + Ox <= S'; every such x is
-        tried at node S, so every maximal S' is reached."""
+    def _isotropic_part(self, elems):
+        """ALL isotropic O-submodules inside the O-submodule `elems` (a set), as a list of
+        (S, gens, is_maximal), S a frozenset.  DFS from 0; complete: if S < S' are isotropic,
+        any x in S' minus S is isotropic and orthogonal to S with S + Ox <= S', and every such
+        x is tried at node S -- so every isotropic submodule (in particular every maximal one)
+        is reached."""
         iso = []
         for y in elems:
             wy = self.dual_vec(y)
             if y != self.zero and self.pair_zero(y, wy):
                 iso.append(y)
         start = frozenset([self.zero])
-        if not iso:
-            return [[]]
         stack = [(start, [])]
         seen = {start}
         result = []
@@ -374,9 +373,7 @@ class DiscModule:
             S, gens = stack.pop()
             gw = [self.dual_vec(g) for g in gens]
             cands = [x for x in iso if x not in S and all(self.pair_zero(x, w) for w in gw)]
-            if not cands:
-                result.append(gens)
-                continue
+            result.append((S, gens, not cands))
             for x in cands:
                 C = self.cyclic(x)
                 S2 = frozenset(self.add(s, c) for s in S for c in C)
@@ -385,14 +382,24 @@ class DiscModule:
                     stack.append((S2, gens + [x]))
         return result
 
-    def maximal_isotropic(self):
-        """All maximal b_A-isotropic O-submodules of A, as lists of O-generators:
-        products over p of the maximal isotropic submodules of A_p (A_p orthogonal)."""
-        out = [[]]
+    def isotropic_submodules(self):
+        """All b_A-isotropic O-submodules of A as (parts, gens, is_maximal); parts = tuple of
+        the p-primary components (frozensets).  A submodule is the sum of its p-parts and the
+        A_p are mutually orthogonal, so the isotropic submodules are exactly the products."""
+        out = [((), [], True)]
         for p, Ap in sorted(self.primary_parts().items()):
-            loc = self._maximal_isotropic_part(Ap)
-            out = [g + h for g in out for h in loc]
+            loc = self._isotropic_part(Ap)
+            out = [(P + (S,), g + h, m1 and m2) for P, g, m1 in out for S, h, m2 in loc]
         return out
+
+    def maximal_isotropic(self):
+        """All maximal b_A-isotropic O-submodules of A, as lists of O-generators."""
+        return [g for _, g, m in self.isotropic_submodules() if m]
+
+
+def _contains(P, Q):
+    """parts tuple P contains parts tuple Q (componentwise)."""
+    return all(q <= p for p, q in zip(P, Q))
 
 
 # ----------------------------------------------------------------------------
@@ -442,17 +449,46 @@ def steinitz_ideal(fd, G, basis):
     return [QF(D, F(h[0], den), F(h[1], den)) for h in Hm]
 
 
-_principal_cache = {}
+def _cf_cycle(theta):
+    """Complete quotients (as exact K-elements (a, b) = a + b sqrt D) of the periodic part of the
+    continued fraction of the real quadratic irrational theta = a + b sqrt D (b != 0)."""
+    D = theta.D
+    A, B = theta.a, theta.b
+    den = A.denominator * B.denominator // gcd(A.denominator, B.denominator)
+    P, m, Q = int(A * den), int(B * den), den          # theta = (P + m sqrt D) / Q
+    if m < 0:
+        P, m, Q = -P, -m, -Q
+    d = m * m * D                                      # theta = (P + sqrt d) / Q
+    if (d - P * P) % Q:
+        P, d, m, Q = P * abs(Q), d * Q * Q, m * abs(Q), Q * abs(Q)
+    r = isqrt(d)
+    seen, states = {}, []
+    while (P, Q) not in seen:
+        seen[(P, Q)] = len(states)
+        states.append((P, Q))
+        a = (P + r) // Q if Q > 0 else -((P + r) // (-Q) + 1)      # floor((P + sqrt d)/Q)
+        P = a * Q - P
+        Q = (d - P * P) // Q
+    return {(F(Pi, Qi), F(m, Qi)) for Pi, Qi in states[seen[(P, Q)]:]}
+
+
+_omega_cycle = {}
 
 
 def is_principal(fd, I):
-    """Is the fractional ideal with Z-basis I = [g1, g2] principal?  Searches x in I with
-    |N(x)| = N(I) in the box |sigma_i(x)| <= sqrt(N(I) * eps1) (a generator can be moved
-    there by a power of eps); float box, exact norm test."""
+    """Is the fractional O_K-ideal with Z-basis I = [g1, g2] principal?  I = g1 (Z + Z theta),
+    theta = g2/g1; principal  <=>  Z + Z theta = lambda O  <=>  theta ~ omega under GL_2(Z)
+    <=>  (Serret) their continued fractions share a complete quotient in the period.  Exact."""
     D = fd.D
-    key = (D, tuple((g.a, g.b) for g in I))
-    if key in _principal_cache:
-        return _principal_cache[key]
+    if D not in _omega_cycle:
+        _omega_cycle[D] = _cf_cycle(omega(D))
+    return not _omega_cycle[D].isdisjoint(_cf_cycle(I[1] / I[0]))
+
+
+def is_principal_box(fd, I):
+    """Reference (slow for large eps): search x in I with |N(x)| = N(I) in the box
+    |sigma_i(x)| <= sqrt(N(I) eps1) (a generator can be moved there by a power of eps)."""
+    D = fd.D
     g1, g2 = I
     w = omega(D)
     NI = abs(g1.a * g2.b - g1.b * g2.a) / w.b           # covolume ratio vs O
@@ -460,20 +496,14 @@ def is_principal(fd, I):
     R = sqrt(float(NI) * e1) * (1 + 1e-9) + 1e-9
     (a11, a21), (a12, a22) = emb_stable(g1), emb_stable(g2)   # sigma_k(m g1 + n g2)
     det = a11 * a22 - a12 * a21
-    # (m, n) = inverse * (s1, s2), |s_k| <= R
     mb = R * (abs(a22) + abs(a12)) / abs(det) + 2
     nb = R * (abs(a21) + abs(a11)) / abs(det) + 2
-    ans = False
     for mm in range(-int(mb) - 1, int(mb) + 2):
         for nn in range(-int(nb) - 1, int(nb) + 2):
             x = g1 * mm + g2 * nn
             if not x.is_zero() and abs(x.norm()) == NI:
-                ans = True
-                break
-        if ans:
-            break
-    _principal_cache[key] = ans
-    return ans
+                return True
+    return False
 
 
 def evaluate(fd, G, gens):
@@ -486,37 +516,56 @@ def evaluate(fd, G, gens):
 # Driver
 # ----------------------------------------------------------------------------
 def complete_S(D, galois=True, free_too=True, verbose=False, record_all=False):
-    """Exact S(K,2) for K = Q(sqrt D) (all integral binary lattices) and, if free_too,
-    S_free(K,2) (free lattices = binary forms).  Returns a dict."""
+    """Exact S(K,2) for K = Q(sqrt D) over ALL integral binary lattices (max over the maximal
+    integral overlattices of all frames) and, if free_too, exact S_free(K,2) over FREE lattices
+    (= binary forms): a free M is contained in a lattice maximal among the FREE integral
+    overlattices of its frame, so those are evaluated (a maximal overlattice need not be free).
+    Returns a dict."""
     import time
     t0 = time.time()
     fd = FieldData(D)
     ar = fd.ar
     best, best_free = 1, 1                     # <1> + <1> represents the class of 1
     best_rec, best_free_rec = None, None
-    nfr = nlat = 0
+    nfr = nlat = nfree = 0
     hist = {}
     allrec = []
     for key, al, be, b in frames(fd, galois=galois):
         nfr += 1
         A = DiscModule(ar, ar.from_qf(al), ar.from_qf(b), ar.from_qf(be))
         G = [[al, b], [b, be]]
-        for gens in A.maximal_isotropic():
+        subs = A.isotropic_submodules()
+        cache = {}
+
+        def ev(P, gens, maximal):
+            if P not in cache:
+                n, cl, pe, basis = evaluate(fd, G, gens)
+                rec = dict(frame=[str(al), str(be), str(b)], gens=[list(g) for g in gens],
+                           s_sq=n, per_edge=pe, classes=[str(c) for c in cl], detN=A.N,
+                           maximal=maximal)
+                cache[P] = (n, rec)
+            return cache[P]
+
+        for P, gens, m in subs:
+            if not m:
+                continue
             nlat += 1
-            n, cl, pe, basis = evaluate(fd, G, gens)
+            n, rec = ev(P, gens, True)
             hist[n] = hist.get(n, 0) + 1
-            rec = dict(frame=[str(al), str(be), str(b)], gens=[list(g) for g in gens], s_sq=n,
-                       per_edge=pe, classes=[str(c) for c in cl], detN=A.N)
-            free = None
-            if free_too and (n > best_free or n > best):
-                free = is_principal(fd, steinitz_ideal(fd, G, basis))
-                rec["free"] = free
             if n > best:
                 best, best_rec = n, rec
-            if free_too and free and n > best_free:
-                best_free, best_free_rec = n, rec
             if record_all:
                 allrec.append(rec)
+        if free_too:
+            free = [(P, gens, m) for P, gens, m in subs
+                    if is_principal(fd, steinitz_ideal(fd, G, overlattice_basis(fd, G, gens)))]
+            for P, gens, m in free:
+                if any(Q != P and _contains(Q, P) for Q, _, _ in free):
+                    continue                   # not maximal among free overlattices
+                nfree += 1
+                n, rec = ev(P, gens, m)
+                if n > best_free:
+                    best_free, best_free_rec = n, dict(rec, free=True)
         if verbose and nfr % 200 == 0:
             print(f"  D={D}: {nfr} frames, {nlat} lattices, best {best}, "
                   f"{time.time() - t0:.0f}s", flush=True)
@@ -526,6 +575,7 @@ def complete_S(D, galois=True, free_too=True, verbose=False, record_all=False):
     if free_too:
         out["S_free"] = best_free
         out["best_free"] = best_free_rec
+        out["free_lattices"] = nfree
     if record_all:
         out["all"] = allrec
     return out

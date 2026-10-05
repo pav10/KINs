@@ -386,7 +386,8 @@ def edge_deltas(D):
     from rqf import fundamental_unit
     eps, _ = fundamental_unit(D)
     u = eps * eps                                  # generator of (O^x)^2 (tot. pos.)
-    cf, dl, s = cf_list(D, 2 * 2 * 60 + 14)
+    _, _, s = cf_list(D, 2)                        # period length
+    cf, dl, s = cf_list(D, 4 * s + 16)             # (was a fixed 254 terms: failed for s > 60)
     nterms = 4 * s + 12
     cvs = convergents(cf, nterms + 1)
     alpha = [QF(D, 1, 0)] + [QF(D, p, 0) + QF(D, q, 0) * dl for (p, q) in cvs]

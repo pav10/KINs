@@ -7,7 +7,7 @@ from gram import valid_off_diagonal, omega
 from lattice import (hnf, in_lattice, realized_module, exact_sq_classes, analyze_lattice,
                      balanced_classes, find_winner)
 from complete import (FieldData, admissible_b, frames, DiscModule, overlattice_basis,
-                      complete_S, steinitz_ideal, is_principal)
+                      complete_S, steinitz_ideal, is_principal, is_principal_box)
 
 
 def test_admissible_b_matches_box_search():
@@ -58,7 +58,7 @@ def _inv4(A):
     return [row[n:] for row in M]
 
 
-def _brute_maximal(D, G):
+def _brute_maximal(D, G, return_all=False):
     """BFS over O-lattices L <= M <= L^# (L = O^2 with Gram G), extending by x + O x for x in
     a full set of coset reps of L^#/L, testing B-integrality on a Z-basis directly."""
     w, one, z = omega(D), QF(D, 1), QF(D, 0)
@@ -118,6 +118,8 @@ def _brute_maximal(D, G):
                 todo.append(M2)
         if not ext:
             maxi.append(_key(D, M))
+    if return_all:
+        return seen, set(maxi)
     return set(maxi)
 
 
@@ -139,6 +141,43 @@ def test_maximal_overlattices_against_bruteforce():
             if checked % 6 == 0:
                 break
     assert checked >= 20
+
+
+def test_all_isotropic_submodules_against_bruteforce():
+    rnd = random.Random(11)
+    checked = 0
+    for D in [6, 10, 15, 19, 26, 30, 33, 57]:
+        fd = FieldData(D)
+        fr = list(frames(fd, galois=False))
+        rnd.shuffle(fr)
+        for key, al, be, b in fr[:12]:
+            A = DiscModule(fd.ar, fd.ar.from_qf(al), fd.ar.from_qf(b), fd.ar.from_qf(be))
+            if A.N > 40:
+                continue
+            G = [[al, b], [b, be]]
+            subs = A.isotropic_submodules()
+            mine = {_key(D, overlattice_basis(fd, G, g)) for _, g, _ in subs}
+            assert len(mine) == len(subs)
+            allb, _ = _brute_maximal(D, G, return_all=True)
+            assert mine == allb, (D, key)
+            checked += 1
+    assert checked >= 20
+
+
+def test_S_free_against_bruteforce():
+    """S_free (free lattices only, h(K) = 2): max of s_sq over ALL free integral overlattices of
+    all frames (brute force) == complete_S's free-maximal evaluation."""
+    for D in [10, 15, 30, 26]:
+        fd = FieldData(D)
+        best = 1
+        for key, al, be, b in frames(fd):
+            A = DiscModule(fd.ar, fd.ar.from_qf(al), fd.ar.from_qf(b), fd.ar.from_qf(be))
+            G = [[al, b], [b, be]]
+            for _, g, _ in A.isotropic_submodules():
+                basis = overlattice_basis(fd, G, g)
+                if is_principal(fd, steinitz_ideal(fd, G, basis)):
+                    best = max(best, len(exact_sq_classes(D, G, basis)[0]))
+        assert complete_S(D)["S_free"] == best, D
 
 
 def test_galois_reduction_harmless():
@@ -183,12 +222,42 @@ def test_realized_module_is_OK_module():
     assert len(cl) == 2
 
 
+def _random_ideals(fd, rnd, k):
+    w, ar = omega(fd.D), fd.ar
+    out = []
+    while len(out) < k:
+        g = [ar.to_qf((rnd.randint(-12, 12), rnd.randint(-6, 6))) for _ in range(2)]
+        H = hnf([list(ar.from_qf(x)) for x in (g[0], g[0] * w, g[1], g[1] * w)])
+        if len(H) == 2:
+            out.append((H, [ar.to_qf(tuple(H[0])), ar.to_qf(tuple(H[1]))]))
+    return out
+
+
 def test_free_detection():
-    """D = 10 (h = 2): the ideal (2, sqrt10) is not principal, (1) is."""
+    """D = 10 (h = 2): the ideal (2, sqrt10) is not principal, (1) is; CF (Serret) test ==
+    norm-box search on random ideals."""
     fd = FieldData(10)
     assert is_principal(fd, [QF(10, 1), QF(10, 0, 1)])
     assert not is_principal(fd, [QF(10, 2), QF(10, 0, 1)])
     assert is_principal(fd, [QF(10, 3), QF(10, 0, 3)])
+    rnd = random.Random(5)
+    for D in [10, 15, 26, 30, 65, 79, 82, 85]:
+        fd = FieldData(D)
+        for _, I in _random_ideals(fd, rnd, 15):
+            assert is_principal(fd, I) == is_principal_box(fd, I), (D, I)
+
+
+def test_free_detection_against_pari():
+    pari = pytest.importorskip("cypari2").Pari()
+    isp = pari("(b,i)->bnfisprincipal(b,i,0)==0")
+    rnd = random.Random(3)
+    for D in [10, 15, 26, 30, 51, 58, 79, 82, 94, 229, 1155, 4171]:
+        fd = FieldData(D)
+        pol = "x^2-x-%d" % ((D - 1) // 4) if D % 4 == 1 else "x^2-%d" % D
+        bnf = pari("bnfinit(%s,1)" % pol)
+        for H, I in _random_ideals(fd, rnd, 20):
+            M = pari("[%d,%d;%d,%d]" % (H[0][0], H[1][0], H[0][1], H[1][1]))
+            assert is_principal(fd, I) == bool(isp(bnf, pari.idealhnf(bnf, M))), (D, H)
 
 
 def test_complete_small_fields():
@@ -198,3 +267,18 @@ def test_complete_small_fields():
         r = complete_S(D)
         assert r["S"] == e, (D, r["S"])
         assert r["S_free"] == e, (D, r["S_free"])
+
+
+def test_sails_cross_check():
+    """Indecomposables, facet functionals (= edge_deltas), d = 1 and #facets against the
+    independent PARI-based `sails` package (skipped if sails/cypari2 are not installed).
+    Full range: SAILS_PATH=../sails python3 scripts/check_sails.py 2 3000 (all pass)."""
+    import os, sys, importlib
+    sp = os.environ.get("SAILS_PATH", os.path.join(os.path.dirname(__file__), "..", "..", "sails"))
+    sys.path.insert(0, sp)
+    pytest.importorskip("cypari2")
+    pytest.importorskip("sails.compute")
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    check = importlib.import_module("check_sails").check
+    for D in [2, 3, 5, 13, 19, 31, 43, 46, 57, 67, 94, 181, 331]:
+        check(D)
