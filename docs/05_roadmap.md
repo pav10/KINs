@@ -8,7 +8,7 @@ genuinely open; the "stall at 6" claim from the other analysis is refuted (L6.2)
 
 ## R1 — DONE (09_R1_complete.md, ledger L7). Exact S(K,2), S_free(K,2) for all D ≤ 100 and
 ## long-period fields; acceptance met (proof written; D = 26/33/19 reproduced; 43 → 8, 31 → 6,
-## 46 → 4, 58 → 6, 67 → 8). Original task text kept below for reference.
+## 46 → 4, 58 → 6, 67 → 8; long periods 478/958/718 → 8, 862 → 12). Original task text below.
 ## R1 — Complete computation of S(K,2) (decisive computation; do first)
 Algorithm (completeness provable):
 1. Any M with s□(M) ≥ 2 contains a frame Ov + Ow with Q(v) = α, Q(w) = β indecomposable,

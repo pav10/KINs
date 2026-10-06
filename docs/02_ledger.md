@@ -303,6 +303,7 @@ independently, indecomposability by `sails` and square classes by PARI nfroots).
 Scan: `scripts/family_det2.py out.jsonl 5000` (data/family_det2.jsonl). For D ≡ 2, 3 (mod 4) 2 ramifies
 and the index-2 glue makes M unimodular (𝔳M = O) — the unit-determinant pattern L2.5.
 Family records (D ≤ 5000, 1434 lattices): 6, 8, 10, 14, 20, 24 at D = 19, 43, 271, 331, 691, 3931 —
-slow, irregular growth (EMPIRICAL). Complete runs (R1): S = 8 for D = 478, 958 (s = 36), 718 (s = 40).
+slow, irregular growth (EMPIRICAL). Complete runs (R1): S = 8 for D = 478, 958 (s = 36), 718 (s = 40); S = 12 for D = 862 (s = 40),
+attained by the family lattice — the family gives the exact maximum there.
 Consequence for L5.2: the D ≤ 100 maximum 8 is not a ceiling; the "lean toward boundedness" (C7)
 is not supported. Within the family the growth in s is irregular (several s ≥ 40 fields give ≤ 8).

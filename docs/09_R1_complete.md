@@ -179,7 +179,10 @@ Long-period fields (D ≤ 1000, s = 36–44): §6.
 | 478 | 36 | 48 | 8 | 8 | 2031 | 24 min |
 | 958 | 36 | 36 | 8 | 8 | 1181 | 15 min |
 | 718 | 40 | 64 | 8 | 8 | 4205 | 70 min |
-__LONG_ROWS__
+| 862 | 40 | 76 | 12 | 12 | 5722 | 95 min |
+
+S(Q(√862),2) = 12 exactly, attained by the det-2 family lattice (a = 30, b = 6).  D = 526, 766 (s = 40,
+44) were not run to completion (≈ 2–3 h each); their Galois-symmetric lower bound is 12.
 
 **Galois-symmetric frames (lower bounds S_sym; data/symmetric_S_long.jsonl).** D = 526: 12 (det 2),
 766: 12 (det 128), 862: 12 (det 2), 478/718/958: 8.
