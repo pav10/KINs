@@ -190,14 +190,17 @@ S(Q(√862),2) = 12 exactly, attained by the det-2 family lattice (a = 30, b = 6
 **det-2 family (L7.8; data/family_det2.jsonl; certificates data/certificates/).** Frames
 G_{a,b} = [[a − √D, b], [b, a + √D]], D = a² − b² − 2, glued to their maximal integral
 overlattice — unimodular when 2 ramifies (checked: |M^#/M| = 1 for D = 19, 43, 82, 691, 823, 862,
-1303, 1579).  Certified lower bounds: S(Q(√3931),2) ≥ 24 (s = 130), S(Q(√691),2) ≥ 20 (s = 38), S(Q(√823),2) ≥ 20 (s = 44),
+1303, 1579).  Certified lower bounds: S(Q(√5419),2) ≥ 28 (s = 122), S(Q(√3931),2) ≥ 24 (s = 130), S(Q(√691),2) ≥ 20 (s = 38), S(Q(√823),2) ≥ 20 (s = 44),
 S(Q(√1303),2) ≥ 20 (s = 52), S(Q(√1579),2) ≥ 20 (s = 70), S(Q(√739),2) ≥ 16, S(Q(√331),2) ≥ 14.
-The witnesses for 691 and 823 are free (binary forms).  Over all 1434 family lattices with D ≤ 5000 (1038
-fields) the record s□ grows slowly: 6 (D = 19), 8 (43), 10 (271), 14 (331), 20 (691), **24 (D = 3931,
-s = 130, free; certificate D3931_det2.json)**; max s□ per s-range [0,20): 8, [20,120): 20, [120,140): 24.
+The witnesses for 691 and 823 are free (binary forms).  Over all 5354 family lattices with D ≤ 20000 (3766
+fields) the record s□ is 6 (D = 19), 8 (43), 10 (271), 14 (331), 20 (691), 24 (D = 3931, s = 130),
+**28 (D = 5419, s = 122, free; certificate D5419_det2.json)**, and then stays at 28 up to D = 20000
+(28 again at D = 12919, 17431, 17491; nothing larger).  Max s□ per s-block of 50: 20, 20, 28, 28, 28,
+12, 20 — an EMPIRICAL plateau of the family.  (`scripts/family_det2.py out.jsonl 20000 5001 i/4`,
+four shards, ≈ 2 h.)
 
-**What this establishes.** The maximum 8 over D ≤ 100 is not a ceiling: S(K,2) ≥ 24 occurs
-(CERTIFIED, D = 3931).  Complete runs show the period alone does not drive S: s = 36, 36, 40 give
+**What this establishes.** The maximum 8 over D ≤ 100 is not a ceiling: S(K,2) ≥ 28 occurs
+(CERTIFIED, D = 5419).  Complete runs show the period alone does not drive S: s = 36, 36, 40 give
 S = 8 (D = 478, 958, 718), while family members with s = 38–70 reach 20.  Whether S(K,2) is bounded remains OPEN; within the det-2 family s□ grows irregularly
-with s (fields with s ≥ 40 giving ≤ 8 exist).  The family is the natural object for R2/R3(b):
+with s (fields with s ≥ 40 giving ≤ 8 exist) and plateaus at 28 for 5419 ≤ D ≤ 20000.  The family is the natural object for R2/R3(b):
 unimodular, Galois-symmetric binary lattices, E = K(√−u) unramified outside 2 (L2.4).

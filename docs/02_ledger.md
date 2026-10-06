@@ -302,8 +302,11 @@ The D = 691, 823 witnesses are FREE (binary forms). Certificates: data/certifica
 independently, indecomposability by `sails` and square classes by PARI nfroots).
 Scan: `scripts/family_det2.py out.jsonl 5000` (data/family_det2.jsonl). For D ≡ 2, 3 (mod 4) 2 ramifies
 and the index-2 glue makes M unimodular (𝔳M = O) — the unit-determinant pattern L2.5.
-Family records (D ≤ 5000, 1434 lattices): 6, 8, 10, 14, 20, 24 at D = 19, 43, 271, 331, 691, 3931 —
-slow, irregular growth (EMPIRICAL). Complete runs (R1): S = 8 for D = 478, 958 (s = 36), 718 (s = 40); S = 12 for D = 862 (s = 40),
+Family records (D ≤ 20000, 5354 lattices in 3766 fields): 6, 8, 10, 14, 20, 24, 28 at D = 19, 43, 271,
+331, 691, 3931, 5419; **S(Q(√5419),2) ≥ 28** (a = 89, b = 50, s = 122, free; certificate
+D5419_det2.json). After D = 5419 no family lattice exceeds 28 (28 recurs at D = 12919, 17431, 17491;
+max per D-block of 2500: 20, 24, 28, 22, 24, 28, 28, 20; per s-block of 50: 20, 20, 28, 28, 28, 12, 20)
+— EMPIRICAL plateau of the det-2 family at 28 for D ≤ 20000. Says nothing about S(K,2) beyond the family. Complete runs (R1): S = 8 for D = 478, 958 (s = 36), 718 (s = 40); S = 12 for D = 862 (s = 40),
 attained by the family lattice — the family gives the exact maximum there.
 Consequence for L5.2: the D ≤ 100 maximum 8 is not a ceiling; the "lean toward boundedness" (C7)
 is not supported. Within the family the growth in s is irregular (several s ≥ 40 fields give ≤ 8).

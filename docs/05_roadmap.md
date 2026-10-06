@@ -41,9 +41,10 @@ Acceptance: theorem with proof + agreement with D = 22, 43 data.
 ## R3 — The main theorem
 UPDATE (L7.8): a candidate family for (b) exists — det-2 Galois-symmetric frames
 [[a − √D, b], [b, a + √D]], D = a² − b² − 2, glued to a unimodular M; certified s□ = 20 at D = 691, 823,
-1303, 1579. Next: (1) explain s□(M_{a,b}) — which indecomposables a unimodular Galois-symmetric M
-represents — via E = K(√−u) (L2.4) and the sail; (2) find sub-families with s□ → ∞ (prescribed CF,
-Friesen) or a uniform bound for them.
+1303, 1579, 24 at D = 3931, 28 at D = 5419; the family record then plateaus at 28 for D ≤ 20000
+(L7.8). Next: (1) explain s□(M_{a,b}) — which indecomposables a unimodular Galois-symmetric M
+represents — via E = K(√−u) (L2.4) and the sail; (2) given the plateau, first ask whether
+s□(M_{a,b}) ≤ 28 is a theorem; otherwise find sub-families with s□ → ∞ (prescribed CF, Friesen).
 (a) If bounded: prove a per-period cancellation — values on different edges collapse into few
     classes (D = 57: 12 values, 6 classes; pairs differ by ξ², ξ non-unit of norm ±1). Find the
     source of ξ (automorphs of the lattice / ambiguous ideal classes of E).
