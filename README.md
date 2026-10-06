@@ -16,8 +16,8 @@ Requirements: Python ≥ 3.9, numpy not required, pytest for tests. No Sage/PARI
 
 Headline status: s□(M) ≤ 12·s proved (s = CF period); R1 done: S(K,2) computed exactly
 (provably complete search, docs/09_R1_complete.md) for all D ≤ 100 — max 8 (D = 43, 67, 86) —
-and long-period fields; certified S(K,2) ≥ 24 (D = 3931, a binary form) via the det-2
-Galois-symmetric family; "≤ 2 classes per edge" refuted (D = 82); bounded vs unbounded still open.
+and long-period fields; certified S(K,2) ≥ 28 (D = 5419, a binary form) via the det-2
+Galois-symmetric family, whose record then plateaus at 28 up to D = 20000; "≤ 2 classes per edge" refuted (D = 82); bounded vs unbounded still open.
 Next: roadmap R2 (Galois-symmetric extremal lattices).
 
 ```bash
