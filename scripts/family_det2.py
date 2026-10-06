@@ -4,7 +4,8 @@ D = a^2 - b^2 - 2 squarefree (det G = N(a - sqrt D) - b^2 = 2).  These give the 
 for D = 19, 22, 38, 43, 46, 58, 73, 82, 862 (ledger L7.8).  For each (a, b) with b^2 + 2 <= Delta/4
 (Dress-Scharlau: needed for a - sqrt D to be indecomposable), evaluates EXACTLY s_sq of every
 maximal integral overlattice of O^2 with Gram G_{a,b} (CERTIFIED lower bounds for S(K,2)).
-Usage: python3 scripts/family_det2.py out.jsonl Dmax [Dmin]"""
+Usage: python3 scripts/family_det2.py out.jsonl Dmax [Dmin [i/m]]
+  i/m: only the i-th of m shards (round robin); entries already in out.jsonl are skipped (resume)."""
 import os, sys, json, time
 from math import isqrt
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
@@ -20,6 +21,12 @@ def sqf(D):
 
 out, Dmax = sys.argv[1], int(sys.argv[2])
 Dmin = int(sys.argv[3]) if len(sys.argv) > 3 else 2
+shard = tuple(map(int, sys.argv[4].split("/"))) if len(sys.argv) > 4 else (0, 1)
+done = set()
+if os.path.exists(out):
+    for line in open(out):
+        r = json.loads(line)
+        done.add((r["D"], r["a"], r["b"]))
 todo = []
 for a in range(2, isqrt(Dmax + 2) + 2):
     for b in range(0, a):
@@ -29,6 +36,7 @@ for a in range(2, isqrt(Dmax + 2) + 2):
             if b * b + 2 <= dl4:
                 todo.append((D, a, b))
 todo.sort()
+todo = [t for k, t in enumerate(todo) if k % shard[1] == shard[0] and t not in done]
 for D, a, b in todo:
     t = time.time()
     fd = FieldData(D)
