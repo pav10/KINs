@@ -10,6 +10,7 @@ provided the float bounds are not off by more than the padding (they are not for
 the sizes used here; see tests).
 """
 from fractions import Fraction as F
+from functools import lru_cache
 from math import gcd, floor, ceil, sqrt
 from rqf import QF, tp_unit, same_square_class
 from indec import indecomposables, normalize_unit
@@ -224,9 +225,11 @@ def _to_q4(v):
 
 def realized_module(D, M):
     """Return (Gp, vs, basis) with basis a Z-basis (as K^2 vectors) of the
-    O_K-module L = sum_i O_K v_i  (generators v_i and sqrt(D) v_i over Z)."""
+    O_K-module L = sum_i O_K v_i  (generators v_i and omega v_i over Z; O_K = Z + Z omega).
+    (Before the R1 session this used sqrt(D) v_i, i.e. Z[sqrt D]-span: an index-4 non-O_K-lattice
+    when D = 1 mod 4 -- see docs/03_corrections.md C17.)"""
     vs, Gp = realize_vectors(M)
-    sd = QF(D, 0, 1)
+    sd = omega(D)
     gens = []
     for v in vs:
         gens.append(_to_q4(v))
@@ -373,16 +376,18 @@ def analyze_lattice(D, Gp, basis, cap):
 # ----------------------------------------------------------------------------
 # Exact, cap-free s_sq(M) via the per-face lemma (ledger L1.4/L1.5)
 # ----------------------------------------------------------------------------
+@lru_cache(maxsize=None)
 def edge_deltas(D):
     """Codifferent functionals of the sail edges, one per edge modulo (O^x)^2.
     Edge E_i = {alpha_i + t*alpha_{i+1} : 0<=t<=u_{i+1}} (i even, indec.py conventions);
     delta_E is the unique delta with Tr(delta*alpha_i)=1, Tr(delta*alpha_{i+1})=0.
-    Asserts delta_E is totally positive and lies in the codifferent."""
+    Asserts delta_E is totally positive and lies in the codifferent. Cached (do not mutate)."""
     from indec import cf_list, convergents
     from rqf import fundamental_unit
     eps, _ = fundamental_unit(D)
     u = eps * eps                                  # generator of (O^x)^2 (tot. pos.)
-    cf, dl, s = cf_list(D, 2 * 2 * 60 + 14)
+    _, _, s = cf_list(D, 2)                        # period length
+    cf, dl, s = cf_list(D, 4 * s + 16)             # (was a fixed 254 terms: failed for s > 60)
     nterms = 4 * s + 12
     cvs = convergents(cf, nterms + 1)
     alpha = [QF(D, 1, 0)] + [QF(D, p, 0) + QF(D, q, 0) * dl for (p, q) in cvs]

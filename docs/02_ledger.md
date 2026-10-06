@@ -159,10 +159,11 @@ exactly 2 classes for ι = 8 (D=66) and ι = 12 (D=146). Consistent with L1.5.
 
 ---------------------------------------------------------------------------------------------
 ## L4 Data
-See 07_data.md. Headline: CERTIFIED (exact, cap-free) s□ = 8 for an explicit lattice over
-Q(√43); s□ = 6 over Q(√19), Q(√31), Q(√57). IMPORTED: complete searches D = 26 (S=2),
-33 (S=4=κ□), 19 (S=6); claim "S ≤ 6 for 40 fields up to Δ = 348" was restricted to
-unit-determinant frames and did not include D = 43 — the pattern "stall at 6" is REFUTED (L6.2).
+See 07_data.md and 09_R1_complete.md. Headline (R1, CERTIFIED, complete): S(K,2) exactly for all
+squarefree D ≤ 100; max 8, attained at D = 43, 67, 86 (s = 10). The IMPORTED complete values
+D = 26 (S=2), 33 (S=4=κ□), 19 (S=6) are re-verified. The claim "S ≤ 6 for 40 fields up to
+Δ = 348" (restricted to unit-determinant frames) is REFUTED (L6.2; also D = 67, 86 with
+Δ = 268, 344).
 
 ---------------------------------------------------------------------------------------------
 ## L5 Open
@@ -173,12 +174,13 @@ constructions suggest sup_K T(K) = ∞, which would make s_u non-uniform already
 EMPIRICAL support that square classes contain several unit orbits: κ□ < 2ι for D = 19 (10 < 14),
 D = 31 (12 < 16) with N(ε) = +1.
 
-**L5.2 OPEN — central dichotomy (reformulated after L6.3).** Is S(K,2) bounded, or ≍ s?
+**L5.2 OPEN — central dichotomy (reformulated after L6.3; sub-question (i) settled by L7.4).**
+Is S(K,2) bounded, or ≍ s? (Exact values: L7.2, 09_R1_complete.md.)
 The earlier "faces-touched lemma" (one lattice meets O(1) edges) is contradicted by data:
 extremal lattices meet all or almost all edges of a period (L6.3). What stays small is the number
 of values per edge (≤ 2 in all data) and the collapse of values into classes.
-Sub-questions: (i) per-edge CLASS count ≤ 2 (would give s□ ≤ 2s; the per-edge VALUE count can be
-3–4, see L6.3); (ii) collapse mechanism (L6.4);
+Sub-questions: (i) per-edge CLASS count ≤ 2 (would give s□ ≤ 2s) — REFUTED, L7.4 (D = 82: 4 classes
+on one edge orbit, S = 4 > 2s); (ii) collapse mechanism (L6.4);
 (iii) a family with s□ → ∞. Side data: the odd convergents (sail VERTICES) of one period are not
 jointly representable (max 2/3, 2/4, 3/5, 2/6 for D = 19, 31, 43, 46; lower-bound searches) —
 represented indecomposables are mostly interior edge points, not vertices.
@@ -217,7 +219,7 @@ imported KT Prop 3.1 for every D run), `lattice.exact_sq_classes` (exact LLL + F
 with cap 1). Agrees with capped enumeration where the cap suffices; exposes cap failures (D = 43:
 cap 3000 finds 6 classes, exact finds 8).
 
-**L6.2 CERTIFIED (S(Q(√43),2) ≥ 8).** Winner on balanced class reps (`find_winner`), realized
+**L6.2 CERTIFIED (S(Q(√43),2) ≥ 8; = 8 exactly by R1, L7.2).** Winner on balanced class reps (`find_winner`), realized
 L = ΣOv_i in the ambient form Gp = [[7+√43, −2], [−2, 7−√43]] (det Gp = 2). L is integral,
 positive definite, Z-trace-Gram determinant 29584 = 172², i.e. N(𝔳L) = 1. Represented classes
 (exact): 7−√43, 1541−235√43, 47207−7199√43, 10731517−1636541√43 (norm 6);
@@ -229,9 +231,10 @@ Command: `python3 scripts/scan_exact.py 43 43 600 /tmp/o.jsonl` or see tests (sl
 D = 19 (orbit-rep winner): [1,2,1,1,2,1] → 6 classes, 6/6 edges; D = 31 (balanced):
 [1,2,1,0,1,2,1,0] → 6 classes; D = 43: 10/10 edges, 8 classes; D = 57 frame (L2.5):
 [2,2,2,2,2,2] → 6 classes, 6/6 edges; D = 46 best found: 8/12 edges, 4 classes.
-EMPIRICAL: ≤ 2 values per edge in every lattice with s□ ≥ 4 computed. NOT true in general:
-diagonal lattices ⟨1, γ⟩ in odd-period fields carry up to 4 values on one edge (all in ≤ 2
-classes): D = 2, 10, 26 (s = 1) give 3–4, D = 17, 37, 41, 65 give 3 (data/scan_exact.jsonl).
+EMPIRICAL claim "≤ 2 values per edge in every lattice with s□ ≥ 4" — REFUTED by L7.4 (D = 82, D = 58).
+Diagonal lattices ⟨1, γ⟩ in odd-period fields carry up to 4 values on one edge (all in ≤ 2
+classes): D = 2, 10, 26 (s = 1) give 3–4, D = 17, 37, 41 give 3, D = 65 gives 4 (recomputed after
+C17; the stored data/scan_exact.jsonl rows for D ≡ 1 mod 4 are on Z[√D]-sublattices).
 These extra values are indecomposable SQUARES ξ² (ξ non-unit) — the rank-1 core L5.1 in action.
 
 **L6.4 EMPIRICAL (shape of extremal lattices).** Two patterns: (i) det = η (tp fundamental
@@ -246,3 +249,61 @@ rank 2 with a positive-definite principal 2×2 block, then v_i := coordinates of
 block realize G in (K², block form), and L = ΣOv_i is an integral positive-definite binary
 O-lattice with Q(v_i) = g_ii. (Rank 2 ⇒ g_ij = g_{i,P} G_P^{-1} g_{P,j}.) Freeness (h(K) = 1) is only
 needed if one insists on free lattices / binary FORMS.
+
+---------------------------------------------------------------------------------------------
+## L7 R1 — complete computation (docs/09_R1_complete.md, src/complete.py)
+
+**L7.1 PROVED (R1 theorem).** S(K,2) = max over frames f = (α, β, b) (α, β indecomposables mod
+(O^×)² in distinct classes, b ∈ O, αβ − b² ≻ 0) of max s□(M) over the maximal integral overlattices
+M of L_f; S_free(K,2) (free lattices = binary forms) likewise over lattices maximal among FREE
+integral overlattices. Overlattices = isotropic O-submodules of O²/G_fO² (p-primary parts
+orthogonal). Proof: 09 §1. Uses L6.1 (hence KT Prop 3.1, IMPORTED; re-verified computationally
+for all squarefree D ≤ 3000 against the independent `sails` package, 09 §3.7).
+
+**L7.2 CERTIFIED (exact values).** S(K,2) and S_free(K,2) for all 60 squarefree D ≤ 100 (09 §4,
+data/complete_S.jsonl; `python3 scripts/complete_S.py out.jsonl --range 2 100`). max = 8, exactly at
+D = 43, 67, 86 (s = 10). Re-verifies the IMPORTED D = 26 → 2, 33 → 4, 19 → 6.
+
+**L7.3 CERTIFIED (lattices ≠ forms).** S_free < S for D = 51 (2 < 4), 58 (4 < 6), 66 (2 < 4),
+82 (2 < 4), 85 (2 < 3), 91 (4 < 6); h(K) = 2, 2, 2, 4, 2, 2. For h(K) = 1 they coincide.
+
+**L7.4 CERTIFIED (REFUTES "≤ 2 classes per edge", R3, and L6.3's "≤ 2 values per edge if s□ ≥ 4").**
+Q(√82) (s = 1): a maximal integral, non-free lattice (frame [[10−√82, −4], [−4, 10+√82]] glued with
+x = (7+√82/2, 7−√82/2); values 10−√82, 154−17√82, 46−5√82, 118−13√82) represents 4 classes, all on
+the single edge orbit; S = 4 > 2s. Q(√85) (s = 1): S = 3. Q(√58): an
+s□ = 6 lattice with 4 values on one edge. Also for binary FORMS: 3 classes on one edge occur for D = 73, 89, 97 (h = 1, all lattices free).
+Hence s□ ≤ 2s is false; the per-face bound L1.4 (≤ 12 per
+edge) is the only per-edge bound known. Over every maximal lattice, D ≤ 100: classes on one edge reach 3 (D = 73, 74, 85, 89, 97)
+and 4 (D = 58, 82); never more. Per-edge maxima over every maximal lattice:
+data/edge_stats.jsonl (`scripts/edge_stats.py`).
+
+**L7.5 EMPIRICAL.** S(K,2) is not monotone in s (s = 2 fields reach 4; s = 12: 4; s = 16: 6) and
+S ≥ s occurs only for s ≤ 6 (D ≤ 100). Long periods: 09 §6.
+
+**L7.6 EMPIRICAL (shape of extremal lattices).** In 20 of the 25 fields D ≤ 100 with S ≥ 4 the first
+extremal frame found is Galois-self-conjugate [[α, b], [b, α′]] with b ∈ Z (including D = 43, 67, 86,
+det = 2, 8, 8); among these first extremal frames, unit determinant (L2.5) occurs only for
+D = 33, 41, 61, 71. Supports R2.
+
+**L7.7 CERTIFIED (Galois-symmetric frames, exact over that class).** S_sym(K) := max s□ over the
+maximal integral overlattices of frames [[α, b], [b, α′]], α ∈ I(K), b ∈ Z (complete.symmetric_S;
+data/symmetric_S.jsonl). D ≤ 100: S_sym = S in 21 of the 25 fields with S ≥ 4 (all of D = 43, 67,
+86, 82, 58, 91, 19, 57); S_sym < S for D = 31 (4 < 6), 89 (4 < 5), 94 (4 < 6), 97 (4 < 6). So the
+symmetric case (R2) is the typical extremal shape but not the only one.
+
+**L7.8 CERTIFIED (lower bounds well above 8).** The det-2 Galois-symmetric frames
+G_{a,b} = [[a − √D, b], [b, a + √D]], D = a² − b² − 2 (the extremal shape for D = 19, 22, 38, 43, 46, 58,
+73, 82, 862), glued to their maximal integral overlattices, give
+  S(Q(√3931),2) ≥ 24 (a = 63, b = 6, s = 130, free),
+  S(Q(√691),2) ≥ 20 (a = 27, b = 6, s = 38),  S(Q(√823),2) ≥ 20 (a = 35, b = 20, s = 44),
+  also 20 for D = 1303 (s = 52), 1579 (s = 70); 16 for D = 739; 14 for D = 331; 12 for D = 862.
+The D = 691, 823 witnesses are FREE (binary forms). Certificates: data/certificates/*.json
+(vectors, values; `scripts/certify_lattice.py D a b`; re-verified by test_stored_certificates and,
+independently, indecomposability by `sails` and square classes by PARI nfroots).
+Scan: `scripts/family_det2.py out.jsonl 5000` (data/family_det2.jsonl). For D ≡ 2, 3 (mod 4) 2 ramifies
+and the index-2 glue makes M unimodular (𝔳M = O) — the unit-determinant pattern L2.5.
+Family records (D ≤ 5000, 1434 lattices): 6, 8, 10, 14, 20, 24 at D = 19, 43, 271, 331, 691, 3931 —
+slow, irregular growth (EMPIRICAL). Complete runs (R1): S = 8 for D = 478, 958 (s = 36), 718 (s = 40); S = 12 for D = 862 (s = 40),
+attained by the family lattice — the family gives the exact maximum there.
+Consequence for L5.2: the D ≤ 100 maximum 8 is not a ceiling; the "lean toward boundedness" (C7)
+is not supported. Within the family the growth in s is irregular (several s ≥ 40 fields give ≤ 8).

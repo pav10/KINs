@@ -10,7 +10,8 @@ Long-term: rank r, degree d — N_r(K) ≤ c(r,d)? (docs/01_problem.md).
 
 Collaborator: Pavlo Yatsyna (Charles University). Read docs in this order before work:
 `docs/01_problem.md` → `docs/02_ledger.md` → `docs/03_corrections.md` → `docs/04_pitfalls.md`
-→ `docs/05_roadmap.md`. Data: `docs/07_data.md`. History: `docs/08_history.md`.
+→ `docs/05_roadmap.md` → `docs/09_R1_complete.md` (R1: exact S(K,2), proof + tables).
+Data: `docs/07_data.md`. History: `docs/08_history.md`.
 
 ## Working standards (non-negotiable)
 1. **Proofs over enumeration.** Run a computation only if its outcome changes what we can
@@ -39,10 +40,16 @@ src/gram.py     exact rank over K, admissible off-diagonals, abstract Gram searc
 src/lattice.py  balanced reps, find_winner, realized module L=ΣO v_i (HNF), trace lattice,
                 exact HNF / membership, Fincke–Pohst, analyze_lattice (classes, orbits,
                 Z-linear irreducibility, n*)
+src/complete.py R1: provably complete S(K,2) / S_free(K,2): frames mod (O^x)^2 + symmetry, exact
+                b-enumeration (trace-form ellipse), discriminant module O^2/GO^2, isotropic
+                submodules, exact per-edge evaluation, Steinitz class + principal test (Serret)
 scripts/experiments.py   CLI reproducing every number in docs/07_data.md
+scripts/complete_S.py    R1 driver (JSONL); scripts/edge_stats.py per-edge maxima
+scripts/check_sails.py   cross-check vs github.com/pav10/sails (needs cypari2; SAILS_PATH)
 legacy/real_quadratic_gram.py   Sage version (corrected) — reference only
 ```
-Tests: `python3 -m pytest -q -m "not slow"` (seconds); `python3 -m pytest -q -m slow` (~4 min).
+Tests: `python3 -m pytest -q -m "not slow"` (~30 s); `python3 -m pytest -q -m slow` (~15 min).
+Optional: `pip install cypari2` (the manylinux wheel bundles PARI) enables the PARI/sails tests.
 Conventions: ω = √D (D ≡ 2,3 mod 4) or (1+√D)/2 (D ≡ 1 mod 4); Δ = 4D or D;
 η = generator > 1 of totally positive units (η = ε if N(ε)=+1 else ε²).
 Dress–Scharlau: indecomposables have N(α) ≤ Δ/4.
@@ -52,4 +59,6 @@ u1+u3+…+u_{s−1} (s even) or u1+…+u_s (s odd), [u0; u1..us] the CF of ω.
 ## Known performance limits
 `find_winner` is exponential in the number of reps (fine to ~20 reps); `largest_gram(58)`
 is slow. Fincke–Pohst on the rank-4 trace lattice is fine to ~5·10^5 short vectors.
-For larger D: use the frame/norm-equation model (docs/05_roadmap.md task R1), not subset search.
+For S(K,2) use `complete.complete_S` (R1), not subset search: D ≤ 100 in ~6 min total,
+D = 958 (s = 36) ~15 min; cost ~ #frames × s × LLL. Never use embedding-coordinate boxes when
+the fundamental unit is large (pitfall P13).

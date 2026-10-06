@@ -1,0 +1,60 @@
+{"D": 2, "S_sym": 1, "frames": 2, "best": null}
+{"D": 3, "S_sym": 1, "frames": 0, "best": null}
+{"D": 5, "S_sym": 1, "frames": 0, "best": null}
+{"D": 6, "S_sym": 2, "frames": 2, "best": {"frame": ["(3+-1*sqrt6)", "(3+1*sqrt6)", "(0+0*sqrt6)"], "gens": [[1, 0, 2, 0]], "s_sq": 2, "per_edge": [1, 1], "det": 3}}
+{"D": 7, "S_sym": 2, "frames": 2, "best": {"frame": ["(3+-1*sqrt7)", "(3+1*sqrt7)", "(0+0*sqrt7)"], "gens": [[0, 1, 0, 1]], "s_sq": 2, "per_edge": [1, 1, 1, 1], "det": 2}}
+{"D": 10, "S_sym": 2, "frames": 10, "best": {"frame": ["(4+-1*sqrt10)", "(4+1*sqrt10)", "(0+0*sqrt10)"], "gens": [[1, 2, 1, 1]], "s_sq": 2, "per_edge": [2], "det": 6}}
+{"D": 11, "S_sym": 2, "frames": 6, "best": {"frame": ["(4+-1*sqrt11)", "(4+1*sqrt11)", "(0+0*sqrt11)"], "gens": [], "s_sq": 2, "per_edge": [1, 1], "det": 5}}
+{"D": 13, "S_sym": 2, "frames": 2, "best": {"frame": ["(5/2+-1/2*sqrt13)", "(5/2+1/2*sqrt13)", "(0+0*sqrt13)"], "gens": [], "s_sq": 2, "per_edge": [2], "det": 3}}
+{"D": 14, "S_sym": 2, "frames": 2, "best": {"frame": ["(4+-1*sqrt14)", "(4+1*sqrt14)", "(0+0*sqrt14)"], "gens": [[1, 0, 1, 0]], "s_sq": 2, "per_edge": [1, 1, 1, 1], "det": 2}}
+{"D": 15, "S_sym": 1, "frames": 0, "best": null}
+{"D": 17, "S_sym": 2, "frames": 4, "best": {"frame": ["(5/2+-1/2*sqrt17)", "(5/2+1/2*sqrt17)", "(0+0*sqrt17)"], "gens": [], "s_sq": 2, "per_edge": [1, 2, 1], "det": 2}}
+{"D": 19, "S_sym": 6, "frames": 18, "best": {"frame": ["(5+-1*sqrt19)", "(5+1*sqrt19)", "(2+0*sqrt19)"], "gens": [[0, 1, 0, 1]], "s_sq": 6, "per_edge": [1, 2, 1, 1, 2, 1], "det": 2}}
+{"D": 21, "S_sym": 1, "frames": 0, "best": null}
+{"D": 22, "S_sym": 4, "frames": 14, "best": {"frame": ["(5+-1*sqrt22)", "(5+1*sqrt22)", "(1+0*sqrt22)"], "gens": [[0, 0, 0, 1]], "s_sq": 4, "per_edge": [1, 2, 1, 1, 2, 1], "det": 2}}
+{"D": 23, "S_sym": 2, "frames": 2, "best": {"frame": ["(5+-1*sqrt23)", "(5+1*sqrt23)", "(0+0*sqrt23)"], "gens": [[0, 1, 0, 1]], "s_sq": 2, "per_edge": [1, 1, 1, 1], "det": 2}}
+{"D": 26, "S_sym": 2, "frames": 25, "best": {"frame": ["(6+-1*sqrt26)", "(6+1*sqrt26)", "(0+0*sqrt26)"], "gens": [[1, 4, 1, 1]], "s_sq": 2, "per_edge": [2], "det": 10}}
+{"D": 29, "S_sym": 2, "frames": 6, "best": {"frame": ["(7/2+-1/2*sqrt29)", "(7/2+1/2*sqrt29)", "(0+0*sqrt29)"], "gens": [], "s_sq": 2, "per_edge": [2], "det": 5}}
+{"D": 30, "S_sym": 2, "frames": 3, "best": {"frame": ["(6+-1*sqrt30)", "(6+1*sqrt30)", "(0+0*sqrt30)"], "gens": [[3, 0, 3, 0], [2, 0, 4, 0]], "s_sq": 2, "per_edge": [1, 1], "det": 6}}
+{"D": 31, "S_sym": 4, "frames": 22, "best": {"frame": ["(17+-3*sqrt31)", "(17+3*sqrt31)", "(1+0*sqrt31)"], "gens": [[0, 0, 6, 0]], "s_sq": 4, "per_edge": [0, 1, 1, 0, 0, 1, 1, 0], "det": 9}}
+{"D": 33, "S_sym": 4, "frames": 6, "best": {"frame": ["(7/2+-1/2*sqrt33)", "(7/2+1/2*sqrt33)", "(1+0*sqrt33)"], "gens": [[0, 0, 1, 1]], "s_sq": 4, "per_edge": [2, 2, 2, 2], "det": 3}}
+{"D": 34, "S_sym": 2, "frames": 2, "best": {"frame": ["(6+-1*sqrt34)", "(6+1*sqrt34)", "(0+0*sqrt34)"], "gens": [[1, 0, 1, 0]], "s_sq": 2, "per_edge": [1, 1, 1, 1], "det": 2}}
+{"D": 35, "S_sym": 1, "frames": 0, "best": null}
+{"D": 37, "S_sym": 2, "frames": 8, "best": {"frame": ["(7/2+-1/2*sqrt37)", "(7/2+1/2*sqrt37)", "(0+0*sqrt37)"], "gens": [], "s_sq": 2, "per_edge": [1, 2, 1], "det": 3}}
+{"D": 38, "S_sym": 4, "frames": 23, "best": {"frame": ["(7+-1*sqrt38)", "(7+1*sqrt38)", "(3+0*sqrt38)"], "gens": [[0, 0, 0, 1]], "s_sq": 4, "per_edge": [2, 2], "det": 2}}
+{"D": 39, "S_sym": 2, "frames": 12, "best": {"frame": ["(7+-1*sqrt39)", "(7+1*sqrt39)", "(0+0*sqrt39)"], "gens": [[0, 5, 0, 5]], "s_sq": 2, "per_edge": [1, 1], "det": 10}}
+{"D": 41, "S_sym": 4, "frames": 14, "best": {"frame": ["(13+-2*sqrt41)", "(13+2*sqrt41)", "(1+0*sqrt41)"], "gens": [[0, 0, 2, 0]], "s_sq": 4, "per_edge": [0, 1, 2, 1, 0], "det": 4}}
+{"D": 42, "S_sym": 2, "frames": 3, "best": {"frame": ["(7+-1*sqrt42)", "(7+1*sqrt42)", "(0+0*sqrt42)"], "gens": [[6, 0, 6, 0]], "s_sq": 2, "per_edge": [1, 1], "det": 7}}
+{"D": 43, "S_sym": 8, "frames": 48, "best": {"frame": ["(7+-1*sqrt43)", "(7+1*sqrt43)", "(2+0*sqrt43)"], "gens": [[0, 1, 0, 1]], "s_sq": 8, "per_edge": [1, 1, 2, 1, 1, 1, 1, 2, 1, 1], "det": 2}}
+{"D": 46, "S_sym": 4, "frames": 18, "best": {"frame": ["(7+-1*sqrt46)", "(7+1*sqrt46)", "(1+0*sqrt46)"], "gens": [[0, 0, 0, 1]], "s_sq": 4, "per_edge": [1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1], "det": 2}}
+{"D": 47, "S_sym": 2, "frames": 2, "best": {"frame": ["(7+-1*sqrt47)", "(7+1*sqrt47)", "(0+0*sqrt47)"], "gens": [[0, 1, 0, 1]], "s_sq": 2, "per_edge": [1, 1, 1, 1], "det": 2}}
+{"D": 51, "S_sym": 4, "frames": 28, "best": {"frame": ["(8+-1*sqrt51)", "(8+1*sqrt51)", "(1+0*sqrt51)"], "gens": [[0, 0, 0, 6], [0, 0, 0, 4]], "s_sq": 4, "per_edge": [2, 2], "det": 12}}
+{"D": 53, "S_sym": 2, "frames": 11, "best": {"frame": ["(9/2+-1/2*sqrt53)", "(9/2+1/2*sqrt53)", "(0+0*sqrt53)"], "gens": [], "s_sq": 2, "per_edge": [2], "det": 7}}
+{"D": 55, "S_sym": 2, "frames": 9, "best": {"frame": ["(8+-1*sqrt55)", "(8+1*sqrt55)", "(2+0*sqrt55)"], "gens": [[0, 0, 0, 2]], "s_sq": 2, "per_edge": [1, 1, 1, 1], "det": 5}}
+{"D": 57, "S_sym": 6, "frames": 16, "best": {"frame": ["(8+-1*sqrt57)", "(8+1*sqrt57)", "(2+0*sqrt57)"], "gens": [[0, 0, 1, 1]], "s_sq": 6, "per_edge": [2, 2, 2, 2, 2, 2], "det": 3}}
+{"D": 58, "S_sym": 6, "frames": 58, "best": {"frame": ["(8+-1*sqrt58)", "(8+1*sqrt58)", "(2+0*sqrt58)"], "gens": [[1, 0, 1, 0]], "s_sq": 6, "per_edge": [1, 1, 0, 4, 0, 1, 1], "det": 2}}
+{"D": 59, "S_sym": 4, "frames": 38, "best": {"frame": ["(31+-4*sqrt59)", "(31+4*sqrt59)", "(3+0*sqrt59)"], "gens": [[0, 0, 6, 6]], "s_sq": 4, "per_edge": [0, 2, 0, 0, 2, 0], "det": 8}}
+{"D": 61, "S_sym": 4, "frames": 16, "best": {"frame": ["(9/2+-1/2*sqrt61)", "(9/2+1/2*sqrt61)", "(1+0*sqrt61)"], "gens": [[0, 0, 2, 0]], "s_sq": 4, "per_edge": [1, 2, 1], "det": 4}}
+{"D": 62, "S_sym": 2, "frames": 2, "best": {"frame": ["(8+-1*sqrt62)", "(8+1*sqrt62)", "(0+0*sqrt62)"], "gens": [[1, 0, 1, 0]], "s_sq": 2, "per_edge": [1, 1, 1, 1], "det": 2}}
+{"D": 65, "S_sym": 2, "frames": 14, "best": {"frame": ["(25/2+-3/2*sqrt65)", "(25/2+3/2*sqrt65)", "(0+0*sqrt65)"], "gens": [[0, 3, 0, 2]], "s_sq": 2, "per_edge": [0, 2, 0], "det": 10}}
+{"D": 66, "S_sym": 4, "frames": 36, "best": {"frame": ["(9+-1*sqrt66)", "(9+1*sqrt66)", "(3+0*sqrt66)"], "gens": [[0, 0, 0, 1], [1, 0, 5, 1]], "s_sq": 4, "per_edge": [2, 2], "det": 6}}
+{"D": 67, "S_sym": 8, "frames": 84, "best": {"frame": ["(33+-4*sqrt67)", "(33+4*sqrt67)", "(3+0*sqrt67)"], "gens": [[0, 0, 6, 6]], "s_sq": 8, "per_edge": [1, 0, 2, 0, 1, 1, 0, 2, 0, 1], "det": 8}}
+{"D": 69, "S_sym": 2, "frames": 2, "best": {"frame": ["(9/2+-1/2*sqrt69)", "(9/2+1/2*sqrt69)", "(0+0*sqrt69)"], "gens": [[0, 2, 0, 1]], "s_sq": 2, "per_edge": [1, 1, 1, 1], "det": 3}}
+{"D": 70, "S_sym": 2, "frames": 18, "best": {"frame": ["(9+-1*sqrt70)", "(9+1*sqrt70)", "(0+0*sqrt70)"], "gens": [], "s_sq": 2, "per_edge": [1, 0, 0, 0, 0, 1], "det": 11}}
+{"D": 71, "S_sym": 4, "frames": 16, "best": {"frame": ["(9+-1*sqrt71)", "(9+1*sqrt71)", "(1+0*sqrt71)"], "gens": [[0, 0, 6, 0]], "s_sq": 4, "per_edge": [1, 0, 0, 1, 1, 0, 0, 1], "det": 9}}
+{"D": 73, "S_sym": 4, "frames": 31, "best": {"frame": ["(43/2+-5/2*sqrt73)", "(43/2+5/2*sqrt73)", "(2+0*sqrt73)"], "gens": [], "s_sq": 4, "per_edge": [0, 1, 0, 1, 2, 1, 0, 1, 0], "det": 2}}
+{"D": 74, "S_sym": 2, "frames": 70, "best": {"frame": ["(9+-1*sqrt74)", "(9+1*sqrt74)", "(0+0*sqrt74)"], "gens": [], "s_sq": 2, "per_edge": [1, 1, 0, 1, 1], "det": 7}}
+{"D": 77, "S_sym": 1, "frames": 0, "best": null}
+{"D": 78, "S_sym": 2, "frames": 2, "best": {"frame": ["(9+-1*sqrt78)", "(9+1*sqrt78)", "(0+0*sqrt78)"], "gens": [[1, 0, 2, 0]], "s_sq": 2, "per_edge": [1, 1, 1, 1], "det": 3}}
+{"D": 79, "S_sym": 2, "frames": 2, "best": {"frame": ["(9+-1*sqrt79)", "(9+1*sqrt79)", "(0+0*sqrt79)"], "gens": [[0, 1, 0, 1]], "s_sq": 2, "per_edge": [1, 1, 1, 1], "det": 2}}
+{"D": 82, "S_sym": 4, "frames": 72, "best": {"frame": ["(10+-1*sqrt82)", "(10+1*sqrt82)", "(4+0*sqrt82)"], "gens": [[1, 0, 1, 0]], "s_sq": 4, "per_edge": [4], "det": 2}}
+{"D": 83, "S_sym": 4, "frames": 50, "best": {"frame": ["(10+-1*sqrt83)", "(10+1*sqrt83)", "(3+0*sqrt83)"], "gens": [[0, 0, 6, 6]], "s_sq": 4, "per_edge": [2, 2], "det": 8}}
+{"D": 85, "S_sym": 3, "frames": 17, "best": {"frame": ["(11/2+-1/2*sqrt85)", "(11/2+1/2*sqrt85)", "(2+0*sqrt85)"], "gens": [[0, 0, 3, 4]], "s_sq": 3, "per_edge": [4], "det": 5}}
+{"D": 86, "S_sym": 8, "frames": 77, "best": {"frame": ["(19+-2*sqrt86)", "(19+2*sqrt86)", "(3+0*sqrt86)"], "gens": [[0, 0, 4, 6]], "s_sq": 8, "per_edge": [1, 0, 2, 0, 1, 1, 0, 2, 0, 1], "det": 8}}
+{"D": 87, "S_sym": 2, "frames": 8, "best": {"frame": ["(10+-1*sqrt87)", "(10+1*sqrt87)", "(0+0*sqrt87)"], "gens": [], "s_sq": 2, "per_edge": [1, 1], "det": 13}}
+{"D": 89, "S_sym": 4, "frames": 36, "best": {"frame": ["(10+-1*sqrt89)", "(10+1*sqrt89)", "(3+0*sqrt89)"], "gens": [], "s_sq": 4, "per_edge": [1, 0, 0, 2, 0, 0, 1], "det": 2}}
+{"D": 91, "S_sym": 6, "frames": 54, "best": {"frame": ["(29+-3*sqrt91)", "(29+3*sqrt91)", "(3+0*sqrt91)"], "gens": [[0, 0, 0, 10]], "s_sq": 6, "per_edge": [0, 2, 2, 0, 0, 2, 2, 0], "det": 13}}
+{"D": 93, "S_sym": 4, "frames": 6, "best": {"frame": ["(11/2+-1/2*sqrt93)", "(11/2+1/2*sqrt93)", "(2+0*sqrt93)"], "gens": [[0, 0, 1, 1]], "s_sq": 4, "per_edge": [2, 2], "det": 3}}
+{"D": 94, "S_sym": 4, "frames": 38, "best": {"frame": ["(10+-1*sqrt94)", "(10+1*sqrt94)", "(2+0*sqrt94)"], "gens": [[1, 0, 1, 0]], "s_sq": 4, "per_edge": [1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1], "det": 2}}
+{"D": 95, "S_sym": 2, "frames": 3, "best": {"frame": ["(10+-1*sqrt95)", "(10+1*sqrt95)", "(0+0*sqrt95)"], "gens": [[2, 0, 2, 0]], "s_sq": 2, "per_edge": [1, 1, 1, 1], "det": 5}}
+{"D": 97, "S_sym": 4, "frames": 45, "best": {"frame": ["(11/2+-1/2*sqrt97)", "(11/2+1/2*sqrt97)", "(2+0*sqrt97)"], "gens": [], "s_sq": 4, "per_edge": [1, 0, 1, 1, 2, 1, 1, 0, 1], "det": 2}}

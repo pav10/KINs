@@ -14,5 +14,13 @@ python3 scripts/scan_exact.py 43 43 600 /tmp/o.jsonl   # S(Q(√43),2) ≥ 8, ex
 Requirements: Python ≥ 3.9, numpy not required, pytest for tests. No Sage/PARI needed
 (`legacy/real_quadratic_gram.py` is the corrected Sage original, reference only).
 
-Headline status: s□(M) ≤ 12·s proved (s = CF period); s□ computable exactly; certified
-S(Q(√43),2) ≥ 8; bounded vs ≍ s open. Next: roadmap R1 (provably complete search).
+Headline status: s□(M) ≤ 12·s proved (s = CF period); R1 done: S(K,2) computed exactly
+(provably complete search, docs/09_R1_complete.md) for all D ≤ 100 — max 8 (D = 43, 67, 86) —
+and long-period fields; certified S(K,2) ≥ 24 (D = 3931, a binary form) via the det-2
+Galois-symmetric family; "≤ 2 classes per edge" refuted (D = 82); bounded vs unbounded still open.
+Next: roadmap R2 (Galois-symmetric extremal lattices).
+
+```bash
+python3 scripts/complete_S.py out.jsonl 43 67          # exact S(K,2), S_free(K,2)
+SAILS_PATH=../sails python3 scripts/check_sails.py 2 3000   # needs cypari2 + pav10/sails
+```
