@@ -79,3 +79,15 @@ edge in every lattice with s□ ≥ 4" (L6.3/C15).** Both REFUTED (L7.4): D = 82
 C20. **Do not compute S_free from maximal lattices only.** A free lattice may lie only in non-free
 maximal lattices; R1 evaluates lattices maximal among FREE overlattices (L7.1). (Caught before
 any value was recorded.)
+
+C21. **"The det-2 family plateaus at 28, so 28 may be a ceiling" (L7.8 discussion).** The plateau is a
+property of the Galois-symmetric slice only. The full det-class-2 maximum max_c n(c) (L8.3) exceeds it:
+S ≥ 36 at D = 12511, 17539 (CERTIFIED), and it keeps growing for larger D (L8.5, L8.7).
+
+C22. **C7's "lean toward boundedness" (already weakened by L7.8) is not supported.** Under (H),
+S(K,2) ≥ max_c n(c) ≥ n̄ (L8.3), and both grow in the data. The dichotomy (L5.2) is still OPEN, but
+the evidence now points to unbounded, slow growth.
+
+C23. **Upper bounds from non-classical hulls are not attained.** For E = K(i), the bound 10 at D = 43
+exceeds the complete value S = 8, and classical sublattices lose most classes (L8.6). Always state
+which E and which integrality the bound refers to.

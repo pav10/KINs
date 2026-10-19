@@ -4,7 +4,8 @@ indecomposables over Cl(O_E) (scripts/r2_classes.py), its maximum over c, and --
 family lattices of data/family_det2.jsonl -- the model value n(c_M) next to the EXACT s_sq(M).
 max_c n(c) is the exact maximum of s_sq over binary lattices with det in 2 (K^x)^2 when 2*eps is a
 square in K (docs/10_R2.md, Theorem 10.2); otherwise it is an upper bound.
-Usage: python3 scripts/r2_scan.py out.jsonl Dmin Dmax [i/m]"""
+Usage: python3 scripts/r2_scan.py out.jsonl Dmin Dmax [i/m] [sqonly]
+  sqonly: skip fields where 2*eps is not a square (there max_c n(c) is only an upper bound)."""
 import os, sys, json, time
 from math import isqrt
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -38,7 +39,10 @@ if __name__ == "__main__":
         fam.setdefault(r["D"], []).append(r)
     Ds = [D for D in range(hi, lo - 1, -1) if D % 4 == 3 and sqf(D)]
     Ds = [D for k, D in enumerate(Ds) if k % shard[1] == shard[0] and D not in done]
+    sqonly = len(sys.argv) > 5 and sys.argv[5] == "sqonly"
     for D in Ds:
+        if sqonly and not two_eps_square(D):
+            continue
         t = time.time()
         fd = FieldData(D)
         dist, per_rep, ed, _ = class_distribution(D, 2, fd=fd)

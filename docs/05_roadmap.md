@@ -23,6 +23,9 @@ D = 33 → 4, D = 19 → 6; settles D = 43 (≥ 8), D = 31, 46, 58, 67.
 Outcome → proof: if S(K,2) tracks s (e.g. ≈ s or ≈ values-per-period), go to R3(b);
 if S(K,2) is bounded on long-period families, go to R3(a).
 
+## R2 — DONE (docs/10_R2.md, ledger L8): for D ≡ 3 mod 4 with (H), the indecomposables represented by a
+## det-class-2 lattice are the norms of ideals in one class of Cl(K(√−2)); s□ = n(c) exactly; S(K,2) ≥
+## max_c n(c) ≥ n̄; records 36 (D ≤ 20000) and beyond (D ≤ 100000). Original text kept below.
 ## R2 — Structure of extremal lattices (theory, guided by R1 data) — NOW FIRST PRIORITY
 R1 data (L7.6): 20/25 extremal frames (D ≤ 100, S ≥ 4) are Galois-self-conjugate, including all
 S = 8 fields (D = 43, 67, 86: det 2, 8, 8, one glue vector). Done for D ≤ 100 (L7.7): S_sym = S in 21/25
@@ -39,6 +42,12 @@ an explicit formula/bound for s□. This is the most promising PROVABLE special 
 Acceptance: theorem with proof + agreement with D = 22, 43 data.
 
 ## R3 — The main theorem
+UPDATE (L8): R3(b) is now an analytic question. Under (H), S(K,2) ≥ N_E(K)/h(E), where N_E(K) is the
+number of indecomposable square classes whose ideal is a norm from E = K(√−2), and h(E) ≍ h(−8D).
+(1) Prove N_E(K)/h(E) → ∞ along an explicit family (prescribed continued fractions with large partial
+quotients against class numbers of Q(√−2D); Friesen-type constructions), or find an obstruction.
+(2) Determine max_c n(c) versus n̄ (the "best class" excess, about 3–4×).
+(3) Other det classes and D ≢ 3 (mod 4): Lemma 10.1 changes, so redo (a)–(c).
 UPDATE (L7.8): a candidate family for (b) exists — det-2 Galois-symmetric frames
 [[a − √D, b], [b, a + √D]], D = a² − b² − 2, glued to a unimodular M; certified s□ = 20 at D = 691, 823,
 1303, 1579, 24 at D = 3931, 28 at D = 5419; the family record then plateaus at 28 for D ≤ 20000

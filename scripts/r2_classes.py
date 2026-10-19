@@ -200,3 +200,149 @@ def lattice_from_ideal(ed, A, n):
     basis = [e_to_K2(ed, col(ed.bnf, H, j + 1)) for j in range(4)]
     G = [[n.inv(), QF(D, 0)], [QF(D, 0), QF(D, d) * n.inv()]]
     return G, basis
+
+
+def half_norm_groups(ed, g):
+    """(n0, Bs): n0 = HNF key of the product of the self-conjugate primes of E dividing g with odd
+    exponent (= primes of K inert in E, odd exponent in g), Bs = all integral B with
+    B rho(B) = g * n0^{-1} (n0 viewed in K)."""
+    fa = pari.idealfactor(ed.bnf, g)
+    primes = [fa[0][i] for i in range(len(fa[0]))]
+    exps = [int(fa[1][i]) for i in range(len(fa[1]))]
+    done, choices, n0 = set(), [], []
+    for i, P in enumerate(primes):
+        if i in done:
+            continue
+        rP = ed._ga(ed.bnf, ed.rho, P)
+        j = next(k for k, Q in enumerate(primes)
+                 if pari.idealhnf(ed.bnf, Q) == pari.idealhnf(ed.bnf, rP))
+        done |= {i, j}
+        e = exps[i]
+        if j == i:
+            if e % 2:
+                n0.append(P)
+            choices.append([pari.idealpow(ed.bnf, P, e // 2)])
+        else:
+            choices.append([pari.idealmul(ed.bnf, pari.idealpow(ed.bnf, P, f),
+                                          pari.idealpow(ed.bnf, primes[j], e - f))
+                            for f in range(e + 1)])
+    out = [pari.idealhnf(ed.bnf, 1)]
+    for ch in choices:
+        out = [pari.idealmul(ed.bnf, B, C) for B in out for C in ch]
+    N0 = pari.idealhnf(ed.bnf, 1)
+    for P in n0:
+        N0 = pari.idealmul(ed.bnf, N0, P)
+    return str(N0), out
+
+
+def class_distribution_groups(D, d=2, ed=None, fd=None):
+    """{n0: {class: set of square-class ids}}.  Group n0 = 1 (the unit ideal) is class_distribution.
+    max over (n0, c) of the counts = max s_sq over ALL integral lattices with det in d (K^x)^2
+    (docs/10_R2.md, Theorem 10.2 / Cor. 10.3), when 2 eps is a square (d = 2)."""
+    fd = fd or FieldData(D)
+    ed = ed or EData(D, d)
+    groups = {}
+    for i, g in enumerate(fd.reps):
+        key, Bs = half_norm_groups(ed, ed.elt(g))
+        dist = groups.setdefault(key, {})
+        for B in Bs:
+            dist.setdefault(ed.cls(B), set()).add(fd.class_of[i])
+    return groups, ed, fd
+
+
+def classical_sublattices(D, G, basis):
+    """Maximal classically integral sublattices M of a norm-integral binary O_K-lattice N
+    (Z-basis `basis`, Gram G; Q(N) in O_K, 2B(N,N) in O_K).  Every such M contains 2N, so M/2N is an
+    O-stable subspace S of N/2N (F_2^4) with B(S,S) in O_K.  Returns Z-bases of the maximal ones."""
+    from itertools import product as iprod
+    from lattice import Bform, hnf
+    from gram import omega
+    w = omega(D)
+    n = len(basis)
+    Bij = [[Bform(G, basis[i], basis[j]) for j in range(n)] for i in range(n)]
+    assert all((2 * Bij[i][j]).is_integral() and Bij[i][i].is_integral()
+               for i in range(n) for j in range(n)), "N not norm-integral"
+    # omega action in the Z-basis (integer matrix): coordinates via the dual of the trace form
+    def coords(v):
+        rows = [[b[0].a, b[0].b, b[1].a, b[1].b] for b in basis]
+        t = [v[0].a, v[0].b, v[1].a, v[1].b]
+        # solve c . rows = t over Q
+        A = [[F(x) for x in r] for r in rows]
+        M = [A[i][:] + [F(int(i == j)) for j in range(4)] for i in range(4)]
+        for c in range(4):
+            p = next(r for r in range(c, 4) if M[r][c] != 0)
+            M[c], M[p] = M[p], M[c]
+            pv = M[c][c]
+            M[c] = [x / pv for x in M[c]]
+            for r in range(4):
+                if r != c and M[r][c] != 0:
+                    f_ = M[r][c]
+                    M[r] = [M[r][j] - f_ * M[c][j] for j in range(8)]
+        inv = [r[4:] for r in M]
+        c_ = [sum(F(t[k]) * inv[k][j] for k in range(4)) for j in range(4)]
+        assert all(x.denominator == 1 for x in c_)
+        return [int(x) for x in c_]
+    W = [coords((w * b[0], w * b[1])) for b in basis]          # row i = omega*b_i in basis
+    vecs = [c for c in iprod((0, 1), repeat=4)]
+
+    def omega_mod2(c):
+        return tuple(sum(c[i] * W[i][j] for i in range(4)) % 2 for j in range(4))
+
+    def add2(c, d):
+        return tuple((x + y) % 2 for x, y in zip(c, d))
+
+    def pair_int(c, d):
+        s = QF(D, 0)
+        for i in range(4):
+            if c[i]:
+                for j in range(4):
+                    if d[j]:
+                        s = s + Bij[i][j]
+        return s.is_integral()
+
+    # all O-stable subspaces S (closure of spans) that are B-integral
+    subs = set()
+    frontier = [frozenset([(0, 0, 0, 0)])]
+    subs.add(frontier[0])
+    while frontier:
+        nxt = []
+        for S in frontier:
+            for v in vecs:
+                if v in S:
+                    continue
+                T = set(S)
+                stack = [v]
+                while stack:
+                    x = stack.pop()
+                    if x in T:
+                        continue
+                    T.add(x)
+                    for y in list(T):
+                        z = add2(x, y)
+                        if z not in T:
+                            stack.append(z)
+                    stack.append(omega_mod2(x))
+                T = frozenset(T)
+                if T in subs:
+                    continue
+                if all(pair_int(x, y) for x in T for y in T):
+                    subs.add(T)
+                    nxt.append(T)
+        frontier = nxt
+    maximal = [S for S in subs if not any(S < T for T in subs)]
+    out = []
+    for S in maximal:
+        gens = [(2 * b[0], 2 * b[1]) for b in basis]
+        for c in S:
+            if any(c):
+                gens.append((sum((basis[i][0] * c[i] for i in range(4)), QF(D, 0)),
+                             sum((basis[i][1] * c[i] for i in range(4)), QF(D, 0))))
+        rows = [[g[0].a, g[0].b, g[1].a, g[1].b] for g in gens]
+        den = 1
+        for r in rows:
+            for x in r:
+                den = den * F(x).denominator // __import__("math").gcd(den, F(x).denominator)
+        H = hnf([[int(F(x) * den) for x in r] for r in rows])
+        out.append([(QF(D, F(h[0], den), F(h[1], den)), QF(D, F(h[2], den), F(h[3], den)))
+                    for h in H])
+    return out
