@@ -119,6 +119,23 @@ def balance_track(x, u):
             return x, j
 
 
+def _sqfree_part(q):
+    """Squarefree part of the nonzero rational q (sign kept): q = sqfree * square."""
+    q = F(q)
+    n = q.numerator * q.denominator              # same square class as q
+    sign = -1 if n < 0 else 1
+    n = abs(n)
+    out, p = 1, 2
+    while p * p <= n:
+        while n % (p * p) == 0:
+            n //= p * p
+        if n % p == 0:
+            out *= p
+            n //= p
+        p += 1
+    return sign * out * n
+
+
 class FieldData:
     """Everything about K = Q(sqrt D) the R1 search needs."""
 
@@ -143,17 +160,21 @@ class FieldData:
         reps.sort(key=lambda t: (t[0].trace(), t[0].b))
         self.reps = [r for r, _, _ in reps]                # indecomposables mod (O^x)^2 (balanced)
         self.index = {(c.a, c.b): (i, j) for i, (_, c, j) in enumerate(reps)}
-        # square class id of each rep (mod (K^x)^2)
+        # square class id of each rep (mod (K^x)^2).  Only reps whose norms have the same
+        # squarefree part can share a class (N(x y^2) = N(x) N(y)^2), so compare within buckets.
         self.class_of = []
         class_reps = []
+        buckets = {}
         for r in self.reps:
-            for c, rc in enumerate(class_reps):
-                if same_square_class(r, rc):
+            key = _sqfree_part(r.norm())
+            for c in buckets.get(key, []):
+                if same_square_class(r, class_reps[c]):
                     self.class_of.append(c)
                     break
             else:
                 class_reps.append(r)
                 self.class_of.append(len(class_reps) - 1)
+                buckets.setdefault(key, []).append(len(class_reps) - 1)
         self.class_reps = class_reps                       # kappa_sq(K) many
 
     def normalize(self, x):
