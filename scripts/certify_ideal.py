@@ -46,6 +46,8 @@ def main(D):
             extra["sails_indecomposables"] = True
     except ImportError:
         extra["sails_indecomposables"] = "not available"
+    except Exception as e:                  # e.g. sails' float sign computation overflows for huge units
+        extra["sails_indecomposables"] = f"sails failed: {type(e).__name__}: {e}"
     q = lambda x: [str(x.a), str(x.b)]
     cert = dict(D=D, family="ideal lattice (A, N/n), E = K(sqrt-2)", ideal_class=list(c), Cl_E=ed.cyc,
                 n_predicted=n_pred, norm_generator=q(g),

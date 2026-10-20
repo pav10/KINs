@@ -16,11 +16,15 @@ Requirements: Python ≥ 3.9, numpy not required, pytest for tests. No Sage/PARI
 
 Headline status: s□(M) ≤ 12·s proved (s = CF period); R1 done: S(K,2) computed exactly
 (provably complete search, docs/09_R1_complete.md) for all D ≤ 100 — max 8 (D = 43, 67, 86) —
-and long-period fields; certified S(K,2) ≥ 28 (D = 5419, a binary form) via the det-2
-Galois-symmetric family, whose record then plateaus at 28 up to D = 20000; "≤ 2 classes per edge" refuted (D = 82); bounded vs unbounded still open.
-Next: roadmap R2 (Galois-symmetric extremal lattices).
+and long-period fields. R2 (docs/10_R2.md) gives the mechanism behind large s□: for
+D ≡ 3 mod 4 the represented indecomposables are norms of ideals in one class of Cl(K(√−2)), so the
+best lattice comes from a class-group computation. Certified S(K,2) ≥ 52 (D = 98179, a binary form);
+records keep growing with D; "≤ 2 classes per edge" refuted (D = 82); bounded vs unbounded still open.
+Next: roadmap R3 (prove N_E(K)/h(E) → ∞ along a family, giving S(K,2) unbounded).
 
 ```bash
 python3 scripts/complete_S.py out.jsonl 43 67          # exact S(K,2), S_free(K,2)
+python3 scripts/r2_classes.py 5419                      # class distribution over Cl(K(sqrt-2)) (needs cypari2)
+python3 scripts/certify_ideal.py 98179                  # build + certify the best ideal lattice
 SAILS_PATH=../sails python3 scripts/check_sails.py 2 3000   # needs cypari2 + pav10/sails
 ```

@@ -339,7 +339,7 @@ D ≡ 3 mod 4 ≤ 3000.)
 
 **L8.5 CERTIFIED (new records, binary forms).**
 - S(Q(√12511),2) ≥ 36, S(Q(√17539),2) ≥ 36, S(Q(√19231),2) ≥ 34.
-- __L85_100__
+- S(Q(√44851),2) ≥ 40, S(Q(√61051),2) ≥ 48, **S(Q(√98179),2) ≥ 52** (scan of all 6040 fields with (H), 20000 < D ≤ 100000).
 - Certificates: data/certificates/D*_ideal.json. These exceed the det-2-family plateau 28 (L7.8): the family is the Galois-symmetric slice and attains max_c n(c) in only 204 of 583 fields.
 
 **L8.6 CERTIFIED (det class 1 is weak for classical lattices).**
@@ -348,7 +348,13 @@ D ≡ 3 mod 4 ≤ 3000.)
 - For D = 43 the K(i) bound 10 exceeds the complete value S = 8.
 
 **L8.7 EMPIRICAL / HEURISTIC (growth).**
-- Records of max_c n(c) rise: 8, 12, 20, 24, 28, 36 (D ≤ 20000), __PROG100S__.
+- Records of max_c n(c) rise: 8, 12, 20, 24, 28, 36 (D ≤ 20000), 38 (30871), 40 (44851), 48 (61051), 52 (98179).
 - n̄ grows like about 9 → 12 for D ≈ 10^4 → 10^5.
 - Heuristic: n̄ ≍ (norm-indecomposables)/h(−8D) grows like a power of log D on suitable D. That would make S(K,2) unbounded by L8.3.
 - Gap: an unconditional lower bound for N_E(K)/h(E) along an infinite family.
+
+**L8.8 EMPIRICAL (shape).**
+- All 146 fields D ≤ 10^5 with max_c n(c) ≥ 36 have D prime ≡ 3 (mod 4).
+- Every record field has cyclic Cl(E).
+- Every certified witness is a free ideal lattice of det ε·(K^×)².
+- So "S ≥ C" examples have one shape: the best ideal class of K(√−2) over a prime D ≡ 3 (mod 4).

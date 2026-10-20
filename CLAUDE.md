@@ -10,7 +10,8 @@ Long-term: rank r, degree d — N_r(K) ≤ c(r,d)? (docs/01_problem.md).
 
 Collaborator: Pavlo Yatsyna (Charles University). Read docs in this order before work:
 `docs/01_problem.md` → `docs/02_ledger.md` → `docs/03_corrections.md` → `docs/04_pitfalls.md`
-→ `docs/05_roadmap.md` → `docs/09_R1_complete.md` (R1: exact S(K,2), proof + tables).
+→ `docs/05_roadmap.md` → `docs/09_R1_complete.md` (R1: exact S(K,2), proof + tables)
+→ `docs/10_R2.md` (R2: the K(√−2) ideal-class mechanism, S ≥ 52).
 Data: `docs/07_data.md`. History: `docs/08_history.md`.
 
 ## Working standards (non-negotiable)
@@ -46,6 +47,8 @@ src/complete.py R1: provably complete S(K,2) / S_free(K,2): frames mod (O^x)^2 +
 scripts/experiments.py   CLI reproducing every number in docs/07_data.md
 scripts/complete_S.py    R1 driver (JSONL); scripts/edge_stats.py per-edge maxima
 scripts/check_sails.py   cross-check vs github.com/pav10/sails (needs cypari2; SAILS_PATH)
+scripts/r2_classes.py    R2 (docs/10_R2.md): indecomposables over Cl(K(sqrt-2)) (PARI), ideal lattices,
+                         classical sublattices; r2_scan.py / r2_prefilter.py scans; certify_ideal.py
 legacy/real_quadratic_gram.py   Sage version (corrected) — reference only
 ```
 Tests: `python3 -m pytest -q -m "not slow"` (~30 s); `python3 -m pytest -q -m slow` (~15 min).

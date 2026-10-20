@@ -53,3 +53,9 @@ embeddings a − b√D cancel catastrophically for lopsided elements (use N(x)/�
 P14. **Shell hygiene for background runs.** `cmd1 && VAR=... && nohup job &` backgrounds the whole
 chain, so VAR is unset afterwards; and `pkill -f pattern` kills the shell whose command line
 contains the pattern (use an anchored `^python3 ...`).
+
+P15. **Huge units break float code elsewhere too.** rqf.fundamental_unit used float embeddings and
+overflowed past 10^308 (D = 96391; fixed with QF.emb1_gt). The sails package has the same limit:
+field.signs raises OverflowError at D = 98179, and sail.py raises RecursionError at D = 61051. Treat a
+sails cross-check as unavailable there; the exact CF indecomposability test still applies.
+Per-edge LLL is ~3x faster with balanced edge functionals (lattice.edge_deltas now returns them).

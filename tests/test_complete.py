@@ -314,7 +314,7 @@ def test_stored_certificates(D):
     assert len(vals) == c["s_sq_lower_bound"]
 
 
-@pytest.mark.parametrize("D", [12511, 17539, 19231])
+@pytest.mark.parametrize("D", [12511, 17539, 19231, 44851, 61051, 98179])
 def test_stored_ideal_certificates(D):
     """data/certificates/D*_ideal.json (R2 ideal lattices (A, N/n), E = K(sqrt-2)): from the stored
     Z-basis and Gram alone -- integrality, Q(v) values, indecomposability (CF orbit test) and pairwise

@@ -87,3 +87,11 @@ Raw data with Gram matrices and per-edge counts: data/scan_exact.jsonl.
 - Imported (other analysis, Thm 22, unit-determinant frames, not re-run): complete S: D=26:2, 33:4,
   19:6; others: 57:6, 41:4, 61:4, 31:≥4; 22,34,38,39,47,55,62,65,74,79,83: 2–3;
   35,51,53,66,69,70,77,78,82,85,87: no unit-determinant frame.
+
+## F. R2 class-distribution scans (docs/10_R2.md)
+- data/r2_scan.jsonl: all 4055 squarefree D ≡ 3 (mod 4), D ≤ 20000. Fields: max_c n(c), Cl(E), κ□, n̄, and
+  model vs exact for det-2 family lattices. Command: `scripts/r2_scan.py out 3 20000 i/4`.
+- data/r2_scan_100k.jsonl: all 6040 fields with (H), 20000 < D ≤ 100000. Command:
+  `scripts/r2_scan.py out 20001 100000 i/4 sqonly`, 4 shards, ≈ 1.5 h.
+- Certificates of the best ideal lattices: data/certificates/D{12511,17539,19231,44851,61051,98179}_ideal.json
+  (`scripts/certify_ideal.py D`).

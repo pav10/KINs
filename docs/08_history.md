@@ -22,3 +22,9 @@
    (max 8 at D = 43, 67, 86) and long-period fields; S_free differs when h > 1; "≤ 2 classes per
    edge" refuted (D = 82). Bugs fixed: realized_module used Z[√D] (C17), edge_deltas s > 60 (C18).
    Independent cross-check of indecomposables/facets against github.com/pav10/sails (D ≤ 3000).
+11. R2 session: the det-2 family lattices are ideal lattices of E = K(√−2). For D ≡ 3 mod 4,
+   Tr O_E = 2O_K, so every det-class-2 lattice lies in an integral ideal lattice. Under (H), s□ equals
+   the number of indecomposables whose norm-ideals meet one class of Cl(E) (Theorem 10.2), so the best
+   lattice comes from a PARI class-group computation instead of a search. Scans: all D ≡ 3 mod 4,
+   D ≤ 20000, and all (H)-fields up to 10^5. Certified records 36 → 40 → 48 → 52 (D = 98179), all free and
+   all D prime. det class 1 (K(i)) is weak for classical lattices.
