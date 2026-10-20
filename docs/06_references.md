@@ -27,3 +27,9 @@
   families in R3(b)).
 - Imported "registry" analyses (rounds 1 and E-family): Thms 1–6, 15–17, 21, 22, Prop 5, A7 —
   see ledger for which were re-verified.
+- **R3 (docs/11_R3.md):**
+  - **Herglotz, Math. Z. 12 (1922)**; **Lemmermeyer, "Kuroda's class number formula", Acta Arith. 66 (1994)**: h(E) = ½·Q·h(K)h(k1)h(k2) for imaginary biquadratic E with w_E = 2 (Theorem 11.1(a)). Re-verified against PARI for 4055 + 4808 fields.
+  - **Genus theory** (Gauss; e.g. Cox, *Primes of the form x² + ny²*, §3, §6): h(Q(√p)) is odd for p prime; disc −8p has 2 genera, with principal genus = Cl² (Theorem 11.3). Class field theory: a norm map is onto the (narrow) class group when the extension is ramified at a finite prime.
+  - **Zagier, "Nombres de classes et fractions continues", Astérisque 24–25 (1975)**: reduced forms and partial quotients. With h(K) = 1, Σ_{i≤s} a_i = T(D)/2 = ½Σ_{|u|<√D} d(D − u²).
+  - **Hirzebruch, Enseign. Math. 19 (1973)** (proof: Zagier, loc. cit.): for p ≡ 3 mod 4 prime with h(Q(√p)) = 1, Σ(−1)^i a_i = 3h(−p).
+  - Both identities are used only in §4–§5 and are re-verified for all h = 1 primes ≤ 10^6 in the scan.

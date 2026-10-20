@@ -41,7 +41,14 @@ classical imaginary-quadratic genus theory. Task: for Galois-symmetric lattices,
 an explicit formula/bound for s□. This is the most promising PROVABLE special case.
 Acceptance: theorem with proof + agreement with D = 22, 43 data.
 
-## R3 — The main theorem
+## R3 — WORKED (docs/11_R3.md, ledger L9). Not proved: growth along a family (L9.7 — needs (G1) long
+## principal cycles, i.e. class-number-one-type input, and (G2) a twisted-divisor mean value).
+## Delivered: h(K)-free reduction (L9.1), exact elementary model ν on Cl(−8p) for p prime (L9.3),
+## PARI-free certificates (L9.4), records 56/60/64 up to 10^6 and the 10^7 range (L9.5/L9.8),
+## mean ν* ∝ ln p (L9.6). Next for R3: (a) conditional theorem under explicit hypotheses
+## (G1)+(G2) with constants; (b) prove (G2) on average over p (large sieve over the family of
+## quadratic polynomials (p − u²)/Q); (c) other det classes / composite D (C25).
+## R3 — The main theorem (original text)
 UPDATE (L8): R3(b) is now an analytic question. Under (H), S(K,2) ≥ N_E(K)/h(E), where N_E(K) is the
 number of indecomposable square classes whose ideal is a norm from E = K(√−2), and h(E) ≍ h(−8D).
 (1) Prove N_E(K)/h(E) → ∞ along an explicit family (prescribed continued fractions with large partial

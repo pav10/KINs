@@ -95,3 +95,15 @@ Raw data with Gram matrices and per-edge counts: data/scan_exact.jsonl.
   `scripts/r2_scan.py out 20001 100000 i/4 sqonly`, 4 shards, ≈ 1.5 h.
 - Certificates of the best ideal lattices: data/certificates/D{12511,17539,19231,44851,61051,98179}_ideal.json
   (`scripts/certify_ideal.py D`).
+
+## G. R3 scans (docs/11_R3.md)
+- **data/r3_scan_1e6.jsonl.gz**: all 39322 primes p ≡ 3 (mod 4), p ≤ 10^6.
+  - Fields per prime: s, ι, κ□, N_E, h(−8p), ν* = nu_max, nu_sum, nu_supp, best_form, h(−p), h(K) (PARI quadclassunit, GRH; informational only), T(p), σ_odd, σ_even.
+  - Command: `scripts/r3_tools.py scan out 3 1000000 i/4`, 4 shards, ≈ 1 h.
+- **data/r3_top_1e7.jsonl**: exact records for p ∈ (10^6, 10^7]. Field `sample` = top | random.
+  - top: the 200 primes with the largest ι/√p, from the CF-only proxy of all 293076 primes ≡ 3 mod 4 in that range (`r3_tools.py proxy`, ≈ 5 min, not stored).
+  - random: 400 uniformly random others.
+  - Command: `r3_tools.py list out Dfile i/3`.
+- **Tables:** `scripts/r3_analysis.py`.
+- **Certificates:** data/certificates/D{691,5419,12511,98179,294319,636931,814531,…}_form.json (`scripts/certify_form.py p`).
+

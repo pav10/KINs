@@ -358,3 +358,50 @@ D ≡ 3 mod 4 ≤ 3000.)
 - Every record field has cyclic Cl(E).
 - Every certified witness is a free ideal lattice of det ε·(K^×)².
 - So "S ≥ C" examples have one shape: the best ideal class of K(√−2) over a prime D ≡ 3 (mod 4).
+
+---------------------------------------------------------------------------------------------
+## L9 R3 — elementary model over Q(√−2p), records to 10^7, growth status  (docs/11_R3.md)
+
+**L9.1 PROVED (Theorem 11.1; Herglotz and class field theory IMPORTED).**
+- Under (H): h(E) = h(K)·h(−8D) (unit index 2 via θ).
+- n(c) is supported on A = ker(Cl(E) → Cl⁺(K)), with |A| = h(−8D)/2.
+- Hence S(K,2) ≥ max_c n(c) ≥ 2Σ_c n(c)/h(−8D) ≥ 2N_E/h(−8D). This replaces N_E/h(E) of L8.3: h(K) drops out.
+- Herglotz checked against PARI for 4055 + 4808 fields.
+
+**L9.2 PROVED (Lemma 11.2).**
+- #{𝔅 : 𝔅𝔅̄ = γO_E} = Σ_{m|N(γ)} χ_{−8}(m) for indecomposable (hence primitive) γ.
+- So γ counts in N_E ⇔ N(γ) is represented by x² + 2y².
+- Also PROVED: (H) ⇔ some Q_k = 2 in the CF of √D; N(β_{j,t})·Q_{j+1} = D − u² (Lemma 11.0).
+
+**L9.3 PROVED (Theorem 11.3; genus theory IMPORTED).** For D = p ≡ 3 (mod 4) prime:
+- N_{E/k2}: A → Cl(−8p)² is a bijection with n(c) = ν(N_{E/k2}c);
+- ν(f) := #{[γ] : f represents the norm of a member γ₁ ∈ N_E}.
+- So max_c n(c) = ν*(p) is computable with binary forms of discriminant −8p, with no class group of E (no GRH).
+- CERTIFIED: equal to the PARI value for all 4808 primes ≤ 10^5, and multiset-equal in 50 sampled fields.
+- For composite D (h(K) even) ν is only an upper bound.
+
+**L9.4 PROVED (Cor. 11.4).** For f ∈ Cl(−8p)² with g² = f and 𝔟 ∈ g, the lattice (𝔟O_E, N/N𝔟) is integral with s□ = ν(f).
+- Certificates (`scripts/certify_form.py`, pure Python) carry edge-functional witnesses δ (δ ≫ 0, Tr(δO) ⊆ Z, Tr(δγ) = 1), which prove indecomposability directly.
+- Cost: 4 s at p = 98179, 36 s at p = 814531.
+
+**L9.5 CERTIFIED (records, free binary lattices of det ε, data/certificates/D*_form.json).**
+- S(Q(√294319),2) ≥ 56, S(Q(√636931),2) ≥ 60, **S(Q(√814531),2) ≥ 64**.
+- These are the maxima of max_c n(c) over all primes p ≡ 3 mod 4 up to 10^6.
+- Results for (10^6, 10^7]: L9.8.
+
+**L9.6 EMPIRICAL (growth, 39322 primes ≤ 10^6).**
+- Mean ν* rises linearly in ln p, by ≈ 2.8 per unit: 10.5 at ln p ≈ 7, 18.0 at 10, 28.2 at 13.5.
+- avg_A n(c) = (3.34 ± 0.55)·ι/√p, with corr 0.97. log avg = 1.40 + 0.85 log(ι/√p) − 0.18 log L(1, χ_{−8p}), R² = 0.976.
+- Every record field has h(Q(√p)) = 1.
+- Zagier (Σa_i = T/2) and Hirzebruch (Σa_even − Σa_odd = 3h(−p)) hold for all 30606 h = 1 primes ≤ 10^6, and h(Q(√p)) is odd for all 39322.
+
+**L9.7 OPEN (R3 target).** Growth along an explicit family is NOT proved. Proposition 11.5:
+- ν* ≤ 12s, so growth needs s → ∞;
+- ν* ≥ 2πN_E/(√(8p)(log 8p + 2)) unconditionally;
+- for h(Q(√p)) = 1, ι = T(p)/4 − (3/2)h(−p).
+
+A proof needs two inputs, neither available:
+- (G1) infinitely many p with ι/√p → ∞. For h = 1 primes this is Gauss's class-number-one problem, and no explicit family has ι/√D → ∞.
+- (G2) a mean-value lower bound for Σ_{m|N}χ_{−8}(m) over the norms of the principal cycle.
+
+The governing invariant is ι/√p, not s and not h(E).
