@@ -12,7 +12,7 @@ Collaborator: Pavlo Yatsyna (Charles University). Read docs in this order before
 `docs/01_problem.md` → `docs/02_ledger.md` → `docs/03_corrections.md` → `docs/04_pitfalls.md`
 → `docs/05_roadmap.md` → `docs/09_R1_complete.md` (R1: exact S(K,2), proof + tables)
 → `docs/10_R2.md` (R2: the K(√−2) ideal-class mechanism, S ≥ 52)
-→ `docs/11_R3.md` (R3: elementary model over Q(√−2p), records, what a growth proof needs).
+→ `docs/11_R3.md` (R3: elementary model over Q(√−2p), S ≥ 76, what a growth proof needs).
 Data: `docs/07_data.md`. History: `docs/08_history.md`.
 
 ## Working standards (non-negotiable)

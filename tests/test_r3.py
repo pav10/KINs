@@ -1,6 +1,8 @@
 """R3 (docs/11_R3.md): the elementary model of the R2 class distribution -- CF norms, exact square
 classes, the x^2 + 2y^2 criterion, binary forms of discriminant -8p -- against the R2/PARI code."""
 import os, sys, glob, json, random
+if hasattr(sys, "set_int_max_str_digits"):
+    sys.set_int_max_str_digits(0)          # certificates hold units with > 4300 digits
 from fractions import Fraction as F
 import pytest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
@@ -101,7 +103,7 @@ def test_zagier_hirzebruch():
 
 
 @pytest.mark.parametrize("path", sorted(glob.glob(os.path.join(os.path.dirname(__file__), "..", "data",
-                                                               "certificates", "D*_form.json"))))
+                                                               "certificates", "D*_form.json*"))))
 def test_stored_form_certificates(path):
     """data/certificates/D*_form.json (ideal lattices (b O_E, N/a) from a form class of disc -8p), from
     the file alone: integrality; Q(v) = value; indecomposability by the edge-functional witness delta
@@ -109,7 +111,8 @@ def test_stored_form_certificates(path):
     small p, the CF orbit test as well."""
     from lattice import Bform, indecomposable_test
     from rqf import same_square_class
-    c = json.load(open(path))
+    import gzip
+    c = json.load((gzip.open if path.endswith(".gz") else open)(path, "rt"))
     D = c["D"]
     q = lambda p: QF(D, F(p[0]), F(p[1]))
     G = [[q(x) for x in row] for row in c["gram"]]

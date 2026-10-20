@@ -405,3 +405,10 @@ A proof needs two inputs, neither available:
 - (G2) a mean-value lower bound for Σ_{m|N}χ_{−8}(m) over the norms of the principal cycle.
 
 The governing invariant is ι/√p, not s and not h(E).
+
+**L9.8 CERTIFIED (10^6 < p ≤ 10^7, sample).**
+- Exact ν* for the 200 primes with the largest ι/√p (from a CF-only pass over all 293076 primes ≡ 3 mod 4 in the range) and for 400 random ones.
+- **S(Q(√7956859),2) ≥ 76** (certificate D7956859_form.json.gz) and S(Q(√9414211),2) ≥ 76. ν* = 76 also at p = 9659731, 9716851, 9855871.
+- Top-200 mean 66.1; random mean 34.3, consistent with L9.6. All top-200 fields have h(Q(√p)) = 1.
+- Not a complete search of the range.
+

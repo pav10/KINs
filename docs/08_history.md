@@ -30,7 +30,7 @@
    all D prime. det class 1 (K(i)) is weak for classical lattices.
 12. R3 session.
    - The R2 class distribution is elementary for p prime: n(c) on Cl(K(√−2)) equals ν(f) on the form classes of discriminant −8p (Theorem 11.3). Checked against PARI for all 4808 primes ≤ 10^5.
-   - This gives a pure-Python scan of all primes ≤ 10^6 (≈ 1 h; the PARI route took hours to 10^5), class-group-free certificates, and records 56, 60, 64 below 10^6, plus the 10^7 range.
+   - This gives a pure-Python scan of all primes ≤ 10^6 (≈ 1 h; the PARI route took hours to 10^5), class-group-free certificates, and records 56, 60, 64 below 10^6, then 76 at p = 7956859 (top-200 sample of (10^6, 10^7]).
    - Mean ν* grows like 2.8·ln p, and the average over A is ∝ ι/√p.
    - The requested proof of growth along a family was not achieved. It reduces to (G1) a class-number-one-type input and (G2) a twisted-divisor mean value (Proposition 11.5).
 

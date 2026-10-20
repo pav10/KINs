@@ -10,6 +10,8 @@ certifies indecomposability by itself (gamma = b + c with b, c >> 0 would give T
 re-checked by tests/test_r3.py::test_stored_form_certificates.  Writes data/certificates/D{p}_form.json.
 Usage: python3 scripts/certify_form.py p [a b c]   (default: the best form found by r3_tools)"""
 import os, sys, json, time
+if hasattr(sys, "set_int_max_str_digits"):
+    sys.set_int_max_str_digits(0)          # certificates hold units with > 4300 digits
 from fractions import Fraction as F
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "src"))
@@ -17,7 +19,30 @@ sys.path.insert(0, HERE)
 from rqf import QF
 from lattice import hnf
 from rqf import same_square_class
-from lattice import Bform, enum_short_reduced
+from lattice import Bform, enum_short_reduced, enum_short, qnorm
+
+
+def short1(T):
+    """All +-pairs v with v^T T v = 1 (T integer, positive definite).  The reduction is only a search
+    aid -- every vector found is re-checked exactly -- so PARI's qflllgram is used when available
+    (exact pure-Python LLL is slow for the 10^3-digit entries of trace forms of deep edges)."""
+    try:
+        import cypari2
+    except ImportError:
+        return [v for _, v in enum_short_reduced(T, 1)]
+    P = cypari2.Pari()
+    n = len(T)
+    M = P.matrix(n, n, [x for r in T for x in r])
+    Um = P.qflllgram(M)                                        # columns = new basis
+    U = [[int(Um[i, j]) for i in range(n)] for j in range(n)]  # rows = new basis
+    Tr = [[sum(U[a][i] * T[i][k] * U[b][k] for i in range(n) for k in range(n)) for b in range(n)]
+          for a in range(n)]
+    out = []
+    for nv, w in enum_short(Tr, 1):
+        v = tuple(sum(w[i] * U[i][j] for i in range(n)) for j in range(n))
+        assert qnorm(T, v) == nv
+        out.append(v)
+    return out
 from r3_tools import (Sieve, field, norm_classes, qf_compose, qf_pow, h8, _is_prime,
                       convergents_big, cf_sqrt)
 
@@ -104,6 +129,7 @@ def main(p, f=None):
     g = square_root_class(f, disc, h)
     if g is None:
         raise SystemExit(f"form {f} is not a square in Cl({disc}); pick another best form")
+    print(f"  [{time.time() - t0:.1f}s] field, nu, g done", file=sys.stderr, flush=True)
     G, basis = ideal_lattice(p, g)
     for u in basis:
         for v in basis:
@@ -158,7 +184,7 @@ def main(p, f=None):
         assert all(x.denominator == 1 for r in T for x in r)
         T = [[int(x) for x in r] for r in T]
         vecs = []
-        for _, v in enum_short_reduced(T, 1):
+        for v in short1(T):
             x = sum((basis[i][0] * v[i] for i in range(4)), QF(p, 0))
             y = sum((basis[i][1] * v[i] for i in range(4)), QF(p, 0))
             vecs.append((v, (x, y), Bform(G, (x, y), (x, y))))
@@ -171,6 +197,7 @@ def main(p, f=None):
                         w = theta(xy)
                         found[cid] = (coords(w), eps * val, dl * eps.conj())
                     break
+    print(f"  [{time.time() - t0:.1f}s] edges done", file=sys.stderr, flush=True)
     k = len(found)
     vals = [found[c][1] for c in sorted(found)]
     for c in sorted(found):                                     # independent re-checks

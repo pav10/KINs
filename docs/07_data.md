@@ -105,5 +105,5 @@ Raw data with Gram matrices and per-edge counts: data/scan_exact.jsonl.
   - random: 400 uniformly random others.
   - Command: `r3_tools.py list out Dfile i/3`.
 - **Tables:** `scripts/r3_analysis.py`.
-- **Certificates:** data/certificates/D{691,5419,12511,98179,294319,636931,814531,…}_form.json (`scripts/certify_form.py p`).
+- **Certificates:** data/certificates/D{691,5419,12511,98179,294319,636931,814531}_form.json and D7956859_form.json.gz (`scripts/certify_form.py p`). The others are rebuilt on demand, ≈ 20 s at p ≈ 10^7.
 
