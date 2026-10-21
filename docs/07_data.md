@@ -115,3 +115,8 @@ Raw data with Gram matrices and per-edge counts: data/scan_exact.jsonl.
 - Command: `scripts/r4_thm22.py out.jsonl D...`, a few seconds.
 - Checks: `scripts/r4_checks.py prop5 154 | reg 5000 | cor213 6001`.
 
+## I. R5 (docs/13_R5.md)
+- `scripts/r5_genus.py p1 p2 …`: the genus of ⟨1, ε⟩ for p prime, compared with R1's complete enumeration (all frames, Galois reduction off).
+  - Run: all 30 primes ≡ 3 mod 4 below 200, about 5 min in total; all equal.
+  - The average/maximum table of docs/13_R5.md §5 comes from data/complete_S.jsonl and data/r2_scan.jsonl.
+

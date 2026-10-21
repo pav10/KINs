@@ -79,7 +79,10 @@ Thm 17 (regulator ceiling), Prop 5 (no minimum angle), Thm 4 (Ramsey staircase) 
 mark unusable. Re-run the imported Thm 22 table with R1 (their search was restricted to
 unit-determinant frames; D = 43 was not in it).
 
-## R5 — Genus average via Shyr (L5.5)
+## R5 — DONE for the genus of ⟨1, ε⟩ (docs/13_R5.md, ledger L11): classes ↔ ker(Cl E → Cl⁺K),
+## h(−8D)/2 proper classes, O⁺ = {±1}; Σ_gen s□ explicit (Theorem 13.3); trace obstruction for the
+## Clifford order (C29); average vs maximum tables. Open: genera of other det classes / non-maximal orders.
+## R5 — Genus average via Shyr (L5.5) (original text)
 Make Σ_{gen} s□ explicit using Shyr's H; compare average vs maximum from R1. Clarify proper vs
 improper classes and the order O[√−δ] vs maximal order.
 

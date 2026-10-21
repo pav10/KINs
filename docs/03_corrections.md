@@ -110,3 +110,8 @@ C27. **"(a)∩(b) is the irreducible core of question 1, by the Ramsey reduction
 
 C28. **Imported Thm 17 (regulator ceiling) as a usable bound.** Its error term E is unspecified, so as stated it is not a theorem. Use the PROVED s□ ≤ 12s ≤ 24 + 24.94·(Reg − log(√D − 1)) instead (L1.6).
 
+C29. **"Isometry classes in the genus of a free lattice ↔ Shyr's H" (L2.2) without qualification.**
+- Shyr's count is for lattices whose Clifford order is the maximal order O_E. A classical lattice has Tr C₀(M) ⊆ 2O_K (Proposition 13.4).
+- So for E = K(i), D ≡ 3 mod 4 (det class 1), no classical lattice has Clifford order O_E; Picard groups of non-maximal orders are needed there.
+- In det class 2 under (H) the count is h(−8D)/2 (Theorem 13.1).
+

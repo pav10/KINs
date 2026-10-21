@@ -29,6 +29,11 @@ R4 (docs/12_R4.md):
 - the Ramsey reduction and "no minimum angle" are proved;
 - the imported regulator ceiling is replaced by the proved s□ ≤ 12s ≤ 24 + 24.94·Reg.
 
+R5 (docs/13_R5.md):
+- the genus of ⟨1, ε⟩ has exactly h(−8D)/2 proper classes, the ideal lattices over ker(Cl E → Cl⁺K);
+- Σ_gen s□ is explicit;
+- the maximum exceeds the genus average by 1–4×.
+
 ```bash
 python3 scripts/complete_S.py out.jsonl 43 67          # exact S(K,2), S_free(K,2)
 python3 scripts/r2_classes.py 5419                      # class distribution over Cl(K(sqrt-2)) (needs cypari2)

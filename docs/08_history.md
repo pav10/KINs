@@ -38,4 +38,10 @@
    - Thm 4 and Prop 5 are now PROVED (Prop 5 via an explicit family over Q(√(n²+2))).
    - Thm 17 is unusable as stated; replaced by the proved ceiling s□ ≤ 12s ≤ 24 + 24.94·Reg.
    - The "irreducible core" claim of 01_problem is withdrawn (C27).
+14. R5 session.
+   - The genus of ⟨1, ε⟩ (D ≡ 3 mod 4, (H)) is the set of ideal lattices over A = ker(Cl E → Cl⁺K): h(−8D)/2 proper classes, all with O⁺ = {±1}.
+   - The genus sum of s□ is Σ_c n(c), so the genus average is R3's "avg".
+   - The model is checked against R1's complete enumeration for the 30 primes below 200.
+   - The Clifford order is never maximal for classical det-class-1 lattices (C29).
+   - The maximum exceeds the average by 1–4×.
 

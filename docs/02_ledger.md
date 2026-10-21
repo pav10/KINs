@@ -105,7 +105,8 @@ iff the congruence holds. ∎ (Applies to the sublattice Ov+Ow; M may be larger.
 **L2.2 IMPORTED (standard; Gauss/Dedekind/Clifford composition; Shyr 1977).** Binary M with
 det class δ ↔ an ideal class [𝔞_M] of an order 𝒪 ⊆ E = K(√−δ) (CM, E/K cyclic); Q(M) = values
 N_{E/K}(z)/N(𝔞_M), z ∈ 𝔞_M. Isometry classes in the genus of a free lattice ↔ classes counted by
-Shyr's H = (h_E/h_K)·2^{1−t}/[U_E^0 : U_K^0] (t = # primes of K ramified in E). Care needed with
+Shyr's H = (h_E/h_K)·2^{1−t}/[U_E^0 : U_K^0] (t = # primes of K ramified in E).
+[R5: valid when the Clifford order is O_E. For D ≡ 3 mod 4 with (H), the genus of ⟨1, ε⟩ has exactly h(−8D)/2 proper classes (Theorem 13.1, PROVED; consistent with H for t = 1, unit index 2). Classical det-class-1 lattices never have Clifford order O_E (Proposition 13.4, C29).] Care needed with
 non-maximal orders, proper vs improper equivalence and Steinitz class (h(K) > 1).
 
 **L2.3 PROVED given L2.2 (one fibre).** With Φ : I(K) → Cl(𝒪), α ↦ class of an ideal of
@@ -206,7 +207,7 @@ structure.
 **L5.4 OPEN.** Which invariant separates Q(√26) (S = 2) from Q(√19) (S = 6)? Same h = 1,
 h⁺ = 2, 2 ramified. (IMPORTED data.)
 
-**L5.5 OPEN.** Genus average: Σ_{M' ∈ gen(M)} s□(M') ≤ κ□(K)·max_α #{ideals of E of norm (α)}
+**L5.5 PROVED for the genus of ⟨1, ε⟩ (D ≡ 3 mod 4, (H); docs/13_R5.md Theorem 13.3); OPEN for other genera.** Original: Genus average: Σ_{M' ∈ gen(M)} s□(M') ≤ κ□(K)·max_α #{ideals of E of norm (α)}
 (each class may be hit by several genus classes) — divisor-type factor Δ^{o(1)}. Make precise
 with Shyr's H (L2.2) and compare with computed maxima.
 
@@ -432,4 +433,26 @@ The governing invariant is ι/√p, not s and not h(E).
 - **L10.2 PROVED.** Thm 4 (L3.4), with a 3-line proof. Prop 5 (L3.3(b)), via an explicit family.
 - **L10.3 PROVED / UNUSABLE.** Thm 17 (L1.6): the clean regulator ceiling is proved; the stated volume form is unusable.
 - **L10.4 PROVED / EMPIRICAL.** Cor 21.3 is proved in lattice form and empirical in norm-proportion form.
+
+---------------------------------------------------------------------------------------------
+## L11 R5 — the genus of ⟨1, ε⟩  (docs/13_R5.md)
+Setting: D ≡ 3 (mod 4) with (H), E = K(√−2), A = ker(Cl(E) → Cl⁺(K)).
+- **L11.1 PROVED (Theorem 13.1).**
+  - gen⟨1, ε⟩ = {M_𝔄 : [𝔄] ∈ A}, with proper classes ↔ A, so h(−8D)/2 of them.
+  - O⁺(M) = {±1} for every M in the genus, so Siegel weights are uniform.
+  - Isometry classes = (|A| + |A[2]|)/2.
+  - Inputs IMPORTED: the module structure of lattices over their Clifford order, and local class field theory.
+- **L11.2 PROVED (Theorem 13.3).**
+  - Σ_gen s□ = Σ_c n(c) = Σ_{[γ]} r(γ) ∈ [N_E, Σ_γ Σ_{m|Nγ} χ₋₈(m)], and avg_gen s□ = 2Σ/h(−8D).
+  - For p prime this is the R3 quantity "avg" (≈ 3.3·ι/√p, EMPIRICAL).
+- **L11.3 PROVED (Proposition 13.4).**
+  - The Clifford order of a classical M lies in {Tr ∈ 2O_K}.
+  - In det class 1 (E = K(i), D ≡ 3 mod 4) the Clifford order is never O_E, so the classical genera there are governed by non-maximal orders.
+  - In det class 2 there is no obstruction.
+- **L11.4 CERTIFIED (`scripts/r5_genus.py`).**
+  - For all 30 primes p ≡ 3 mod 4 below 200, the represented-class sets of the unimodular det-class-2 lattices found by R1's complete enumeration equal the form-model sets S(f).
+  - Some genus classes have s□ = 0 (e.g. at p = 47, 79, 167).
+- **L11.5 CERTIFIED / EMPIRICAL (average vs maximum).**
+  - For D ≤ 100 with (H), the genus max equals S(K,2) in 11 of 14 fields. It misses at D = 31, 51, 71, whose extremal lattices have det class 9+√31, 3, 1.
+  - max/avg is 1.0–1.8 for D ≤ 100, and its mean grows 2.6 → 3.7 over primes ≤ 10^6.
 
