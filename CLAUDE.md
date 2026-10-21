@@ -12,7 +12,8 @@ Collaborator: Pavlo Yatsyna (Charles University). Read docs in this order before
 `docs/01_problem.md` → `docs/02_ledger.md` → `docs/03_corrections.md` → `docs/04_pitfalls.md`
 → `docs/05_roadmap.md` → `docs/09_R1_complete.md` (R1: exact S(K,2), proof + tables)
 → `docs/10_R2.md` (R2: the K(√−2) ideal-class mechanism, S ≥ 52)
-→ `docs/11_R3.md` (R3: elementary model over Q(√−2p), S ≥ 76, what a growth proof needs).
+→ `docs/11_R3.md` (R3: elementary model over Q(√−2p), S ≥ 76, what a growth proof needs)
+→ `docs/12_R4.md` (R4: imported claims re-checked — Thm 22 table, Thm 4, Prop 5, Thm 17).
 Data: `docs/07_data.md`. History: `docs/08_history.md`.
 
 ## Working standards (non-negotiable)
@@ -54,6 +55,8 @@ scripts/r3_tools.py      R3 (docs/11_R3.md), pure Python: CF norms, exact square
                          forms of disc -8p, nu(f) = n(c) (p prime); scans `scan` / `proxy` / `list`
 scripts/certify_form.py  PARI-free certificate: lattice (b O_E, N/a) from a form class, delta witnesses;
                          scripts/r3_analysis.py tables of docs/11_R3.md
+scripts/r4_thm22.py      R4: unit-determinant frame table (imported Thm 22) via R1's frame enumeration;
+                         scripts/r4_checks.py Prop 5 family, regulator inequality, Cor 21.3 proportions
 legacy/real_quadratic_gram.py   Sage version (corrected) — reference only
 ```
 Tests: `python3 -m pytest -q -m "not slow"` (~30 s); `python3 -m pytest -q -m slow` (~15 min).

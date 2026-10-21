@@ -24,11 +24,15 @@
    extension E = K(√−det)); (b) real quadratic fields (all indecomposables explicit via CF).
    **Step 1 of this repo = (a)∩(b).**
 
-## Why (a)∩(b) is the core (not just the easiest case)
-Ramsey reduction (ledger L3.4, IMPORTED): a large s□(M) in any degree forces a long
-*two-place staircase* of represented indecomposables — the configuration that the real
-quadratic sail realizes. So bounding staircases for binary lattices over real quadratic fields
-is the irreducible core of question 1.
+## Why (a)∩(b) first
+The Ramsey reduction (ledger L3.4, PROVED in R4) says a large s□(M) in any degree forces a long
+*two-place staircase* of represented indecomposables, the configuration that the real quadratic
+sail realizes. This is motivation only (C27):
+- the reduction uses nothing but incomparability of indecomposables;
+- it is empty for d = 2;
+- it gives no implication from the real quadratic case to degree d.
+
+(a)∩(b) is the natural first case, where everything is explicit.
 
 ## Current one-line state
 s□(M) ≤ 12·s (s = CF period) is PROVED (per-face lemma, L1.5), and s□(M) is computable exactly

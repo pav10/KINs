@@ -72,7 +72,9 @@ s□(M_{a,b}) ≤ 28 is a theorem; otherwise find sub-families with s□ → ∞
 s□ ≤ 2s is false; the per-edge bound is L1.4 (≤ 12). A sharper per-edge bound must use the lattice,
 not just the edge (e.g. the Galois-symmetric structure L7.6).
 
-## R4 — Verify imported claims
+## R4 — DONE (docs/12_R4.md, ledger L10): Thm 22 table re-run (D = 22 corrected, C26); Thm 4 and
+## Prop 5 PROVED; Thm 17 unusable as stated (clean ceiling PROVED, C28); Cor 21.3 trivial in lattice form.
+## R4 — Verify imported claims (original text)
 Thm 17 (regulator ceiling), Prop 5 (no minimum angle), Thm 4 (Ramsey staircase) — reprove or
 mark unusable. Re-run the imported Thm 22 table with R1 (their search was restricted to
 unit-determinant frames; D = 43 was not in it).

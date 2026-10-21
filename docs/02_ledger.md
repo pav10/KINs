@@ -83,7 +83,12 @@ per edge. ∎
 Note: independent of the partial quotients u_i, hence of ι = #indecomposables.
 **Corollary.** Bounded period ⇒ bounded s□ (e.g. s = 2 ⇒ s□ ≤ 24).
 
-**L1.6 IMPORTED, NOT re-verified (regulator ceiling; other analysis "Thm 17").**
+**L1.6 UNUSABLE as stated (R4, docs/12_R4.md §4); clean version PROVED.** PROVED: s□(M) ≤ 12s ≤
+24 + 24.94·(Reg − log(√D − 1)), via log ε ≥ (s − 2) log φ + log(√D − 1) (q_{s−1} ≥ F_s). The imported
+volume form below has an unspecified error E, so it has no content; its 1/√N(𝔳M) main term is OPEN
+and irrelevant to boundedness. Its "Cor 21.3" holds in lattice form, trivially (s = 1 ⇒ S ≤ 12 and
+κ□ → ∞); the norm-proportion form is EMPIRICAL (≈ 1.35/√log D).
+Original entry — IMPORTED, NOT re-verified (regulator ceiling; other analysis "Thm 17").
 s□(M) ≤ V_2^d 2^{d−1} Reg(K) / √N(𝔳M) + E (volume count of vectors with N(Q(u)) ≤ Δ modulo
 units). Consequence claimed there ("Cor 21.3"): the proportion of indecomposable classes γ with
 αγ a norm from E = K(√−ε⁺) tends to 0 along D = t²+1. Verify before use (task R4).
@@ -114,7 +119,10 @@ mod a power of 2. **But** the ideal-class condition lives in Cl(E), with h⁻(E)
 (Brauer–Siegel, since Δ_E/Δ_K = Δ_K·N(𝔡_{E/K}) and N(𝔡_{E/K}) | 16). So the class-placement
 problem is NOT reduced to a finite 2-adic group (see corrections C10).
 
-**L2.5 EMPIRICAL (IMPORTED data, re-verified for Δ=57).** In every certified extremal example
+**L2.5 EMPIRICAL (IMPORTED data, re-verified for Δ=57); scope corrected by R4.** Among the 10 fields
+D ≤ 100 with S ≥ 6, a unit-determinant frame attains S at D = 19, 43, 57, 67, but not at D = 31, 58,
+86, 91, 94, 97 (data/r4_unit_frames.jsonl). Under (H) the R2/R3 record lattices do have det ∈ ε·K^{×2}
+(docs/11_R3.md §6). Original entry: In every certified extremal example
 (Δ = 33, 57, 76) the frame determinant is exactly δ = ε⁺ (the totally positive fundamental
 unit). Re-verified: Δ=57, α1 = 10+3ω, α2 = 23+7ω, b = −(13+4ω): δ = 151+20√57 = η. Also
 N(α1) = N(α2) in all three (4,4 / 4,4 / 9,9). No mechanism known.
@@ -139,13 +147,16 @@ infinitely many acutely irreducible vectors. L1.1 survives only for fixed values
 
 **L3.3 REFUTED — metric / spherical-code routes.**
 (a) PROVED: the spectral route needs root discriminant < √2 — impossible (min is √5).
-(b) IMPORTED (other analysis "Prop 5"), not re-verified: for every δ > 0 there are real
+(b) PROVED in R4 (docs/12_R4.md §3, explicit family D = n² + 2, 1 − cos ≤ 2/(n − 2)); was IMPORTED (other analysis "Prop 5"): for every δ > 0 there are real
 quadratic K, binary M, v, w representing indecomposables in distinct classes with trace-angle
 cosine > 1−δ. Separation exists only at a pair-dependent place. Certified extremal vectors
 have trace-angle cosines ≈ −0.98 (consistent).
 
-**L3.4 IMPORTED (Ramsey reduction; other analysis "Thm 4").** If s□(M) ≥ R_{d(d−1)}(k), there
+**L3.4 PROVED in R4 (Ramsey reduction; was IMPORTED "Thm 4"; docs/12_R4.md §2).** If s□(M) ≥ R_{d(d−1)}(k), there
 are k represented indecomposables forming a two-place staircase. Reduction only.
+- The proof uses only that distinct indecomposables are incomparable (α − β is never ≫ 0); M plays no role.
+- It is empty for d = 2.
+- It does NOT reduce question 1 to real quadratic fields (C27).
 
 **L3.5 HEURISTIC (Pareto / value-sail counts are Θ(s)).** Pareto-minimal vectors of the
 conjugate pencil, modulo units, ↔ ∪_λ Min(Q_λ) over a torus of covolume Reg; breakpoints
@@ -411,4 +422,14 @@ The governing invariant is ι/√p, not s and not h(E).
 - **S(Q(√7956859),2) ≥ 76** (certificate D7956859_form.json.gz) and S(Q(√9414211),2) ≥ 76. ν* = 76 also at p = 9659731, 9716851, 9855871.
 - Top-200 mean 66.1; random mean 34.3, consistent with L9.6. All top-200 fields have h(Q(√p)) = 1.
 - Not a complete search of the range.
+
+---------------------------------------------------------------------------------------------
+## L10 R4 — the imported claims re-checked  (docs/12_R4.md)
+- **L10.1 CERTIFIED (Thm 22 table).**
+  - Non-trivial unit-determinant frames (excluding ⟨1, ε⟩) reproduce the imported table, except D = 22: the frame (5 − √22, 61 − 13√22, b = −14 + 3√22) with det ε^{−1} represents 4 classes (C26).
+  - The restriction attains the complete S in 37 of the 60 fields D ≤ 100.
+  - `scripts/r4_thm22.py`, data/r4_unit_frames.jsonl.
+- **L10.2 PROVED.** Thm 4 (L3.4), with a 3-line proof. Prop 5 (L3.3(b)), via an explicit family.
+- **L10.3 PROVED / UNUSABLE.** Thm 17 (L1.6): the clean regulator ceiling is proved; the stated volume form is unusable.
+- **L10.4 PROVED / EMPIRICAL.** Cor 21.3 is proved in lattice form and empirical in norm-proportion form.
 

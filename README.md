@@ -24,6 +24,10 @@ represents} — pure Python, no class group of E. Certified S(K,2) ≥ 64 (p = 8
 and **S(K,2) ≥ 76** (p = 7956859), all binary forms of det ε. The mean of max_c n(c) grows like 2.8·ln p.
 Growth along a family is NOT proved: it needs class-number-one-type input (long principal Zagier cycles,
 ι/√p → ∞) and a twisted-divisor mean value (docs/11_R3.md §5). "≤ 2 classes per edge" refuted (D = 82).
+R4 (docs/12_R4.md):
+- the imported Thm 22 table was re-run; D = 22 corrected to 4;
+- the Ramsey reduction and "no minimum angle" are proved;
+- the imported regulator ceiling is replaced by the proved s□ ≤ 12s ≤ 24 + 24.94·Reg.
 
 ```bash
 python3 scripts/complete_S.py out.jsonl 43 67          # exact S(K,2), S_free(K,2)

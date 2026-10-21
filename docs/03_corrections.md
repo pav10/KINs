@@ -48,8 +48,8 @@ C12. **"Per-face bound ⇒ s□ ≤ 12·f_K with f_K = faces mod O^{×,+}."** Of
 
 C13. **Statuses downgraded.** "Pareto orbits = Θ(s)" is HEURISTIC (L3.5). "Linear-irreducibility
 failure is explained by η-twins of large class-trace" is HEURISTIC. Imported Thm 17 (regulator
-ceiling), Thm 22 table, Prop 5, Thm 4 are IMPORTED and (except the Δ = 57 certificate) not
-re-verified.
+ceiling), Thm 22 table, Prop 5, Thm 4 were IMPORTED and (except the Δ = 57 certificate) not
+re-verified. [Superseded by R4 (docs/12_R4.md): Thm 4, Prop 5 PROVED; Thm 22 re-run (C26); Thm 17 unusable as stated (C28).]
 
 C14. **Search completeness.** `find_winner` / `largest_gram` on fixed class reps give LOWER bounds
 for S(K,2), not S(K,2): classes reachable only through reps αξ² with ξ a non-unit are not explored
@@ -100,3 +100,13 @@ C24. **"S(K,2) ≥ N_E(K)/h(E), and growth needs N_E/h(E) → ∞" (L8.3, L8.7, 
 C25. **Theorem 11.3 is for D prime only.**
 - For composite D ≡ 3 mod 4, h(K) is even, N_{E/k2} is not injective on A, and ν(f) only bounds n(c) from above (12/12 sampled composite fields differ).
 - Do not use the form model there; use the PARI scan (r2_scan.py).
+
+C26. **Imported Thm 22 table, D = 22 ("2–3").** Wrong: a unit-determinant frame represents 4 classes, which equals S(Q(√22),2) (R4, L10.1). The table's "no unit-determinant frame" means no frame other than the trivial ⟨1, ε⟩, which exists whenever N(ε) = +1.
+
+C27. **"(a)∩(b) is the irreducible core of question 1, by the Ramsey reduction" (01_problem).** Overstated.
+- The Ramsey reduction (L3.4) holds for any set of distinct indecomposables and is empty for d = 2.
+- The staircase it produces in degree d is not a real quadratic sail.
+- No implication from the real quadratic binary case to degree d follows. The real quadratic binary case remains the natural first case, not a proven core.
+
+C28. **Imported Thm 17 (regulator ceiling) as a usable bound.** Its error term E is unspecified, so as stated it is not a theorem. Use the PROVED s□ ≤ 12s ≤ 24 + 24.94·(Reg − log(√D − 1)) instead (L1.6).
+

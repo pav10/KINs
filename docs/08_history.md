@@ -33,4 +33,9 @@
    - This gives a pure-Python scan of all primes ≤ 10^6 (≈ 1 h; the PARI route took hours to 10^5), class-group-free certificates, and records 56, 60, 64 below 10^6, then 76 at p = 7956859 (top-200 sample of (10^6, 10^7]).
    - Mean ν* grows like 2.8·ln p, and the average over A is ∝ ι/√p.
    - The requested proof of growth along a family was not achieved. It reduces to (G1) a class-number-one-type input and (G2) a twisted-divisor mean value (Proposition 11.5).
+13. R4 session. The imported claims were re-checked from their ledger summaries; the source analyses are not in the pack.
+   - Thm 22 table: reproduced with R1's complete frame enumeration, except D = 22 (4, not 2–3).
+   - Thm 4 and Prop 5 are now PROVED (Prop 5 via an explicit family over Q(√(n²+2))).
+   - Thm 17 is unusable as stated; replaced by the proved ceiling s□ ≤ 12s ≤ 24 + 24.94·Reg.
+   - The "irreducible core" claim of 01_problem is withdrawn (C27).
 

@@ -84,7 +84,7 @@ Raw data with Gram matrices and per-edge counts: data/scan_exact.jsonl.
 - Period-2 fans (`experiments.py fan 66 146`): best lattice 2 classes for ι = 8, 12.
 - Odd convergents jointly rank-2 compatible (`experiments.py convergents 19 31 43 46`):
   2/3, 2/4, 3/5, 2/6.
-- Imported (other analysis, Thm 22, unit-determinant frames, not re-run): complete S: D=26:2, 33:4,
+- Imported (other analysis, Thm 22, unit-determinant frames; RE-RUN in R4: data/r4_unit_frames.jsonl, D = 22 is 4 — C26): complete S: D=26:2, 33:4,
   19:6; others: 57:6, 41:4, 61:4, 31:≥4; 22,34,38,39,47,55,62,65,74,79,83: 2–3;
   35,51,53,66,69,70,77,78,82,85,87: no unit-determinant frame.
 
@@ -106,4 +106,12 @@ Raw data with Gram matrices and per-edge counts: data/scan_exact.jsonl.
   - Command: `r3_tools.py list out Dfile i/3`.
 - **Tables:** `scripts/r3_analysis.py`.
 - **Certificates:** data/certificates/D{691,5419,12511,98179,294319,636931,814531}_form.json and D7956859_form.json.gz (`scripts/certify_form.py p`). The others are rebuilt on demand, ≈ 20 s at p ≈ 10^7.
+
+## H. R4 (docs/12_R4.md)
+- data/r4_unit_frames.jsonl: for all 60 squarefree D ≤ 100, the unit-determinant frames by determinant class (det ∈ (O^×)² or ε⁺(O^×)²). Fields:
+  - number of frames of each class and their maximum s□;
+  - the trivial frame ⟨1, ε⟩, counted separately;
+  - the complete S(K,2) for comparison.
+- Command: `scripts/r4_thm22.py out.jsonl D...`, a few seconds.
+- Checks: `scripts/r4_checks.py prop5 154 | reg 5000 | cor213 6001`.
 
