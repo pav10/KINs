@@ -79,3 +79,24 @@ edge in every lattice with s□ ≥ 4" (L6.3/C15).** Both REFUTED (L7.4): D = 82
 C20. **Do not compute S_free from maximal lattices only.** A free lattice may lie only in non-free
 maximal lattices; R1 evaluates lattices maximal among FREE overlattices (L7.1). (Caught before
 any value was recorded.)
+
+C21. **"The det-2 family plateaus at 28, so 28 may be a ceiling" (L7.8 discussion).** The plateau is a
+property of the Galois-symmetric slice only. The full det-class-2 maximum max_c n(c) (L8.3) exceeds it:
+S ≥ 36 at D = 12511, 17539 (CERTIFIED), and it keeps growing for larger D (L8.5, L8.7).
+
+C22. **C7's "lean toward boundedness" (already weakened by L7.8) is not supported.** Under (H),
+S(K,2) ≥ max_c n(c) ≥ n̄ (L8.3), and both grow in the data. The dichotomy (L5.2) is still OPEN, but
+the evidence now points to unbounded, slow growth.
+
+C23. **Upper bounds from non-classical hulls are not attained.** For E = K(i), the bound 10 at D = 43
+exceeds the complete value S = 8, and classical sublattices lose most classes (L8.6). Always state
+which E and which integrality the bound refers to.
+
+C24. **"S(K,2) ≥ N_E(K)/h(E), and growth needs N_E/h(E) → ∞" (L8.3, L8.7, roadmap R3) is the wrong normalisation.**
+- n(c) lives on a subgroup of order h(−8D)/2, so the bound is 2Σ_c n(c)/h(−8D): h(K) drops out (L9.1).
+- The N_E pigeonhole is a poor proxy (corr 0.60 with the truth). The multiplicity Σ_{m|N}χ_{−8}(m) matters, and its mean ∝ L(1, χ_{−8p}) largely cancels h(−8p).
+- The governing quantity is ι/√p (L9.6), not "ι against h(−8D)". The L8.7 heuristic "n̄ ≍ (norm-indecomposables)/h(−8D)" is superseded.
+
+C25. **Theorem 11.3 is for D prime only.**
+- For composite D ≡ 3 mod 4, h(K) is even, N_{E/k2} is not injective on A, and ν(f) only bounds n(c) from above (12/12 sampled composite fields differ).
+- Do not use the form model there; use the PARI scan (r2_scan.py).

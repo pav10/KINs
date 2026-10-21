@@ -406,8 +406,20 @@ def edge_deltas(D):
         nd = normalize_unit(dlt, u)
         if (nd.a, nd.b) not in keys:
             keys.add((nd.a, nd.b))
-            reps.append(nd)
-    return reps
+            reps.append(_balance(nd, u))      # any rep of the (O^x)^2-orbit works; balanced is
+    return reps                               # far better conditioned for the per-edge LLL
+
+
+def _balance(x, u):
+    """Minimal-trace element of x * u^k, k in Z (u totally positive unit > 1)."""
+    uc = u.conj()
+    while True:
+        if (x * u).trace() < x.trace():
+            x = x * u
+        elif (x * uc).trace() < x.trace():
+            x = x * uc
+        else:
+            return x
 
 
 def exact_sq_classes(D, Gp, basis):

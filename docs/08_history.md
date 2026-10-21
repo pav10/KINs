@@ -22,3 +22,15 @@
    (max 8 at D = 43, 67, 86) and long-period fields; S_free differs when h > 1; "≤ 2 classes per
    edge" refuted (D = 82). Bugs fixed: realized_module used Z[√D] (C17), edge_deltas s > 60 (C18).
    Independent cross-check of indecomposables/facets against github.com/pav10/sails (D ≤ 3000).
+11. R2 session: the det-2 family lattices are ideal lattices of E = K(√−2). For D ≡ 3 mod 4,
+   Tr O_E = 2O_K, so every det-class-2 lattice lies in an integral ideal lattice. Under (H), s□ equals
+   the number of indecomposables whose norm-ideals meet one class of Cl(E) (Theorem 10.2), so the best
+   lattice comes from a PARI class-group computation instead of a search. Scans: all D ≡ 3 mod 4,
+   D ≤ 20000, and all (H)-fields up to 10^5. Certified records 36 → 40 → 48 → 52 (D = 98179), all free and
+   all D prime. det class 1 (K(i)) is weak for classical lattices.
+12. R3 session.
+   - The R2 class distribution is elementary for p prime: n(c) on Cl(K(√−2)) equals ν(f) on the form classes of discriminant −8p (Theorem 11.3). Checked against PARI for all 4808 primes ≤ 10^5.
+   - This gives a pure-Python scan of all primes ≤ 10^6 (≈ 1 h; the PARI route took hours to 10^5), class-group-free certificates, and records 56, 60, 64 below 10^6, then 76 at p = 7956859 (top-200 sample of (10^6, 10^7]).
+   - Mean ν* grows like 2.8·ln p, and the average over A is ∝ ι/√p.
+   - The requested proof of growth along a family was not achieved. It reduces to (G1) a class-number-one-type input and (G2) a twisted-divisor mean value (Proposition 11.5).
+

@@ -53,3 +53,16 @@ embeddings a − b√D cancel catastrophically for lopsided elements (use N(x)/�
 P14. **Shell hygiene for background runs.** `cmd1 && VAR=... && nohup job &` backgrounds the whole
 chain, so VAR is unset afterwards; and `pkill -f pattern` kills the shell whose command line
 contains the pattern (use an anchored `^python3 ...`).
+
+P15. **Huge units break float code elsewhere too.** rqf.fundamental_unit used float embeddings and
+overflowed past 10^308 (D = 96391; fixed with QF.emb1_gt). The sails package has the same limit:
+field.signs raises OverflowError at D = 98179, and sail.py raises RecursionError at D = 61051. Treat a
+sails cross-check as unavailable there; the exact CF indecomposability test still applies.
+Per-edge LLL is ~3x faster with balanced edge functionals (lattice.edge_deltas now returns them).
+
+P16. **Square classes have several members with different norms.** γ and γξ² (ξ ∉ O^×) are both indecomposable with N(γξ²) = N(γ)N(ξ)². A count over one representative per class undercounts n(c)/ν(f): the first R3 implementation did, and the PARI comparison caught it. Take the union over all members.
+
+P17. **Balance edge functionals by ε, not ε², when θ (N θ = ε) acts on the lattice.**
+- With ε² only, δ stays lopsided by a factor ε, and exact LLL on the trace form slows by 10×+ (141 s → 12 s at p = 294319).
+- Map found vectors by θ to switch the parity of the square class.
+- Also: two background runs "died silently" because they were OOM-killed (cgroup limit; see `dmesg`). `cat a.txt b.txt` of files without a trailing newline glued two primes into one 14-digit number, and the sieve tried to allocate up to it. Validate input lists (max, count) before a long run.

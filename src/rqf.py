@@ -68,6 +68,16 @@ class QF:
 
     def is_zero(s): return s.a == 0 and s.b == 0
 
+    def emb1_gt(s, c):
+        """Exact test sigma_1(s) = a + b sqrt(D) > c for rational c (no floats)."""
+        c = F(c)
+        r = c - s.a                                  # need b sqrt D > r
+        if s.b == 0:
+            return r < 0
+        if s.b > 0:
+            return r < 0 or s.b * s.b * s.D > r * r
+        return r < 0 and s.b * s.b * s.D < r * r
+
     def is_tot_pos(s):
         # both embeddings > 0  <=>  a>0 and norm>0
         return s.a > 0 and s.norm() > 0
@@ -176,7 +186,7 @@ def fundamental_unit(D):
     while True:
         x = QF(D, p, 0) - QF(D, q, 0) * om_conj
         n = x.norm()
-        if abs(n) == 1 and x.emb()[0] > 1:
+        if abs(n) == 1 and x.emb1_gt(1):          # exact (floats overflow for huge units)
             return x, int(n)
         k += 1
         if k >= len(cf):
@@ -189,7 +199,7 @@ def tp_unit(D):
     """Generator eta>1 of totally positive units."""
     eps, Neps = fundamental_unit(D)
     eta = eps if Neps > 0 else eps * eps
-    assert eta.norm() == 1 and eta.is_tot_pos() and eta.emb()[0] > 1, (D, eta)
+    assert eta.norm() == 1 and eta.is_tot_pos() and eta.emb1_gt(1), (D, eta)
     return eta
 
 

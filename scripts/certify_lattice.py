@@ -17,7 +17,12 @@ from lattice import (edge_deltas, enum_short_reduced, vec_value, Bform, indecomp
 
 def certify(D, G, gens, verbose=True):
     fd = FieldData(D)
-    basis = overlattice_basis(fd, G, gens)
+    return certify_basis(D, G, overlattice_basis(fd, G, gens), verbose)
+
+
+def certify_basis(D, G, basis, verbose=True):
+    """Same certificate for a lattice given directly by a Z-basis (K^2 vectors) and Gram G."""
+    fd = FieldData(D)
     # (1)
     assert G[0][0].is_tot_pos() and (G[0][0] * G[1][1] - G[0][1] * G[1][0]).is_tot_pos()
     for u in basis:

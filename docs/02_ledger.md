@@ -310,3 +310,105 @@ max per D-block of 2500: 20, 24, 28, 22, 24, 28, 28, 20; per s-block of 50: 20, 
 attained by the family lattice — the family gives the exact maximum there.
 Consequence for L5.2: the D ≤ 100 maximum 8 is not a ceiling; the "lean toward boundedness" (C7)
 is not supported. Within the family the growth in s is irregular (several s ≥ 40 fields give ≤ 8).
+
+---------------------------------------------------------------------------------------------
+## L8 R2 — the mechanism: indecomposables as norms from E = K(√−2)  (docs/10_R2.md)
+
+Setting: D ≡ 3 (mod 4), E = K(√−2); hypothesis (H): 2ε ∈ (K^×)² (true for all primes D ≡ 3 mod 4,
+CERTIFIED for the 1136 primes ≤ 20000).
+
+**L8.1 PROVED (Lemma 10.1).** O_E = O_K ⊕ 𝔭^{-1}√−2, so Tr_{E/K}(O_E) = 2O_K. Under (H), O_E = O_K[√−ε] = the
+Clifford order of a unimodular det-ε lattice. (PARI integral bases agree for all 609 squarefree
+D ≡ 3 mod 4 ≤ 3000.)
+
+**L8.2 PROVED (Theorem 10.2).**
+- (a) Ideal lattices (𝔄, N_{E/K}/n) are classically integral, in det class 2.
+- (b) Every integral M with det M ∈ 2(K^×)² embeds via ψ(v) = B(e,v) + √−d·(e∧v) into its integral hull (ψ(M)O_E, N/Q(e)).
+- (c) Under (H), s□(𝔄, N/n) = n([𝔄]^{-1}) := #{[γ] : some integral 𝔅 in that class has 𝔅𝔅̄ = γO_E}.
+
+**L8.3 PROVED (Cor. 10.3).** Let S_E(K) = max s□ over det class 2.
+- S_E(K) ≤ max over (𝔫₀, c) of n_{𝔫₀}(c), where 𝔫₀ is the inert part (no hypothesis needed).
+- Under (H): S(K,2) ≥ S_E(K) ≥ max_c n(c) ≥ n̄ := Σ_c n(c)/h(E) ≥ N_E(K)/h(E).
+- S_E(K) = max_c n(c) is CERTIFIED for D = 43, 691, 5419, 12511, 17539, 19231.
+
+**L8.4 CERTIFIED (validation).**
+- n(c_M) = exact s□ for all 742 det-2 family lattices with (H) (D ≤ 20000).
+- exact ≤ model for all 727 without (H).
+- Exact = n(c) for 10 ideal lattices (10 classes) at D = 5419.
+- Every s□ is even under (H) (multiplication by θ = √−ε pairs [γ] and [γε]).
+
+**L8.5 CERTIFIED (new records, binary forms).**
+- S(Q(√12511),2) ≥ 36, S(Q(√17539),2) ≥ 36, S(Q(√19231),2) ≥ 34.
+- S(Q(√44851),2) ≥ 40, S(Q(√61051),2) ≥ 48, **S(Q(√98179),2) ≥ 52** (scan of all 6040 fields with (H), 20000 < D ≤ 100000).
+- Certificates: data/certificates/D*_ideal.json. These exceed the det-2-family plateau 28 (L7.8): the family is the Galois-symmetric slice and attains max_c n(c) in only 204 of 583 fields.
+
+**L8.6 CERTIFIED (det class 1 is weak for classical lattices).**
+- E = K(i) has non-classical ideal lattices, since (1+√−D)/2 ∈ O_E has trace 1.
+- Their hull bounds are 44 (D = 5419) and 56 (D = 17539), but the classical sublattices represent at most 10 (D = 5419).
+- For D = 43 the K(i) bound 10 exceeds the complete value S = 8.
+
+**L8.7 EMPIRICAL / HEURISTIC (growth).**
+- Records of max_c n(c) rise: 8, 12, 20, 24, 28, 36 (D ≤ 20000), 38 (30871), 40 (44851), 48 (61051), 52 (98179).
+- n̄ grows like about 9 → 12 for D ≈ 10^4 → 10^5.
+- Heuristic: n̄ ≍ (norm-indecomposables)/h(−8D) grows like a power of log D on suitable D. That would make S(K,2) unbounded by L8.3.
+- Gap: an unconditional lower bound for N_E(K)/h(E) along an infinite family.
+
+**L8.8 EMPIRICAL (shape).**
+- All 146 fields D ≤ 10^5 with max_c n(c) ≥ 36 have D prime ≡ 3 (mod 4).
+- Every record field has cyclic Cl(E).
+- Every certified witness is a free ideal lattice of det ε·(K^×)².
+- So "S ≥ C" examples have one shape: the best ideal class of K(√−2) over a prime D ≡ 3 (mod 4).
+
+---------------------------------------------------------------------------------------------
+## L9 R3 — elementary model over Q(√−2p), records to 10^7, growth status  (docs/11_R3.md)
+
+**L9.1 PROVED (Theorem 11.1; Herglotz and class field theory IMPORTED).**
+- Under (H): h(E) = h(K)·h(−8D) (unit index 2 via θ).
+- n(c) is supported on A = ker(Cl(E) → Cl⁺(K)), with |A| = h(−8D)/2.
+- Hence S(K,2) ≥ max_c n(c) ≥ 2Σ_c n(c)/h(−8D) ≥ 2N_E/h(−8D). This replaces N_E/h(E) of L8.3: h(K) drops out.
+- Herglotz checked against PARI for 4055 + 4808 fields.
+
+**L9.2 PROVED (Lemma 11.2).**
+- #{𝔅 : 𝔅𝔅̄ = γO_E} = Σ_{m|N(γ)} χ_{−8}(m) for indecomposable (hence primitive) γ.
+- So γ counts in N_E ⇔ N(γ) is represented by x² + 2y².
+- Also PROVED: (H) ⇔ some Q_k = 2 in the CF of √D; N(β_{j,t})·Q_{j+1} = D − u² (Lemma 11.0).
+
+**L9.3 PROVED (Theorem 11.3; genus theory IMPORTED).** For D = p ≡ 3 (mod 4) prime:
+- N_{E/k2}: A → Cl(−8p)² is a bijection with n(c) = ν(N_{E/k2}c);
+- ν(f) := #{[γ] : f represents the norm of a member γ₁ ∈ N_E}.
+- So max_c n(c) = ν*(p) is computable with binary forms of discriminant −8p, with no class group of E (no GRH).
+- CERTIFIED: equal to the PARI value for all 4808 primes ≤ 10^5, and multiset-equal in 50 sampled fields.
+- For composite D (h(K) even) ν is only an upper bound.
+
+**L9.4 PROVED (Cor. 11.4).** For f ∈ Cl(−8p)² with g² = f and 𝔟 ∈ g, the lattice (𝔟O_E, N/N𝔟) is integral with s□ = ν(f).
+- Certificates (`scripts/certify_form.py`, pure Python) carry edge-functional witnesses δ (δ ≫ 0, Tr(δO) ⊆ Z, Tr(δγ) = 1), which prove indecomposability directly.
+- Cost: 4 s at p = 98179, 36 s at p = 814531.
+
+**L9.5 CERTIFIED (records, free binary lattices of det ε, data/certificates/D*_form.json).**
+- S(Q(√294319),2) ≥ 56, S(Q(√636931),2) ≥ 60, **S(Q(√814531),2) ≥ 64**.
+- These are the maxima of max_c n(c) over all primes p ≡ 3 mod 4 up to 10^6.
+- Results for (10^6, 10^7]: L9.8.
+
+**L9.6 EMPIRICAL (growth, 39322 primes ≤ 10^6).**
+- Mean ν* rises linearly in ln p, by ≈ 2.8 per unit: 10.5 at ln p ≈ 7, 18.0 at 10, 28.2 at 13.5.
+- avg_A n(c) = (3.34 ± 0.55)·ι/√p, with corr 0.97. log avg = 1.40 + 0.85 log(ι/√p) − 0.18 log L(1, χ_{−8p}), R² = 0.976.
+- Every record field has h(Q(√p)) = 1.
+- Zagier (Σa_i = T/2) and Hirzebruch (Σa_even − Σa_odd = 3h(−p)) hold for all 30606 h = 1 primes ≤ 10^6, and h(Q(√p)) is odd for all 39322.
+
+**L9.7 OPEN (R3 target).** Growth along an explicit family is NOT proved. Proposition 11.5:
+- ν* ≤ 12s, so growth needs s → ∞;
+- ν* ≥ 2πN_E/(√(8p)(log 8p + 2)) unconditionally;
+- for h(Q(√p)) = 1, ι = T(p)/4 − (3/2)h(−p).
+
+A proof needs two inputs, neither available:
+- (G1) infinitely many p with ι/√p → ∞. For h = 1 primes this is Gauss's class-number-one problem, and no explicit family has ι/√D → ∞.
+- (G2) a mean-value lower bound for Σ_{m|N}χ_{−8}(m) over the norms of the principal cycle.
+
+The governing invariant is ι/√p, not s and not h(E).
+
+**L9.8 CERTIFIED (10^6 < p ≤ 10^7, sample).**
+- Exact ν* for the 200 primes with the largest ι/√p (from a CF-only pass over all 293076 primes ≡ 3 mod 4 in the range) and for 400 random ones.
+- **S(Q(√7956859),2) ≥ 76** (certificate D7956859_form.json.gz) and S(Q(√9414211),2) ≥ 76. ν* = 76 also at p = 9659731, 9716851, 9855871.
+- Top-200 mean 66.1; random mean 34.3, consistent with L9.6. All top-200 fields have h(Q(√p)) = 1.
+- Not a complete search of the range.
+
