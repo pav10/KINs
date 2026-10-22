@@ -35,7 +35,8 @@ sail realizes. This is motivation only (C27):
 (a)∩(b) is the natural first case, where everything is explicit.
 
 ## Current one-line state
-s□(M) ≤ 12·s (s = CF period) is PROVED (per-face lemma, L1.5), and s□(M) is computable exactly
+s□(M) ≤ 4·s (s = CF period) is PROVED (sharp per-face lemma, R7/L13.2; 4s attained at D = 82; was 12s, C30),
+and s□(M) is computable exactly
 (L6.1). Certified: S(Q(√43),2) ≥ 8 (s = 10); extremal lattices meet (almost) every edge of the
 period with ≤ 2 values per edge. Whether S(K,2) is bounded or grows ≍ s is OPEN; the uniform bound
 is equivalent to a bounded-fibre statement for indecomposable ↦ ideal class of E = K(√−det M)

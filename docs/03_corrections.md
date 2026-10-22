@@ -115,3 +115,17 @@ C29. **"Isometry classes in the genus of a free lattice ↔ Shyr's H" (L2.2) wit
 - So for E = K(i), D ≡ 3 mod 4 (det class 1), no classical lattice has Clifford order O_E; Picard groups of non-maximal orders are needed there.
 - In det class 2 under (H) the count is h(−8D)/2 (Theorem 13.1).
 
+
+C30. **"L1.4 (≤ 12 per edge) is the only per-edge bound known" (L7.4) and the constant 12 in s□ ≤ 12s (L1.5, L1.6, 01_problem).** Not sharp for the lattices of this repo.
+- They are classical (B(M, M) ⊆ O), so T_δ is an integral lattice and its norm-1 vectors are orthonormal.
+- Hence ≤ rd values per functional, so S(K,2) ≤ 4s, and S(K,2) ≤ 3s when N(ε) = +1 (Theorem 15.1, Corollary 15.2). Equality holds at D = 82.
+- The kissing-number bound ½τ_{rd} applies only to non-classical lattices (Q(M) ⊆ O, B(M, M) ⊆ ½O).
+- Likewise T(K) ≤ 3s (R6) becomes T(K) ≤ 2s.
+
+C31. **"#{v : T_δ(v) ≤ t_d} is not uniform in the lattice" (L5.6).** Wrong. For any integral lattice of rank n, #{v : T(v) ≤ t} ≤ (2√t + 1)^n, by packing (Lemma 15.4). In degree d the field enters only through t(K) and the number of functionals Φ_t(K) (Theorem 15.5).
+
+C32. **"t₃ ≤ 3 (IMPORTED Kala–Tinková)" (L5.6, docs/06_references.md).** Misattributed and false.
+- Kala–Tinková treat simplest cubic fields, where min traces are 1 or 2. Tinková (2105.04204) shows min traces are unbounded in families of cubic orders.
+- For maximal orders: t(K) = 4 at disc 3137 and t(K) = 5 at disc 14229 (complete scan to disc 20000).
+- t(K) ≥ a in Thomas's family whenever Z[ρ] = O_K (Theorem 15.6). CERTIFIED for a ≤ 100, so sup t(K) ≥ 100.
+- Whether t₃ = ∞ over maximal orders is HEURISTIC; the gap is infinitely many monogenic parameters.

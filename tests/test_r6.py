@@ -51,7 +51,7 @@ def test_primitivity_criterion():
 
 
 def test_T_bounds_and_T1():
-    """T1 = fibre of the class of 1 (exact square classes); T(K) <= 3s; T1 <= s."""
+    """T1 = fibre of the class of 1 (exact square classes); T(K) <= 2s (R7: classical rank-1 per-face lemma); T1 <= s."""
     from complete import FieldData
     for D in FIELDS:
         fd = FieldData(D)
@@ -59,7 +59,7 @@ def test_T_bounds_and_T1():
         cid = next(fd.class_of[i] for i, r in enumerate(fd.reps) if same_square_class(r, QF(D, 1)))
         s = len(cf_sqrt(D)[0]) - 1
         t1 = T1(D)
-        assert c[cid] == t1 and t1 <= s and max(c.values()) <= 3 * s, D
+        assert c[cid] == t1 and t1 <= s and max(c.values()) <= 2 * s, D
 
 
 def test_family_n2_plus_3():

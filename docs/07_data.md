@@ -124,3 +124,15 @@ Raw data with Gram matrices and per-edge counts: data/scan_exact.jsonl.
 - `scripts/r6_squares.py T1 2 200000`: records of T₁ over squarefree D ≡ 2, 3 mod 4, ≈ 10 min. Table in docs/14_R6.md §5.
 - `scripts/r6_squares.py family 1000`: Theorem 14.2 for all admissible n ≤ 1000, a few seconds.
 
+## K. R7 (docs/15_R7.md)
+Both runs need cypari2 and the sails package (read-only; SAILS_PATH, default ../sails).
+- **data/r7_cubic_fields.jsonl**: all 832 totally real cubic fields with disc ≤ 20000 (PARI `nflist`).
+  - Fields per record: label (= disc), coeffs (ascending), ι (indecomposables mod O^{×,+}), t (max min trace), hist (min trace → count), worst = [N, m, sails coordinates].
+  - Facet data: number of facets, max integer distance, number of distance-1 facets, mu1 = most lattice points on a distance-1 facet.
+  - Command: `scripts/r7_cubic.py fields 1 20000`, ≈ 10 min.
+- **data/r7_thomas.jsonl**: Thomas family, for each 3 ≤ a ≤ 100.
+  - Records: the least b ≥ 2a − 1 with Z[ρ] = O_K, its disc, m(α) for α = 1 + (a − 1)(b − ρ) (exact, = a), and a minimising δ·f′(ρ).
+  - box_indecomposable for a ≤ 40; t_sails = t(K) via sails for a ≤ 12.
+  - Command: `scripts/r7_cubic.py thomas 3 100 12 40`, ≈ 2 min.
+- Families, printed only: `scripts/r7_cubic.py simplest -1 40` and `scripts/r7_cubic.py ennola 3 16`. Both give t = 2 throughout.
+

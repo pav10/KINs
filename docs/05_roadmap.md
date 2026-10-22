@@ -1,6 +1,6 @@
 # 05 — Roadmap (ordered; each task states what its outcomes would prove)
 
-Status at hand-over: upper bound s□ ≤ 12 s PROVED (L1.5); exact cap-free evaluation of s□(M)
+Status at hand-over: upper bound s□ ≤ 12 s PROVED (L1.5) [R7: ≤ 4s, sharp]; exact cap-free evaluation of s□(M)
 implemented (lattice.exact_sq_classes, L6.1); certified lower bounds S(K,2) ≥ 8 (D = 43),
 ≥ 6 (D = 19, 31, 57); per-edge value counts ≤ 2 in every extremal lattice; extremal lattices
 touch (almost) ALL edges of the period (L6.3). The dichotomy "S(K,2) bounded vs ≍ s" is
@@ -86,15 +86,29 @@ unit-determinant frames; D = 43 was not in it).
 Make Σ_{gen} s□ explicit using Shyr's H; compare average vs maximum from R1. Clarify proper vs
 improper classes and the order O[√−δ] vs maximal order.
 
-## R6 — DONE (docs/14_R6.md, ledger L12): sup_K T(K) = ∞ PROVED (D = n² + 3, T ≫ log D); T(K) ≤ 3s;
+## R6 — DONE (docs/14_R6.md, ledger L12): sup_K T(K) = ∞ PROVED (D = n² + 3, T ≫ log D); T(K) ≤ 3s (R7: 2s);
 ## exact witness test for indecomposability; T₁ in O(s); records T₁ ≈ 3.3 D^{1/4} on h = 1 fields.
 ## Open: unconditional polynomial growth of T; the D ≡ 1 mod 4 analogue of Lemma 14.1.
 ## R6 — Rank-1 core (L5.1) (original text)
 Decide sup_K T(K) (square-full points on the sail): construct (via prescribed CF) γ with many
 γξ² ∈ I(K), or bound. Determines whether s_u (mod unit squares) can ever be uniform.
 
-## R7 — Later
+## R7 — DONE (docs/15_R7.md, ledger L13): sharp per-face lemma (≤ rd per functional for classical M, equality
+## iff Z^{rd}) ⇒ S(K,2) ≤ 4s, attained at D = 82; degree-d per-functional counts uniform (C31); "t₃ ≤ 3" REFUTED
+## (C32), t₃ ≥ 100 CERTIFIED via Thomas's family (Theorem 15.6); Kitaoka: u_E ≤ 2r − 1 for universal classical
+## rank r, and indecomposables cannot decide Kitaoka (D = n² − 1).
+## R7 — (original text)
 Degree 3 (t_3 ≤ 3; enumerate T_δ vectors of norm ≤ 3), rank 3, Kitaoka connections.
+
+## R8 — Next candidates (each states what its outcome would prove)
+- (a) **Per-edge ≤ 2 when s is even** (data: yes for every maximal lattice, D ≤ 100). A proof gives S(K,2) ≤ 2s
+  for N(ε) = +1, and would locate the extremal fields among N(ε) = −1. A counterexample needs a classical
+  binary M with (M, T_δ) ⊇ Z³ — search the Z³ ⊥ ⟨m⟩ shapes directly.
+- (b) **t₃ = ∞ unconditionally.** Either a family with provably infinitely many monogenic members (e.g. a
+  sub-family of Thomas's where index 1 follows from congruences), or an O_K-version of the box argument of
+  Theorem 15.6(i).
+- (c) **Degree-3 analogue of R1** for small fields: exact max s□ over binary lattices over Q(ζ₇)⁺ (disc 49), using
+  Theorem 15.5 with t = 2 (Φ₂ explicit) as the evaluation step.
 
 ## Do NOT do
 - More winner-search plateaus on fixed reps (lower bounds only; superseded by R1).

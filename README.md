@@ -14,7 +14,7 @@ python3 scripts/scan_exact.py 43 43 600 /tmp/o.jsonl   # S(Q(√43),2) ≥ 8, ex
 Requirements: Python ≥ 3.9, numpy not required, pytest for tests. No Sage/PARI needed
 (`legacy/real_quadratic_gram.py` is the corrected Sage original, reference only).
 
-Headline status: s□(M) ≤ 12·s proved (s = CF period); R1 done: S(K,2) computed exactly
+Headline status: s□(M) ≤ 4·s proved and attained (s = CF period; R7, was 12s); R1 done: S(K,2) computed exactly
 (provably complete search, docs/09_R1_complete.md) for all D ≤ 100 — max 8 (D = 43, 67, 86) —
 and long-period fields. R2 (docs/10_R2.md) gives the mechanism behind large s□: for
 D ≡ 3 mod 4 the represented indecomposables are norms of ideals in one class of Cl(K(√−2)), so the
@@ -27,7 +27,7 @@ Growth along a family is NOT proved: it needs class-number-one-type input (long 
 R4 (docs/12_R4.md):
 - the imported Thm 22 table was re-run; D = 22 corrected to 4;
 - the Ramsey reduction and "no minimum angle" are proved;
-- the imported regulator ceiling is replaced by the proved s□ ≤ 12s ≤ 24 + 24.94·Reg.
+- the imported regulator ceiling is replaced by the proved s□ ≤ 12s ≤ 24 + 24.94·Reg (R7: 4s ≤ 8 + 8.32·Reg).
 
 R5 (docs/13_R5.md):
 - the genus of ⟨1, ε⟩ has exactly h(−8D)/2 proper classes, the ideal lattices over ker(Cl E → Cl⁺K);
@@ -36,8 +36,17 @@ R5 (docs/13_R5.md):
 
 R6 (docs/14_R6.md):
 - sup_K T(K) = ∞ is proved, so the count mod unit squares is not uniform in any rank;
-- T(K) ≤ 3s;
+- T(K) ≤ 3s (R7: 2s);
 - an exact witness test for indecomposability.
+
+R7 (docs/15_R7.md):
+- sharp per-face lemma for classical lattices: ≤ rd values per functional, equality iff (M, Tr δB) ≅ Z^{rd};
+  hence S(K,2) ≤ 4s (3s if N(ε) = +1), attained at D = 82;
+- degree d: per-functional counts are uniform in M (packing); the field enters through t(K) = max min trace;
+- cubic fields: "t₃ ≤ 3" is false (t = 4 at disc 3137, t = 5 at disc 14229; complete scan to 20000), and
+  t(K) ≥ a in Thomas's family x(x−a)(x−b)−1 when Z[ρ] = O_K (proved; certified a ≤ 100, so t₃ ≥ 100);
+- Kitaoka: classical universal rank-r ⇒ every edge partial quotient ≤ 2r − 1; indecomposables alone cannot
+  decide Kitaoka in degree 2 (D = n² − 1).
 
 ```bash
 python3 scripts/complete_S.py out.jsonl 43 67          # exact S(K,2), S_free(K,2)

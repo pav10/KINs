@@ -49,4 +49,9 @@
    - So squares of elements of small norm are indecomposable, and in Q(√(n²+3)) the powers (n + √D)^{2j} give T ≫ log D: s_u is not uniform in any rank.
    - T(K) ≤ 3s.
    - Record T₁ = 67 at D = 156979. All records have h(K) = 1, and T₁ ≈ 3.3·D^{1/4}.
+16. R7 session. Resolved L5.6.
+   - The per-face lemma was not sharp for classical lattices: norm-1 vectors of the integral lattice (M, Tr δB) are orthonormal, so ≤ rd values per functional. Hence S(K,2) ≤ 4s, attained at D = 82, where (M, T_δ) ≅ Z⁴.
+   - Packing makes the degree-d per-functional count uniform in M (C31).
+   - Cubic min traces: "t₃ ≤ 3" was misattributed and is false (t = 4 at disc 3137). In Thomas's family t(K) ≥ a whenever Z[ρ] = O_K, proved by an interlacing description of the totally positive codifferent; certified to a = 100.
+   - Kitaoka: the trace test gives u_E ≤ 2r − 1, and cannot decide finiteness by itself (D = n² − 1).
 
