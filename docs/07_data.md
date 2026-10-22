@@ -120,3 +120,7 @@ Raw data with Gram matrices and per-edge counts: data/scan_exact.jsonl.
   - Run: all 30 primes ≡ 3 mod 4 below 200, about 5 min in total; all equal.
   - The average/maximum table of docs/13_R5.md §5 comes from data/complete_S.jsonl and data/r2_scan.jsonl.
 
+## J. R6 (docs/14_R6.md)
+- `scripts/r6_squares.py T1 2 200000`: records of T₁ over squarefree D ≡ 2, 3 mod 4, ≈ 10 min. Table in docs/14_R6.md §5.
+- `scripts/r6_squares.py family 1000`: Theorem 14.2 for all admissible n ≤ 1000, a few seconds.
+

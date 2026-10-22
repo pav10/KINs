@@ -14,7 +14,8 @@ Collaborator: Pavlo Yatsyna (Charles University). Read docs in this order before
 → `docs/10_R2.md` (R2: the K(√−2) ideal-class mechanism, S ≥ 52)
 → `docs/11_R3.md` (R3: elementary model over Q(√−2p), S ≥ 76, what a growth proof needs)
 → `docs/12_R4.md` (R4: imported claims re-checked — Thm 22 table, Thm 4, Prop 5, Thm 17)
-→ `docs/13_R5.md` (R5: genus of ⟨1, ε⟩ = ideal classes of A; genus sum of s□; average vs maximum).
+→ `docs/13_R5.md` (R5: genus of ⟨1, ε⟩ = ideal classes of A; genus sum of s□; average vs maximum)
+→ `docs/14_R6.md` (R6: indecomposable squares, exact witness test, T(K) → ∞, s_u not uniform).
 Data: `docs/07_data.md`. History: `docs/08_history.md`.
 
 ## Working standards (non-negotiable)
@@ -59,6 +60,7 @@ scripts/certify_form.py  PARI-free certificate: lattice (b O_E, N/a) from a form
 scripts/r4_thm22.py      R4: unit-determinant frame table (imported Thm 22) via R1's frame enumeration;
                          scripts/r4_checks.py Prop 5 family, regulator inequality, Cor 21.3 proportions
 scripts/r5_genus.py      R5: genus of <1,eps> (p prime) vs R1's complete enumeration (represented-class sets)
+scripts/r6_squares.py    R6: witness test for indecomposability, T1 (class of 1) in O(s), D = n^2+3 family
 legacy/real_quadratic_gram.py   Sage version (corrected) — reference only
 ```
 Tests: `python3 -m pytest -q -m "not slow"` (~30 s); `python3 -m pytest -q -m slow` (~15 min).

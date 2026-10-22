@@ -44,4 +44,9 @@
    - The model is checked against R1's complete enumeration for the 30 primes below 200.
    - The Clifford order is never maximal for classical det-class-1 lattices (C29).
    - The maximum exceeds the average by 1–4×.
+15. R6 session. Resolved L5.1.
+   - An exact witness test for indecomposability (one modular inverse) shows that primitive α ≫ 0 with N(α) < 2√D is indecomposable.
+   - So squares of elements of small norm are indecomposable, and in Q(√(n²+3)) the powers (n + √D)^{2j} give T ≫ log D: s_u is not uniform in any rank.
+   - T(K) ≤ 3s.
+   - Record T₁ = 67 at D = 156979. All records have h(K) = 1, and T₁ ≈ 3.3·D^{1/4}.
 

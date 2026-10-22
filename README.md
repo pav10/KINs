@@ -34,6 +34,11 @@ R5 (docs/13_R5.md):
 - Σ_gen s□ is explicit;
 - the maximum exceeds the genus average by 1–4×.
 
+R6 (docs/14_R6.md):
+- sup_K T(K) = ∞ is proved, so the count mod unit squares is not uniform in any rank;
+- T(K) ≤ 3s;
+- an exact witness test for indecomposability.
+
 ```bash
 python3 scripts/complete_S.py out.jsonl 43 67          # exact S(K,2), S_free(K,2)
 python3 scripts/r2_classes.py 5419                      # class distribution over Cl(K(sqrt-2)) (needs cypari2)

@@ -180,7 +180,7 @@ D = 26 (S=2), 33 (S=4=κ□), 19 (S=6) are re-verified. The claim "S ≤ 6 for 4
 ---------------------------------------------------------------------------------------------
 ## L5 Open
 
-**L5.1 OPEN (rank-1 / unit-orbit core; IMPORTED "A7").** T(K) = sup_γ #{ξO : γξ² ∈ I(K)}.
+**L5.1 RESOLVED in R6 (docs/14_R6.md): sup_K T(K) = ∞ PROVED (Theorem 14.2, D = n² + 3: T ≥ 1 + 2⌊log₉ 2n⌋), and T(K) ≤ 3s; so s_u is not uniform in any rank.** Original: L5.1 OPEN (rank-1 / unit-orbit core; IMPORTED "A7"). T(K) = sup_γ #{ξO : γξ² ∈ I(K)}.
 Each line contributes 1 class mod (K^×)² but up to T(K) mod (O^×)². Prescribed-CF (Friesen-type)
 constructions suggest sup_K T(K) = ∞, which would make s_u non-uniform already in rank 1.
 EMPIRICAL support that square classes contain several unit orbits: κ□ < 2ι for D = 19 (10 < 14),
@@ -455,4 +455,22 @@ Setting: D ≡ 3 (mod 4) with (H), E = K(√−2), A = ker(Cl(E) → Cl⁺(K)).
 - **L11.5 CERTIFIED / EMPIRICAL (average vs maximum).**
   - For D ≤ 100 with (H), the genus max equals S(K,2) in 11 of 14 fields. It misses at D = 31, 51, 71, whose extremal lattices have det class 9+√31, 3, 1.
   - max/avg is 1.0–1.8 for D ≤ 100, and its mean grows 2.6 → 3.7 over primes ≤ 10^6.
+
+---------------------------------------------------------------------------------------------
+## L12 R6 — indecomposable squares; T(K) → ∞  (docs/14_R6.md)
+Setting: D ≡ 2, 3 (mod 4) squarefree, O = Z[√D].
+- **L12.1 PROVED (Lemma 14.1; converse IMPORTED via t₂ = 1).** Exact witness test.
+  - For α = x + y√D ≫ 0 primitive with y > 0, take m ∈ [1, x] with my ≡ −1 (mod x). Then α is indecomposable iff m·σ₂(α) < √D, and δ = (b√D − m)/(2√D) is the witness.
+  - Corollary: primitive α ≫ 0 with N(α) < 2√D is indecomposable.
+- **L12.2 PROVED (Lemma 14.3).** ξ² is primitive iff gcd(N ξ, 2D) = 1.
+- **L12.3 PROVED (Proposition 14.4).** T₁(K) := #{ξO : ξ² ∈ I} is computed in O(s) from the CF.
+  - 1 + #{small principal ideals of norm² < 2√D} ≤ T₁ ≤ s.
+  - T(K) ≤ 3s, via the rank-1 per-face lemma on (𝔟₀⁻¹, γ₀x²).
+  - CERTIFIED: T₁ agrees with FieldData for all 612 fields D < 1500.
+- **L12.4 PROVED (Theorem 14.2; squarefree values IMPORTED).** D = n² + 3 (n even, 3 ∤ n): T ≥ 1 + 2⌊log₉(2n)⌋ → ∞.
+  - Corollary 14.5: sup over K and integral rank-r M of s_u(M) = ∞ for every r ≥ 1.
+- **L12.5 CERTIFIED / EMPIRICAL.**
+  - Records of T₁ for D ≤ 2·10⁵: 3, 7, 13, …, 67 (D = 156979, s = 958).
+  - All record fields have h(K) = 1, and T₁ ≈ 3.3·D^{1/4}.
+  - Polynomial growth is HEURISTIC (it needs infinitely many h = 1 fields).
 

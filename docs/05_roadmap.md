@@ -86,7 +86,10 @@ unit-determinant frames; D = 43 was not in it).
 Make Σ_{gen} s□ explicit using Shyr's H; compare average vs maximum from R1. Clarify proper vs
 improper classes and the order O[√−δ] vs maximal order.
 
-## R6 — Rank-1 core (L5.1)
+## R6 — DONE (docs/14_R6.md, ledger L12): sup_K T(K) = ∞ PROVED (D = n² + 3, T ≫ log D); T(K) ≤ 3s;
+## exact witness test for indecomposability; T₁ in O(s); records T₁ ≈ 3.3 D^{1/4} on h = 1 fields.
+## Open: unconditional polynomial growth of T; the D ≡ 1 mod 4 analogue of Lemma 14.1.
+## R6 — Rank-1 core (L5.1) (original text)
 Decide sup_K T(K) (square-full points on the sail): construct (via prescribed CF) γ with many
 γξ² ∈ I(K), or bound. Determines whether s_u (mod unit squares) can ever be uniform.
 
