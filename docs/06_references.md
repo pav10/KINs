@@ -6,7 +6,8 @@
   N(ε) = (−1)^s. Verified in tests for D < 300 (formula in CLAUDE.md).
 - **Kala–Tinková, arXiv:2005.12312, Prop. 3.1**: every indecomposable of a real quadratic field has
   δ ∈ O^{∨,+} with Tr(δα) = 1; indecomposables on one edge share δ. Basis of L1.4–L1.5, L6.1;
-  computationally checked by assertions in `edge_deltas`. Also t_3 ≤ 3 (cubic min traces).
+  computationally checked by assertions in `edge_deltas`. Their cubic results are for simplest cubic
+  fields (min traces 1 or 2), NOT "t₃ ≤ 3" (retracted, C32).
 - **Kala–Man, arXiv:2403.18390**: sails S_K = ∂Conv(O⁺) in all signatures; indecomposables lie on
   the sail (converse iff d = 2); ι(K) ≫ Δ^{1/12} for some biquadratics but ≍ log Δ for a family.
 - **O'Meara 1980, "On indecomposable quadratic forms"**: H(M) ⊆ A(M) ⊆ G(M); 3.7 (2M-cosets),
@@ -33,3 +34,14 @@
   - **Zagier, "Nombres de classes et fractions continues", Astérisque 24–25 (1975)**: reduced forms and partial quotients. With h(K) = 1, Σ_{i≤s} a_i = T(D)/2 = ½Σ_{|u|<√D} d(D − u²).
   - **Hirzebruch, Enseign. Math. 19 (1973)** (proof: Zagier, loc. cit.): for p ≡ 3 mod 4 prime with h(Q(√p)) = 1, Σ(−1)^i a_i = 3h(−p).
   - Both identities are used only in §4–§5 and are re-verified for all h = 1 primes ≤ 10^6 in the scan.
+- **R7 (docs/15_R7.md):**
+  - **Tinková, arXiv:2105.04204 (Ramanujan J. 61, 2023)**: min traces of indecomposables are unbounded in families of
+    cubic orders (abstract only; the paper could not be fetched in the R7 session). Context for Theorem 15.6.
+  - **E. Thomas, J. reine angew. Math. 310 (1979)**: the family x(x − a)(x − b) − 1 and its units. Source of the family only.
+  - **Chan–Kim–Raghavan 1996**: the real quadratic fields with a classical universal ternary form are Q(√2),
+    Q(√3), Q(√5). IMPORTED, not re-verified; the list was confirmed from secondary sources (e.g. arXiv:2501.19371). Used in Prop. 15.9.
+  - **Blomer–Kala arXiv:1503.05736; Kala–Tinková arXiv:2005.12312**: trace pairing with codifferent elements as the
+    tool for lower bounds on ranks of universal forms (context for Cor. 15.8).
+  - **PARI/GP `nflist`** (cubic fields by discriminant): IMPORTED as complete for the scan of §3.3.
+  - Standard facts used without proof: Euler's lemma Z[ρ]^∨ = f′(ρ)⁻¹Z[ρ]; the norm-2 vectors of an integral lattice
+    without norm-1 vectors form an ADE root system; disc of the trace form = N(δ^r 𝔳M)|d_K|^r.

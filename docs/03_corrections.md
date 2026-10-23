@@ -48,8 +48,8 @@ C12. **"Per-face bound ⇒ s□ ≤ 12·f_K with f_K = faces mod O^{×,+}."** Of
 
 C13. **Statuses downgraded.** "Pareto orbits = Θ(s)" is HEURISTIC (L3.5). "Linear-irreducibility
 failure is explained by η-twins of large class-trace" is HEURISTIC. Imported Thm 17 (regulator
-ceiling), Thm 22 table, Prop 5, Thm 4 are IMPORTED and (except the Δ = 57 certificate) not
-re-verified.
+ceiling), Thm 22 table, Prop 5, Thm 4 were IMPORTED and (except the Δ = 57 certificate) not
+re-verified. [Superseded by R4 (docs/12_R4.md): Thm 4, Prop 5 PROVED; Thm 22 re-run (C26); Thm 17 unusable as stated (C28).]
 
 C14. **Search completeness.** `find_winner` / `largest_gram` on fixed class reps give LOWER bounds
 for S(K,2), not S(K,2): classes reachable only through reps αξ² with ξ a non-unit are not explored
@@ -100,3 +100,32 @@ C24. **"S(K,2) ≥ N_E(K)/h(E), and growth needs N_E/h(E) → ∞" (L8.3, L8.7, 
 C25. **Theorem 11.3 is for D prime only.**
 - For composite D ≡ 3 mod 4, h(K) is even, N_{E/k2} is not injective on A, and ν(f) only bounds n(c) from above (12/12 sampled composite fields differ).
 - Do not use the form model there; use the PARI scan (r2_scan.py).
+
+C26. **Imported Thm 22 table, D = 22 ("2–3").** Wrong: a unit-determinant frame represents 4 classes, which equals S(Q(√22),2) (R4, L10.1). The table's "no unit-determinant frame" means no frame other than the trivial ⟨1, ε⟩, which exists whenever N(ε) = +1.
+
+C27. **"(a)∩(b) is the irreducible core of question 1, by the Ramsey reduction" (01_problem).** Overstated.
+- The Ramsey reduction (L3.4) holds for any set of distinct indecomposables and is empty for d = 2.
+- The staircase it produces in degree d is not a real quadratic sail.
+- No implication from the real quadratic binary case to degree d follows. The real quadratic binary case remains the natural first case, not a proven core.
+
+C28. **Imported Thm 17 (regulator ceiling) as a usable bound.** Its error term E is unspecified, so as stated it is not a theorem. Use the PROVED s□ ≤ 12s ≤ 24 + 24.94·(Reg − log(√D − 1)) instead (L1.6).
+
+C29. **"Isometry classes in the genus of a free lattice ↔ Shyr's H" (L2.2) without qualification.**
+- Shyr's count is for lattices whose Clifford order is the maximal order O_E. A classical lattice has Tr C₀(M) ⊆ 2O_K (Proposition 13.4).
+- So for E = K(i), D ≡ 3 mod 4 (det class 1), no classical lattice has Clifford order O_E; Picard groups of non-maximal orders are needed there.
+- In det class 2 under (H) the count is h(−8D)/2 (Theorem 13.1).
+
+
+C30. **"L1.4 (≤ 12 per edge) is the only per-edge bound known" (L7.4) and the constant 12 in s□ ≤ 12s (L1.5, L1.6, 01_problem).** Not sharp for the lattices of this repo.
+- They are classical (B(M, M) ⊆ O), so T_δ is an integral lattice and its norm-1 vectors are orthonormal.
+- Hence ≤ rd values per functional, so S(K,2) ≤ 4s, and S(K,2) ≤ 3s when N(ε) = +1 (Theorem 15.1, Corollary 15.2). Equality holds at D = 82.
+- The kissing-number bound ½τ_{rd} applies only to non-classical lattices (Q(M) ⊆ O, B(M, M) ⊆ ½O).
+- Likewise T(K) ≤ 3s (R6) becomes T(K) ≤ 2s.
+
+C31. **"#{v : T_δ(v) ≤ t_d} is not uniform in the lattice" (L5.6).** Wrong. For any integral lattice of rank n, #{v : T(v) ≤ t} ≤ (2√t + 1)^n, by packing (Lemma 15.4). In degree d the field enters only through t(K) and the number of functionals Φ_t(K) (Theorem 15.5).
+
+C32. **"t₃ ≤ 3 (IMPORTED Kala–Tinková)" (L5.6, docs/06_references.md).** Misattributed and false.
+- Kala–Tinková treat simplest cubic fields, where min traces are 1 or 2. Tinková (2105.04204) shows min traces are unbounded in families of cubic orders.
+- For maximal orders: t(K) = 4 at disc 3137 and t(K) = 5 at disc 14229 (complete scan to disc 20000).
+- t(K) ≥ a in Thomas's family whenever Z[ρ] = O_K (Theorem 15.6). CERTIFIED for a ≤ 100, so sup t(K) ≥ 100.
+- Whether t₃ = ∞ over maximal orders is HEURISTIC; the gap is infinitely many monogenic parameters.

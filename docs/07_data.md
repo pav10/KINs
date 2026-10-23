@@ -84,7 +84,7 @@ Raw data with Gram matrices and per-edge counts: data/scan_exact.jsonl.
 - Period-2 fans (`experiments.py fan 66 146`): best lattice 2 classes for ι = 8, 12.
 - Odd convergents jointly rank-2 compatible (`experiments.py convergents 19 31 43 46`):
   2/3, 2/4, 3/5, 2/6.
-- Imported (other analysis, Thm 22, unit-determinant frames, not re-run): complete S: D=26:2, 33:4,
+- Imported (other analysis, Thm 22, unit-determinant frames; RE-RUN in R4: data/r4_unit_frames.jsonl, D = 22 is 4 — C26): complete S: D=26:2, 33:4,
   19:6; others: 57:6, 41:4, 61:4, 31:≥4; 22,34,38,39,47,55,62,65,74,79,83: 2–3;
   35,51,53,66,69,70,77,78,82,85,87: no unit-determinant frame.
 
@@ -106,4 +106,33 @@ Raw data with Gram matrices and per-edge counts: data/scan_exact.jsonl.
   - Command: `r3_tools.py list out Dfile i/3`.
 - **Tables:** `scripts/r3_analysis.py`.
 - **Certificates:** data/certificates/D{691,5419,12511,98179,294319,636931,814531}_form.json and D7956859_form.json.gz (`scripts/certify_form.py p`). The others are rebuilt on demand, ≈ 20 s at p ≈ 10^7.
+
+## H. R4 (docs/12_R4.md)
+- data/r4_unit_frames.jsonl: for all 60 squarefree D ≤ 100, the unit-determinant frames by determinant class (det ∈ (O^×)² or ε⁺(O^×)²). Fields:
+  - number of frames of each class and their maximum s□;
+  - the trivial frame ⟨1, ε⟩, counted separately;
+  - the complete S(K,2) for comparison.
+- Command: `scripts/r4_thm22.py out.jsonl D...`, a few seconds.
+- Checks: `scripts/r4_checks.py prop5 154 | reg 5000 | cor213 6001`.
+
+## I. R5 (docs/13_R5.md)
+- `scripts/r5_genus.py p1 p2 …`: the genus of ⟨1, ε⟩ for p prime, compared with R1's complete enumeration (all frames, Galois reduction off).
+  - Run: all 30 primes ≡ 3 mod 4 below 200, about 5 min in total; all equal.
+  - The average/maximum table of docs/13_R5.md §5 comes from data/complete_S.jsonl and data/r2_scan.jsonl.
+
+## J. R6 (docs/14_R6.md)
+- `scripts/r6_squares.py T1 2 200000`: records of T₁ over squarefree D ≡ 2, 3 mod 4, ≈ 10 min. Table in docs/14_R6.md §5.
+- `scripts/r6_squares.py family 1000`: Theorem 14.2 for all admissible n ≤ 1000, a few seconds.
+
+## K. R7 (docs/15_R7.md)
+Both runs need cypari2 and the sails package (read-only; SAILS_PATH, default ../sails).
+- **data/r7_cubic_fields.jsonl**: all 832 totally real cubic fields with disc ≤ 20000 (PARI `nflist`).
+  - Fields per record: label (= disc), coeffs (ascending), ι (indecomposables mod O^{×,+}), t (max min trace), hist (min trace → count), worst = [N, m, sails coordinates].
+  - Facet data: number of facets, max integer distance, number of distance-1 facets, mu1 = most lattice points on a distance-1 facet.
+  - Command: `scripts/r7_cubic.py fields 1 20000`, ≈ 10 min.
+- **data/r7_thomas.jsonl**: Thomas family, for each 3 ≤ a ≤ 100.
+  - Records: the least b ≥ 2a − 1 with Z[ρ] = O_K, its disc, m(α) for α = 1 + (a − 1)(b − ρ) (exact, = a), and a minimising δ·f′(ρ).
+  - box_indecomposable for a ≤ 40; t_sails = t(K) via sails for a ≤ 12.
+  - Command: `scripts/r7_cubic.py thomas 3 100 12 40`, ≈ 2 min.
+- Families, printed only: `scripts/r7_cubic.py simplest -1 40` and `scripts/r7_cubic.py ennola 3 16`. Both give t = 2 throughout.
 

@@ -12,7 +12,11 @@ Collaborator: Pavlo Yatsyna (Charles University). Read docs in this order before
 `docs/01_problem.md` → `docs/02_ledger.md` → `docs/03_corrections.md` → `docs/04_pitfalls.md`
 → `docs/05_roadmap.md` → `docs/09_R1_complete.md` (R1: exact S(K,2), proof + tables)
 → `docs/10_R2.md` (R2: the K(√−2) ideal-class mechanism, S ≥ 52)
-→ `docs/11_R3.md` (R3: elementary model over Q(√−2p), S ≥ 76, what a growth proof needs).
+→ `docs/11_R3.md` (R3: elementary model over Q(√−2p), S ≥ 76, what a growth proof needs)
+→ `docs/12_R4.md` (R4: imported claims re-checked — Thm 22 table, Thm 4, Prop 5, Thm 17)
+→ `docs/13_R5.md` (R5: genus of ⟨1, ε⟩ = ideal classes of A; genus sum of s□; average vs maximum)
+→ `docs/14_R6.md` (R6: indecomposable squares, exact witness test, T(K) → ∞, s_u not uniform)
+→ `docs/15_R7.md` (R7: sharp per-face lemma ⇒ S ≤ 4s, attained; degree d; cubic min traces: t₃ ≥ 100; Kitaoka).
 Data: `docs/07_data.md`. History: `docs/08_history.md`.
 
 ## Working standards (non-negotiable)
@@ -54,6 +58,12 @@ scripts/r3_tools.py      R3 (docs/11_R3.md), pure Python: CF norms, exact square
                          forms of disc -8p, nu(f) = n(c) (p prime); scans `scan` / `proxy` / `list`
 scripts/certify_form.py  PARI-free certificate: lattice (b O_E, N/a) from a form class, delta witnesses;
                          scripts/r3_analysis.py tables of docs/11_R3.md
+scripts/r4_thm22.py      R4: unit-determinant frame table (imported Thm 22) via R1's frame enumeration;
+                         scripts/r4_checks.py Prop 5 family, regulator inequality, Cor 21.3 proportions
+scripts/r5_genus.py      R5: genus of <1,eps> (p prime) vs R1's complete enumeration (represented-class sets)
+scripts/r6_squares.py    R6: witness test for indecomposability, T1 (class of 1) in O(s), D = n^2+3 family
+scripts/r7_cubic.py      R7: exact min traces m(alpha) over the codifferent (any order), cubic scans (nflist),
+                         Thomas/Ennola/simplest families; needs cypari2 + sails (read-only, SAILS_PATH)
 legacy/real_quadratic_gram.py   Sage version (corrected) — reference only
 ```
 Tests: `python3 -m pytest -q -m "not slow"` (~30 s); `python3 -m pytest -q -m slow` (~15 min).
@@ -61,6 +71,9 @@ Optional: `pip install cypari2` (the manylinux wheel bundles PARI) enables the P
 Conventions: ω = √D (D ≡ 2,3 mod 4) or (1+√D)/2 (D ≡ 1 mod 4); Δ = 4D or D;
 η = generator > 1 of totally positive units (η = ε if N(ε)=+1 else ε²).
 Dress–Scharlau: indecomposables have N(α) ≤ Δ/4.
+Per-face (R7, classical M): ≤ rd represented α with Tr(δα) = 1 for each δ ∈ O^{∨,+}; S(K,2) ≤ 4s (not 12s).
+PARI via cypari2: `nf[6]` is NOT nf.zk when the index is > 1 (it is scaled); use `nfbasis(pol)`.
+`qfminim(G, B, 0, 2)` returns no vectors (m = 0); pass `flag=2` by keyword.
 Blomer–Kala count (verified D<300 in tests): #indecomposables mod O^{×,+} =
 u1+u3+…+u_{s−1} (s even) or u1+…+u_s (s odd), [u0; u1..us] the CF of ω.
 

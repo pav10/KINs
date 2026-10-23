@@ -33,4 +33,25 @@
    - This gives a pure-Python scan of all primes ≤ 10^6 (≈ 1 h; the PARI route took hours to 10^5), class-group-free certificates, and records 56, 60, 64 below 10^6, then 76 at p = 7956859 (top-200 sample of (10^6, 10^7]).
    - Mean ν* grows like 2.8·ln p, and the average over A is ∝ ι/√p.
    - The requested proof of growth along a family was not achieved. It reduces to (G1) a class-number-one-type input and (G2) a twisted-divisor mean value (Proposition 11.5).
+13. R4 session. The imported claims were re-checked from their ledger summaries; the source analyses are not in the pack.
+   - Thm 22 table: reproduced with R1's complete frame enumeration, except D = 22 (4, not 2–3).
+   - Thm 4 and Prop 5 are now PROVED (Prop 5 via an explicit family over Q(√(n²+2))).
+   - Thm 17 is unusable as stated; replaced by the proved ceiling s□ ≤ 12s ≤ 24 + 24.94·Reg.
+   - The "irreducible core" claim of 01_problem is withdrawn (C27).
+14. R5 session.
+   - The genus of ⟨1, ε⟩ (D ≡ 3 mod 4, (H)) is the set of ideal lattices over A = ker(Cl E → Cl⁺K): h(−8D)/2 proper classes, all with O⁺ = {±1}.
+   - The genus sum of s□ is Σ_c n(c), so the genus average is R3's "avg".
+   - The model is checked against R1's complete enumeration for the 30 primes below 200.
+   - The Clifford order is never maximal for classical det-class-1 lattices (C29).
+   - The maximum exceeds the average by 1–4×.
+15. R6 session. Resolved L5.1.
+   - An exact witness test for indecomposability (one modular inverse) shows that primitive α ≫ 0 with N(α) < 2√D is indecomposable.
+   - So squares of elements of small norm are indecomposable, and in Q(√(n²+3)) the powers (n + √D)^{2j} give T ≫ log D: s_u is not uniform in any rank.
+   - T(K) ≤ 3s.
+   - Record T₁ = 67 at D = 156979. All records have h(K) = 1, and T₁ ≈ 3.3·D^{1/4}.
+16. R7 session. Resolved L5.6.
+   - The per-face lemma was not sharp for classical lattices: norm-1 vectors of the integral lattice (M, Tr δB) are orthonormal, so ≤ rd values per functional. Hence S(K,2) ≤ 4s, attained at D = 82, where (M, T_δ) ≅ Z⁴.
+   - Packing makes the degree-d per-functional count uniform in M (C31).
+   - Cubic min traces: "t₃ ≤ 3" was misattributed and is false (t = 4 at disc 3137). In Thomas's family t(K) ≥ a whenever Z[ρ] = O_K, proved by an interlacing description of the totally positive codifferent; certified to a = 100.
+   - Kitaoka: the trace test gives u_E ≤ 2r − 1, and cannot decide finiteness by itself (D = n² − 1).
 

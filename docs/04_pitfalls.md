@@ -66,3 +66,9 @@ P17. **Balance edge functionals by ε, not ε², when θ (N θ = ε) acts on the
 - With ε² only, δ stays lopsided by a factor ε, and exact LLL on the trace form slows by 10×+ (141 s → 12 s at p = 294319).
 - Map found vectors by θ to switch the parity of the square class.
 - Also: two background runs "died silently" because they were OOM-killed (cgroup limit; see `dmesg`). `cat a.txt b.txt` of files without a trailing newline glued two primes into one 14-digit number, and the sieve tried to allocate up to it. Validate input lists (max, count) before a long run.
+
+P18. **cypari2 pitfalls (R7).**
+- `nf[6]` (GP's nf[7]) is the integral basis times its denominator, so it equals nf.zk only when the index is 1. Use `nfbasis(pol)` (or the member `.zk` via GP).
+- `qfminim(G, B, 0, 2)` returns the count but NO vectors (m = 0 means "return none"). Pass `flag=2` by keyword.
+- Integer `qfminim` fails with "precision too low" once the scaled Gram entries reach about 10^15 (cubic codifferent lattices at disc ≳ 10^8). LLL-reduce first, then fall back to flag = 2 at 200 digits and re-check every candidate exactly.
+- Before quoting a classical-lattice bound, check whether it used kissing numbers (non-classical) or orthonormality (classical): the factor-3 slack in L1.5 survived six rounds (C30).

@@ -70,9 +70,13 @@ Q(v) ∈ O) and positive definite (δQ totally positive definite), so T_δ ≥ 1
 If Q(v) ∈ I(K) with Tr(δQ(v)) = 1 then v is a minimal vector of T_δ. Hence
 #{α ∈ I(K) ∩ Q(M) : Tr(δα) = 1} ≤ ½ τ_{rd}  (τ_n = max kissing number of n-dim lattices;
 τ_4 = 24, so ≤ 12 for binary/real quadratic). ∎
+**Sharpened in R7 (L13.1, C30):** for CLASSICAL M (this repo's convention) T_δ is an integral lattice, its
+norm-1 vectors are orthonormal, and the bound is rd (= 4 for binary/real quadratic), with equality only if
+(M, T_δ) ≅ Z^{rd}, M unimodular and δO = O^∨. ½τ_{rd} is the bound for non-classical M only.
 
-**L1.5 PROVED modulo IMPORTED structure (sail bound, real quadratic).** For K = Q(√D):
+**L1.5 PROVED modulo IMPORTED structure (sail bound, real quadratic); sharpened in R7.** For K = Q(√D):
   s□(M) ≤ ½ τ_{2r} · s       (binary: s□(M) ≤ 12 s),  s = CF period of ω.
+  R7 (L13.2): for classical M, s□(M) ≤ 2r·s, so S(K,2) ≤ 4s (≤ 3s if N(ε) = +1), attained at D = 82.
 *Proof.* IMPORTED (Kala–Tinková 2005.12312 Prop 3.1; Blomer–Kala 1705.03671): indecomposables
 lie on the edges of the sail; each edge E has δ_E ≻ 0 in O^∨ with Tr(δ_E α) = 1 for all α ∈ E;
 edges modulo O^{×,+} number f = s/2 (s even) or s (s odd) — matching the verified count
@@ -83,7 +87,12 @@ per edge. ∎
 Note: independent of the partial quotients u_i, hence of ι = #indecomposables.
 **Corollary.** Bounded period ⇒ bounded s□ (e.g. s = 2 ⇒ s□ ≤ 24).
 
-**L1.6 IMPORTED, NOT re-verified (regulator ceiling; other analysis "Thm 17").**
+**L1.6 UNUSABLE as stated (R4, docs/12_R4.md §4); clean version PROVED.** PROVED: s□(M) ≤ 12s ≤
+24 + 24.94·(Reg − log(√D − 1)) [R7: S ≤ 4s ≤ 8 + 8.32·(Reg − log(√D − 1)), L13.2], via log ε ≥ (s − 2) log φ + log(√D − 1) (q_{s−1} ≥ F_s). The imported
+volume form below has an unspecified error E, so it has no content; its 1/√N(𝔳M) main term is OPEN
+and irrelevant to boundedness. Its "Cor 21.3" holds in lattice form, trivially (s = 1 ⇒ S ≤ 12 and
+κ□ → ∞); the norm-proportion form is EMPIRICAL (≈ 1.35/√log D).
+Original entry — IMPORTED, NOT re-verified (regulator ceiling; other analysis "Thm 17").
 s□(M) ≤ V_2^d 2^{d−1} Reg(K) / √N(𝔳M) + E (volume count of vectors with N(Q(u)) ≤ Δ modulo
 units). Consequence claimed there ("Cor 21.3"): the proportion of indecomposable classes γ with
 αγ a norm from E = K(√−ε⁺) tends to 0 along D = t²+1. Verify before use (task R4).
@@ -100,7 +109,8 @@ iff the congruence holds. ∎ (Applies to the sublattice Ov+Ow; M may be larger.
 **L2.2 IMPORTED (standard; Gauss/Dedekind/Clifford composition; Shyr 1977).** Binary M with
 det class δ ↔ an ideal class [𝔞_M] of an order 𝒪 ⊆ E = K(√−δ) (CM, E/K cyclic); Q(M) = values
 N_{E/K}(z)/N(𝔞_M), z ∈ 𝔞_M. Isometry classes in the genus of a free lattice ↔ classes counted by
-Shyr's H = (h_E/h_K)·2^{1−t}/[U_E^0 : U_K^0] (t = # primes of K ramified in E). Care needed with
+Shyr's H = (h_E/h_K)·2^{1−t}/[U_E^0 : U_K^0] (t = # primes of K ramified in E).
+[R5: valid when the Clifford order is O_E. For D ≡ 3 mod 4 with (H), the genus of ⟨1, ε⟩ has exactly h(−8D)/2 proper classes (Theorem 13.1, PROVED; consistent with H for t = 1, unit index 2). Classical det-class-1 lattices never have Clifford order O_E (Proposition 13.4, C29).] Care needed with
 non-maximal orders, proper vs improper equivalence and Steinitz class (h(K) > 1).
 
 **L2.3 PROVED given L2.2 (one fibre).** With Φ : I(K) → Cl(𝒪), α ↦ class of an ideal of
@@ -114,7 +124,10 @@ mod a power of 2. **But** the ideal-class condition lives in Cl(E), with h⁻(E)
 (Brauer–Siegel, since Δ_E/Δ_K = Δ_K·N(𝔡_{E/K}) and N(𝔡_{E/K}) | 16). So the class-placement
 problem is NOT reduced to a finite 2-adic group (see corrections C10).
 
-**L2.5 EMPIRICAL (IMPORTED data, re-verified for Δ=57).** In every certified extremal example
+**L2.5 EMPIRICAL (IMPORTED data, re-verified for Δ=57); scope corrected by R4.** Among the 10 fields
+D ≤ 100 with S ≥ 6, a unit-determinant frame attains S at D = 19, 43, 57, 67, but not at D = 31, 58,
+86, 91, 94, 97 (data/r4_unit_frames.jsonl). Under (H) the R2/R3 record lattices do have det ∈ ε·K^{×2}
+(docs/11_R3.md §6). Original entry: In every certified extremal example
 (Δ = 33, 57, 76) the frame determinant is exactly δ = ε⁺ (the totally positive fundamental
 unit). Re-verified: Δ=57, α1 = 10+3ω, α2 = 23+7ω, b = −(13+4ω): δ = 151+20√57 = η. Also
 N(α1) = N(α2) in all three (4,4 / 4,4 / 9,9). No mechanism known.
@@ -139,13 +152,16 @@ infinitely many acutely irreducible vectors. L1.1 survives only for fixed values
 
 **L3.3 REFUTED — metric / spherical-code routes.**
 (a) PROVED: the spectral route needs root discriminant < √2 — impossible (min is √5).
-(b) IMPORTED (other analysis "Prop 5"), not re-verified: for every δ > 0 there are real
+(b) PROVED in R4 (docs/12_R4.md §3, explicit family D = n² + 2, 1 − cos ≤ 2/(n − 2)); was IMPORTED (other analysis "Prop 5"): for every δ > 0 there are real
 quadratic K, binary M, v, w representing indecomposables in distinct classes with trace-angle
 cosine > 1−δ. Separation exists only at a pair-dependent place. Certified extremal vectors
 have trace-angle cosines ≈ −0.98 (consistent).
 
-**L3.4 IMPORTED (Ramsey reduction; other analysis "Thm 4").** If s□(M) ≥ R_{d(d−1)}(k), there
+**L3.4 PROVED in R4 (Ramsey reduction; was IMPORTED "Thm 4"; docs/12_R4.md §2).** If s□(M) ≥ R_{d(d−1)}(k), there
 are k represented indecomposables forming a two-place staircase. Reduction only.
+- The proof uses only that distinct indecomposables are incomparable (α − β is never ≫ 0); M plays no role.
+- It is empty for d = 2.
+- It does NOT reduce question 1 to real quadratic fields (C27).
 
 **L3.5 HEURISTIC (Pareto / value-sail counts are Θ(s)).** Pareto-minimal vectors of the
 conjugate pencil, modulo units, ↔ ∪_λ Min(Q_λ) over a torus of covolume Reg; breakpoints
@@ -168,7 +184,7 @@ D = 26 (S=2), 33 (S=4=κ□), 19 (S=6) are re-verified. The claim "S ≤ 6 for 4
 ---------------------------------------------------------------------------------------------
 ## L5 Open
 
-**L5.1 OPEN (rank-1 / unit-orbit core; IMPORTED "A7").** T(K) = sup_γ #{ξO : γξ² ∈ I(K)}.
+**L5.1 RESOLVED in R6 (docs/14_R6.md): sup_K T(K) = ∞ PROVED (Theorem 14.2, D = n² + 3: T ≥ 1 + 2⌊log₉ 2n⌋), and T(K) ≤ 3s; so s_u is not uniform in any rank.** Original: L5.1 OPEN (rank-1 / unit-orbit core; IMPORTED "A7"). T(K) = sup_γ #{ξO : γξ² ∈ I(K)}.
 Each line contributes 1 class mod (K^×)² but up to T(K) mod (O^×)². Prescribed-CF (Friesen-type)
 constructions suggest sup_K T(K) = ∞, which would make s_u non-uniform already in rank 1.
 EMPIRICAL support that square classes contain several unit orbits: κ□ < 2ι for D = 19 (10 < 14),
@@ -195,14 +211,15 @@ structure.
 **L5.4 OPEN.** Which invariant separates Q(√26) (S = 2) from Q(√19) (S = 6)? Same h = 1,
 h⁺ = 2, 2 ramified. (IMPORTED data.)
 
-**L5.5 OPEN.** Genus average: Σ_{M' ∈ gen(M)} s□(M') ≤ κ□(K)·max_α #{ideals of E of norm (α)}
+**L5.5 PROVED for the genus of ⟨1, ε⟩ (D ≡ 3 mod 4, (H); docs/13_R5.md Theorem 13.3); OPEN for other genera.** Original: Genus average: Σ_{M' ∈ gen(M)} s□(M') ≤ κ□(K)·max_α #{ideals of E of norm (α)}
 (each class may be hit by several genus classes) — divisor-type factor Δ^{o(1)}. Make precise
 with Shyr's H (L2.2) and compare with computed maxima.
 
-**L5.6 OPEN (higher degree).** t_d := sup of min_{δ ∈ O^{∨,+}} Tr(δα) over indecomposables of
-degree-d fields (t_2 = 1; t_3 ≤ 3 IMPORTED Kala–Tinková). If t_d < ∞ then L1.4 generalizes with
-½τ_{rd} replaced by #{v : T_δ(v) ≤ t_d} — but that count is not uniform in the lattice
-(it depends on the successive minima of T_δ); needs work.
+**L5.6 RESOLVED in R7 (docs/15_R7.md, L13): the per-functional count IS uniform (C31); "t₃ ≤ 3" REFUTED (C32);
+t₃ ≥ 100 CERTIFIED; t₃ = ∞ HEURISTIC.** Original (retracted parts struck): L5.6 OPEN (higher degree).
+t_d := sup of min_{δ ∈ O^{∨,+}} Tr(δα) over indecomposables of degree-d fields (t_2 = 1; ~~t_3 ≤ 3 IMPORTED
+Kala–Tinková~~). If t_d < ∞ then L1.4 generalizes with ½τ_{rd} replaced by #{v : T_δ(v) ≤ t_d} — ~~but that
+count is not uniform in the lattice~~ (it is: ≤ (2√t + 1)^{rd}, Lemma 15.4).
 
 ---------------------------------------------------------------------------------------------
 ## L6 Findings of the hand-over session (exact method)
@@ -273,7 +290,8 @@ x = (7+√82/2, 7−√82/2); values 10−√82, 154−17√82, 46−5√82, 118
 the single edge orbit; S = 4 > 2s. Q(√85) (s = 1): S = 3. Q(√58): an
 s□ = 6 lattice with 4 values on one edge. Also for binary FORMS: 3 classes on one edge occur for D = 73, 89, 97 (h = 1, all lattices free).
 Hence s□ ≤ 2s is false; the per-face bound L1.4 (≤ 12 per
-edge) is the only per-edge bound known. Over every maximal lattice, D ≤ 100: classes on one edge reach 3 (D = 73, 74, 85, 89, 97)
+edge) is the only per-edge bound known [superseded in R7: ≤ 4 per edge for classical M, attained at D = 10, 26, 58, 65, 74, 82, 85
+(L13.1); ≤ 3 when s is even, and the data show ≤ 2 there]. Over every maximal lattice, D ≤ 100: classes on one edge reach 3 (D = 73, 74, 85, 89, 97)
 and 4 (D = 58, 82); never more. Per-edge maxima over every maximal lattice:
 data/edge_stats.jsonl (`scripts/edge_stats.py`).
 
@@ -412,3 +430,83 @@ The governing invariant is ι/√p, not s and not h(E).
 - Top-200 mean 66.1; random mean 34.3, consistent with L9.6. All top-200 fields have h(Q(√p)) = 1.
 - Not a complete search of the range.
 
+---------------------------------------------------------------------------------------------
+## L10 R4 — the imported claims re-checked  (docs/12_R4.md)
+- **L10.1 CERTIFIED (Thm 22 table).**
+  - Non-trivial unit-determinant frames (excluding ⟨1, ε⟩) reproduce the imported table, except D = 22: the frame (5 − √22, 61 − 13√22, b = −14 + 3√22) with det ε^{−1} represents 4 classes (C26).
+  - The restriction attains the complete S in 37 of the 60 fields D ≤ 100.
+  - `scripts/r4_thm22.py`, data/r4_unit_frames.jsonl.
+- **L10.2 PROVED.** Thm 4 (L3.4), with a 3-line proof. Prop 5 (L3.3(b)), via an explicit family.
+- **L10.3 PROVED / UNUSABLE.** Thm 17 (L1.6): the clean regulator ceiling is proved; the stated volume form is unusable.
+- **L10.4 PROVED / EMPIRICAL.** Cor 21.3 is proved in lattice form and empirical in norm-proportion form.
+
+---------------------------------------------------------------------------------------------
+## L11 R5 — the genus of ⟨1, ε⟩  (docs/13_R5.md)
+Setting: D ≡ 3 (mod 4) with (H), E = K(√−2), A = ker(Cl(E) → Cl⁺(K)).
+- **L11.1 PROVED (Theorem 13.1).**
+  - gen⟨1, ε⟩ = {M_𝔄 : [𝔄] ∈ A}, with proper classes ↔ A, so h(−8D)/2 of them.
+  - O⁺(M) = {±1} for every M in the genus, so Siegel weights are uniform.
+  - Isometry classes = (|A| + |A[2]|)/2.
+  - Inputs IMPORTED: the module structure of lattices over their Clifford order, and local class field theory.
+- **L11.2 PROVED (Theorem 13.3).**
+  - Σ_gen s□ = Σ_c n(c) = Σ_{[γ]} r(γ) ∈ [N_E, Σ_γ Σ_{m|Nγ} χ₋₈(m)], and avg_gen s□ = 2Σ/h(−8D).
+  - For p prime this is the R3 quantity "avg" (≈ 3.3·ι/√p, EMPIRICAL).
+- **L11.3 PROVED (Proposition 13.4).**
+  - The Clifford order of a classical M lies in {Tr ∈ 2O_K}.
+  - In det class 1 (E = K(i), D ≡ 3 mod 4) the Clifford order is never O_E, so the classical genera there are governed by non-maximal orders.
+  - In det class 2 there is no obstruction.
+- **L11.4 CERTIFIED (`scripts/r5_genus.py`).**
+  - For all 30 primes p ≡ 3 mod 4 below 200, the represented-class sets of the unimodular det-class-2 lattices found by R1's complete enumeration equal the form-model sets S(f).
+  - Some genus classes have s□ = 0 (e.g. at p = 47, 79, 167).
+- **L11.5 CERTIFIED / EMPIRICAL (average vs maximum).**
+  - For D ≤ 100 with (H), the genus max equals S(K,2) in 11 of 14 fields. It misses at D = 31, 51, 71, whose extremal lattices have det class 9+√31, 3, 1.
+  - max/avg is 1.0–1.8 for D ≤ 100, and its mean grows 2.6 → 3.7 over primes ≤ 10^6.
+
+---------------------------------------------------------------------------------------------
+## L12 R6 — indecomposable squares; T(K) → ∞  (docs/14_R6.md)
+Setting: D ≡ 2, 3 (mod 4) squarefree, O = Z[√D].
+- **L12.1 PROVED (Lemma 14.1; converse IMPORTED via t₂ = 1).** Exact witness test.
+  - For α = x + y√D ≫ 0 primitive with y > 0, take m ∈ [1, x] with my ≡ −1 (mod x). Then α is indecomposable iff m·σ₂(α) < √D, and δ = (b√D − m)/(2√D) is the witness.
+  - Corollary: primitive α ≫ 0 with N(α) < 2√D is indecomposable.
+- **L12.2 PROVED (Lemma 14.3).** ξ² is primitive iff gcd(N ξ, 2D) = 1.
+- **L12.3 PROVED (Proposition 14.4).** T₁(K) := #{ξO : ξ² ∈ I} is computed in O(s) from the CF.
+  - 1 + #{small principal ideals of norm² < 2√D} ≤ T₁ ≤ s.
+  - T(K) ≤ 3s, via the rank-1 per-face lemma on (𝔟₀⁻¹, γ₀x²). [R7: T(K) ≤ 2s, the lattice is classical (L13.2).]
+  - CERTIFIED: T₁ agrees with FieldData for all 612 fields D < 1500.
+- **L12.4 PROVED (Theorem 14.2; squarefree values IMPORTED).** D = n² + 3 (n even, 3 ∤ n): T ≥ 1 + 2⌊log₉(2n)⌋ → ∞.
+  - Corollary 14.5: sup over K and integral rank-r M of s_u(M) = ∞ for every r ≥ 1.
+- **L12.5 CERTIFIED / EMPIRICAL.**
+  - Records of T₁ for D ≤ 2·10⁵: 3, 7, 13, …, 67 (D = 156979, s = 958).
+  - All record fields have h(K) = 1, and T₁ ≈ 3.3·D^{1/4}.
+  - Polynomial growth is HEURISTIC (it needs infinitely many h = 1 fields).
+
+---------------------------------------------------------------------------------------------
+## L13 R7 — sharp per-face bound, degree d, cubic min traces, Kitaoka  (docs/15_R7.md)
+- **L13.1 PROVED (Theorem 15.1).** M classical of rank r over K of degree d, δ ∈ O^{∨,+}.
+  - The norm-1 vectors of the integral lattice (M, T_δ) are an orthonormal ±e₁..±e_k, which split off as Z^k, and k ≤ rd.
+  - det(M, T_δ) = N(δ𝔡)^r N(𝔳M). So k = rd forces (M, T_δ) ≅ Z^{rd}, M unimodular and δO = 𝔡⁻¹.
+  - Hence ≤ rd represented α with Tr(δα) = 1. CERTIFIED equality: D = 82, (M, T_δ) ≅ Z⁴.
+- **L13.2 PROVED (Corollary 15.2; sail structure IMPORTED as in L1.5).** Real quadratic.
+  - N(δ_E𝔡) = |N(μ_E)|, with μ_E the intermediate convergent of edge E.
+  - Each edge carries ≤ 2r represented elements, and ≤ 2r − 1 unless N(μ_E) = −1 and M is unimodular.
+  - N_r(K) ≤ 2r·s; S(K,2) ≤ 4s, and S(K,2) ≤ 3s if N(ε) = +1. T(K) ≤ 2s.
+  - CERTIFIED: every record in the repo satisfies S ≤ 4s; max S/s = 4 (D = 82).
+  - EMPIRICAL: ≤ 2 per edge when s is even (D ≤ 100, all maximal lattices). OPEN as a statement.
+- **L13.3 PROVED (Lemma 15.4, Theorem 15.5).** #{v : T(v) ≤ t} ≤ (2√t + 1)^n on any integral lattice of rank n. Hence s□(M) ≤ Φ_t(K)·½c(rd, t) for t ≥ t(K), where:
+  - t(K) := max over I(K) of min_δ Tr(δα);
+  - Φ_t(K) := the fewest functionals covering I(K) mod (O^×)² at level t;
+  - c(n, 1) = 2n, c(6, 2) = 72.
+- **L13.4 PROVED (Theorem 15.6).** Thomas family f = x(x − a)(x − b) − 1, a ≥ 3, b ≥ 2a − 1, α = 1 + (a − 1)(b − ρ).
+  - α is indecomposable in Z[ρ], and m_O(α) ≥ a for every order O ⊇ Z[ρ], with equality for Z[ρ].
+  - So Z[ρ] = O_K ⇒ t(K) ≥ a.
+- **L13.5 CERTIFIED.**
+  - Index 1 is found at some b ∈ {2a − 1, 2a, 2a + 1} for every 3 ≤ a ≤ 100, so sup over cubic K of t(K) ≥ 100. sails gives t(K) = a for a ≤ 12.
+  - All 832 cubic fields with disc ≤ 20000: t ∈ {2, 3, 4, 5}, with counts 62/426/338/6. The first t = 4 is at disc 3137 and the first t = 5 at disc 14229.
+  - Simplest cubics: t = 2. Ennola's family: t = 2, while the facet integer distance is a.
+- **L13.6 HEURISTIC.** t₃ = ∞ over maximal orders. The gap is infinitely many a with an index-1 b ≥ 2a − 1; e.g. disc(a, 2a − 1) = (a² − a − 1)(4a⁴ − 8a³ + 9a² − 5a + 23).
+  - Unboundedness for cubic orders is IMPORTED (Tinková 2105.04204, abstract only).
+  - EMPIRICAL: t(K) ≤ max facet integer distance in all 832 fields.
+- **L13.7 PROVED (Corollary 15.8, Proposition 15.9).** A classical universal rank-r lattice forces #{α ∈ O⁺ : Tr(δα) = 1} ≤ rd for every δ.
+  - Real quadratic: u_E ≤ 2r − 1 on every edge; ternary: u_E ≤ 5.
+  - Cubic: 721 of the 832 fields have μ₁ > 9, so no classical universal ternary (CERTIFIED facet data).
+  - The indecomposables cannot decide Kitaoka in degree 2: for D = n² − 1, I(K) = {η^k}, while CKR (IMPORTED) leaves only D = 2, 3, 5.
